@@ -1,6 +1,6 @@
 # Go Network Manager client
 
-Network Manager API interface generated from DBus bindings using [dbus-codegen-go](https://github.com/amenzhinsky/dbus-codegen-go).
+Network Manager DBus API client generated from DBus bindings using [dbus-codegen-go](https://github.com/amenzhinsky/dbus-codegen-go).
 
 ## Usage
 
@@ -21,3 +21,7 @@ make generate
 # one-shot
 make
 ```
+
+## License
+
+Apache 2
