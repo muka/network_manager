@@ -17,7 +17,7 @@ package network_manager
 
 {{ range $item := $doc.Items }}
 // {{$item.Label}} {{$item.Desc}}
-const {{$item.Label}} {{$item.ValueType}} = {{$item.Value}}
+const {{$item.Label}} int = {{$item.Value}}
 {{end}}
 
 {{end}}

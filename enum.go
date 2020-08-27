@@ -7,10 +7,10 @@ package network_manager
 
 
 // NM_CAPABILITY_TEAM Teams can be managed. This means the team device plugin is loaded.
-const NM_CAPABILITY_TEAM uint16 = 1
+const NM_CAPABILITY_TEAM int = 1
 
 // NM_CAPABILITY_OVS OpenVSwitch can be managed. This means the OVS device plugin is loaded. Since: 1.24
-const NM_CAPABILITY_OVS uint16 = 2
+const NM_CAPABILITY_OVS int = 2
 
 
 
@@ -19,28 +19,28 @@ const NM_CAPABILITY_OVS uint16 = 2
 
 
 // NM_STATE_UNKNOWN Networking state is unknown. This indicates a daemon error that makes it unable to reasonably assess the state. In such event the applications are expected to assume Internet connectivity might be present and not disable controls that require network access. The graphical shells may hide the network accessibility indicator altogether since no meaningful status indication can be provided.
-const NM_STATE_UNKNOWN uint16 = 0
+const NM_STATE_UNKNOWN int = 0
 
 // NM_STATE_ASLEEP Networking is not enabled, the system is being suspended or resumed from suspend.
-const NM_STATE_ASLEEP uint16 = 10
+const NM_STATE_ASLEEP int = 10
 
 // NM_STATE_DISCONNECTED There is no active network connection. The graphical shell should indicate  no network connectivity and the applications should not attempt to access the network.
-const NM_STATE_DISCONNECTED uint16 = 20
+const NM_STATE_DISCONNECTED int = 20
 
 // NM_STATE_DISCONNECTING Network connections are being cleaned up. The applications should tear down their network sessions.
-const NM_STATE_DISCONNECTING uint16 = 30
+const NM_STATE_DISCONNECTING int = 30
 
 // NM_STATE_CONNECTING A network connection is being started The graphical shell should indicate the network is being connected while the applications should still make no attempts to connect the network.
-const NM_STATE_CONNECTING uint16 = 40
+const NM_STATE_CONNECTING int = 40
 
 // NM_STATE_CONNECTED_LOCAL There is only local IPv4 and/or IPv6 connectivity, but no default route to access the Internet. The graphical shell should indicate no network connectivity.
-const NM_STATE_CONNECTED_LOCAL uint16 = 50
+const NM_STATE_CONNECTED_LOCAL int = 50
 
 // NM_STATE_CONNECTED_SITE There is only site-wide IPv4 and/or IPv6 connectivity. This means a default route is available, but the Internet connectivity check (see &#34;Connectivity&#34; property) did not succeed. The graphical shell should indicate limited network connectivity.
-const NM_STATE_CONNECTED_SITE uint16 = 60
+const NM_STATE_CONNECTED_SITE int = 60
 
 // NM_STATE_CONNECTED_GLOBAL There is global IPv4 and/or IPv6 Internet connectivity This means the Internet connectivity check succeeded, the graphical shell should indicate full network connectivity.
-const NM_STATE_CONNECTED_GLOBAL uint16 = 70
+const NM_STATE_CONNECTED_GLOBAL int = 70
 
 
 
@@ -49,19 +49,19 @@ const NM_STATE_CONNECTED_GLOBAL uint16 = 70
 
 
 // NM_CONNECTIVITY_UNKNOWN Network connectivity is unknown. This means the connectivity checks are disabled (e.g. on server installations) or has not run yet. The graphical shell should assume the Internet connection might be available and not present a captive portal window.
-const NM_CONNECTIVITY_UNKNOWN uint16 = 0
+const NM_CONNECTIVITY_UNKNOWN int = 0
 
 // NM_CONNECTIVITY_NONE The host is not connected to any network. There&#39;s no active connection that contains a default route to the internet and thus it makes no sense to even attempt a connectivity check. The graphical shell should use this state to indicate the network connection is unavailable.
-const NM_CONNECTIVITY_NONE uint16 = 1
+const NM_CONNECTIVITY_NONE int = 1
 
 // NM_CONNECTIVITY_PORTAL The Internet connection is hijacked by a captive portal gateway. The graphical shell may open a sandboxed web browser window (because the captive portals typically attempt a man-in-the-middle attacks against the https connections) for the purpose of authenticating to a gateway and retrigger the connectivity check with CheckConnectivity() when the browser window is dismissed.
-const NM_CONNECTIVITY_PORTAL uint16 = 2
+const NM_CONNECTIVITY_PORTAL int = 2
 
 // NM_CONNECTIVITY_LIMITED The host is connected to a network, does not appear to be able to reach the full Internet, but a captive portal has not been detected.
-const NM_CONNECTIVITY_LIMITED uint16 = 3
+const NM_CONNECTIVITY_LIMITED int = 3
 
 // NM_CONNECTIVITY_FULL The host is connected to a network, and appears to be able to reach the full Internet.
-const NM_CONNECTIVITY_FULL uint16 = 4
+const NM_CONNECTIVITY_FULL int = 4
 
 
 
@@ -70,100 +70,100 @@ const NM_CONNECTIVITY_FULL uint16 = 4
 
 
 // NM_DEVICE_TYPE_UNKNOWN unknown device
-const NM_DEVICE_TYPE_UNKNOWN uint16 = 0
+const NM_DEVICE_TYPE_UNKNOWN int = 0
 
 // NM_DEVICE_TYPE_GENERIC generic support for unrecognized device types
-const NM_DEVICE_TYPE_GENERIC uint16 = 14
+const NM_DEVICE_TYPE_GENERIC int = 14
 
 // NM_DEVICE_TYPE_ETHERNET a wired ethernet device
-const NM_DEVICE_TYPE_ETHERNET uint16 = 1
+const NM_DEVICE_TYPE_ETHERNET int = 1
 
 // NM_DEVICE_TYPE_WIFI an 802.11 Wi-Fi device
-const NM_DEVICE_TYPE_WIFI uint16 = 2
+const NM_DEVICE_TYPE_WIFI int = 2
 
 // NM_DEVICE_TYPE_UNUSED1 not used
-const NM_DEVICE_TYPE_UNUSED1 uint16 = 3
+const NM_DEVICE_TYPE_UNUSED1 int = 3
 
 // NM_DEVICE_TYPE_UNUSED2 not used
-const NM_DEVICE_TYPE_UNUSED2 uint16 = 4
+const NM_DEVICE_TYPE_UNUSED2 int = 4
 
 // NM_DEVICE_TYPE_BT a Bluetooth device supporting PAN or DUN access protocols
-const NM_DEVICE_TYPE_BT uint16 = 5
+const NM_DEVICE_TYPE_BT int = 5
 
 // NM_DEVICE_TYPE_OLPC_MESH an OLPC XO mesh networking device
-const NM_DEVICE_TYPE_OLPC_MESH uint16 = 6
+const NM_DEVICE_TYPE_OLPC_MESH int = 6
 
 // NM_DEVICE_TYPE_WIMAX an 802.16e Mobile WiMAX broadband device
-const NM_DEVICE_TYPE_WIMAX uint16 = 7
+const NM_DEVICE_TYPE_WIMAX int = 7
 
 // NM_DEVICE_TYPE_MODEM a modem supporting analog telephone, CDMA/EVDO, GSM/UMTS, or LTE network access protocols
-const NM_DEVICE_TYPE_MODEM uint16 = 8
+const NM_DEVICE_TYPE_MODEM int = 8
 
 // NM_DEVICE_TYPE_INFINIBAND an IP-over-InfiniBand device
-const NM_DEVICE_TYPE_INFINIBAND uint16 = 9
+const NM_DEVICE_TYPE_INFINIBAND int = 9
 
 // NM_DEVICE_TYPE_BOND a bond master interface
-const NM_DEVICE_TYPE_BOND uint16 = 10
+const NM_DEVICE_TYPE_BOND int = 10
 
 // NM_DEVICE_TYPE_VLAN an 802.1Q VLAN interface
-const NM_DEVICE_TYPE_VLAN uint16 = 11
+const NM_DEVICE_TYPE_VLAN int = 11
 
 // NM_DEVICE_TYPE_ADSL ADSL modem
-const NM_DEVICE_TYPE_ADSL uint16 = 12
+const NM_DEVICE_TYPE_ADSL int = 12
 
 // NM_DEVICE_TYPE_BRIDGE a bridge master interface
-const NM_DEVICE_TYPE_BRIDGE uint16 = 13
+const NM_DEVICE_TYPE_BRIDGE int = 13
 
 // NM_DEVICE_TYPE_TEAM a team master interface
-const NM_DEVICE_TYPE_TEAM uint16 = 15
+const NM_DEVICE_TYPE_TEAM int = 15
 
 // NM_DEVICE_TYPE_TUN a TUN or TAP interface
-const NM_DEVICE_TYPE_TUN uint16 = 16
+const NM_DEVICE_TYPE_TUN int = 16
 
 // NM_DEVICE_TYPE_IP_TUNNEL a IP tunnel interface
-const NM_DEVICE_TYPE_IP_TUNNEL uint16 = 17
+const NM_DEVICE_TYPE_IP_TUNNEL int = 17
 
 // NM_DEVICE_TYPE_MACVLAN a MACVLAN interface
-const NM_DEVICE_TYPE_MACVLAN uint16 = 18
+const NM_DEVICE_TYPE_MACVLAN int = 18
 
 // NM_DEVICE_TYPE_VXLAN a VXLAN interface
-const NM_DEVICE_TYPE_VXLAN uint16 = 19
+const NM_DEVICE_TYPE_VXLAN int = 19
 
 // NM_DEVICE_TYPE_VETH a VETH interface
-const NM_DEVICE_TYPE_VETH uint16 = 20
+const NM_DEVICE_TYPE_VETH int = 20
 
 // NM_DEVICE_TYPE_MACSEC a MACsec interface
-const NM_DEVICE_TYPE_MACSEC uint16 = 21
+const NM_DEVICE_TYPE_MACSEC int = 21
 
 // NM_DEVICE_TYPE_DUMMY a dummy interface
-const NM_DEVICE_TYPE_DUMMY uint16 = 22
+const NM_DEVICE_TYPE_DUMMY int = 22
 
 // NM_DEVICE_TYPE_PPP a PPP interface
-const NM_DEVICE_TYPE_PPP uint16 = 23
+const NM_DEVICE_TYPE_PPP int = 23
 
 // NM_DEVICE_TYPE_OVS_INTERFACE a Open vSwitch interface
-const NM_DEVICE_TYPE_OVS_INTERFACE uint16 = 24
+const NM_DEVICE_TYPE_OVS_INTERFACE int = 24
 
 // NM_DEVICE_TYPE_OVS_PORT a Open vSwitch port
-const NM_DEVICE_TYPE_OVS_PORT uint16 = 25
+const NM_DEVICE_TYPE_OVS_PORT int = 25
 
 // NM_DEVICE_TYPE_OVS_BRIDGE a Open vSwitch bridge
-const NM_DEVICE_TYPE_OVS_BRIDGE uint16 = 26
+const NM_DEVICE_TYPE_OVS_BRIDGE int = 26
 
 // NM_DEVICE_TYPE_WPAN a IEEE 802.15.4 (WPAN) MAC Layer Device
-const NM_DEVICE_TYPE_WPAN uint16 = 27
+const NM_DEVICE_TYPE_WPAN int = 27
 
 // NM_DEVICE_TYPE_6LOWPAN 6LoWPAN interface
-const NM_DEVICE_TYPE_6LOWPAN uint16 = 28
+const NM_DEVICE_TYPE_6LOWPAN int = 28
 
 // NM_DEVICE_TYPE_WIREGUARD a WireGuard interface
-const NM_DEVICE_TYPE_WIREGUARD uint16 = 29
+const NM_DEVICE_TYPE_WIREGUARD int = 29
 
 // NM_DEVICE_TYPE_WIFI_P2P an 802.11 Wi-Fi P2P device (Since: 1.16)
-const NM_DEVICE_TYPE_WIFI_P2P uint16 = 30
+const NM_DEVICE_TYPE_WIFI_P2P int = 30
 
 // NM_DEVICE_TYPE_VRF A VRF (Virtual Routing and Forwarding) interface (Since: 1.24)
-const NM_DEVICE_TYPE_VRF uint16 = 31
+const NM_DEVICE_TYPE_VRF int = 31
 
 
 
@@ -172,19 +172,19 @@ const NM_DEVICE_TYPE_VRF uint16 = 31
 
 
 // NM_DEVICE_CAP_NONE device has no special capabilities
-const NM_DEVICE_CAP_NONE byte = 0x00000000
+const NM_DEVICE_CAP_NONE int = 0x00000000
 
 // NM_DEVICE_CAP_NM_SUPPORTED NetworkManager supports this device
-const NM_DEVICE_CAP_NM_SUPPORTED byte = 0x00000001
+const NM_DEVICE_CAP_NM_SUPPORTED int = 0x00000001
 
 // NM_DEVICE_CAP_CARRIER_DETECT this device can indicate carrier status
-const NM_DEVICE_CAP_CARRIER_DETECT byte = 0x00000002
+const NM_DEVICE_CAP_CARRIER_DETECT int = 0x00000002
 
 // NM_DEVICE_CAP_IS_SOFTWARE this device is a software device
-const NM_DEVICE_CAP_IS_SOFTWARE byte = 0x00000004
+const NM_DEVICE_CAP_IS_SOFTWARE int = 0x00000004
 
 // NM_DEVICE_CAP_SRIOV this device supports single-root I/O virtualization
-const NM_DEVICE_CAP_SRIOV byte = 0x00000008
+const NM_DEVICE_CAP_SRIOV int = 0x00000008
 
 
 
@@ -193,46 +193,46 @@ const NM_DEVICE_CAP_SRIOV byte = 0x00000008
 
 
 // NM_WIFI_DEVICE_CAP_NONE device has no encryption/authentication capabilities
-const NM_WIFI_DEVICE_CAP_NONE byte = 0x00000000
+const NM_WIFI_DEVICE_CAP_NONE int = 0x00000000
 
 // NM_WIFI_DEVICE_CAP_CIPHER_WEP40 device supports 40/64-bit WEP encryption
-const NM_WIFI_DEVICE_CAP_CIPHER_WEP40 byte = 0x00000001
+const NM_WIFI_DEVICE_CAP_CIPHER_WEP40 int = 0x00000001
 
 // NM_WIFI_DEVICE_CAP_CIPHER_WEP104 device supports 104/128-bit WEP encryption
-const NM_WIFI_DEVICE_CAP_CIPHER_WEP104 byte = 0x00000002
+const NM_WIFI_DEVICE_CAP_CIPHER_WEP104 int = 0x00000002
 
 // NM_WIFI_DEVICE_CAP_CIPHER_TKIP device supports TKIP encryption
-const NM_WIFI_DEVICE_CAP_CIPHER_TKIP byte = 0x00000004
+const NM_WIFI_DEVICE_CAP_CIPHER_TKIP int = 0x00000004
 
 // NM_WIFI_DEVICE_CAP_CIPHER_CCMP device supports AES/CCMP encryption
-const NM_WIFI_DEVICE_CAP_CIPHER_CCMP byte = 0x00000008
+const NM_WIFI_DEVICE_CAP_CIPHER_CCMP int = 0x00000008
 
 // NM_WIFI_DEVICE_CAP_WPA device supports WPA1 authentication
-const NM_WIFI_DEVICE_CAP_WPA byte = 0x00000010
+const NM_WIFI_DEVICE_CAP_WPA int = 0x00000010
 
 // NM_WIFI_DEVICE_CAP_RSN device supports WPA2/RSN authentication
-const NM_WIFI_DEVICE_CAP_RSN byte = 0x00000020
+const NM_WIFI_DEVICE_CAP_RSN int = 0x00000020
 
 // NM_WIFI_DEVICE_CAP_AP device supports Access Point mode
-const NM_WIFI_DEVICE_CAP_AP byte = 0x00000040
+const NM_WIFI_DEVICE_CAP_AP int = 0x00000040
 
 // NM_WIFI_DEVICE_CAP_ADHOC device supports Ad-Hoc mode
-const NM_WIFI_DEVICE_CAP_ADHOC byte = 0x00000080
+const NM_WIFI_DEVICE_CAP_ADHOC int = 0x00000080
 
 // NM_WIFI_DEVICE_CAP_FREQ_VALID device reports frequency capabilities
-const NM_WIFI_DEVICE_CAP_FREQ_VALID byte = 0x00000100
+const NM_WIFI_DEVICE_CAP_FREQ_VALID int = 0x00000100
 
 // NM_WIFI_DEVICE_CAP_FREQ_2GHZ device supports 2.4GHz frequencies
-const NM_WIFI_DEVICE_CAP_FREQ_2GHZ byte = 0x00000200
+const NM_WIFI_DEVICE_CAP_FREQ_2GHZ int = 0x00000200
 
 // NM_WIFI_DEVICE_CAP_FREQ_5GHZ device supports 5GHz frequencies
-const NM_WIFI_DEVICE_CAP_FREQ_5GHZ byte = 0x00000400
+const NM_WIFI_DEVICE_CAP_FREQ_5GHZ int = 0x00000400
 
 // NM_WIFI_DEVICE_CAP_MESH device supports acting as a mesh point. Since: 1.20.
-const NM_WIFI_DEVICE_CAP_MESH byte = 0x00001000
+const NM_WIFI_DEVICE_CAP_MESH int = 0x00001000
 
 // NM_WIFI_DEVICE_CAP_IBSS_RSN device supports WPA2/RSN in an IBSS network. Since: 1.22.
-const NM_WIFI_DEVICE_CAP_IBSS_RSN byte = 0x00002000
+const NM_WIFI_DEVICE_CAP_IBSS_RSN int = 0x00002000
 
 
 
@@ -241,19 +241,19 @@ const NM_WIFI_DEVICE_CAP_IBSS_RSN byte = 0x00002000
 
 
 // NM_802_11_AP_FLAGS_NONE access point has no special capabilities
-const NM_802_11_AP_FLAGS_NONE byte = 0x00000000
+const NM_802_11_AP_FLAGS_NONE int = 0x00000000
 
 // NM_802_11_AP_FLAGS_PRIVACY access point requires authentication and encryption (usually means WEP)
-const NM_802_11_AP_FLAGS_PRIVACY byte = 0x00000001
+const NM_802_11_AP_FLAGS_PRIVACY int = 0x00000001
 
 // NM_802_11_AP_FLAGS_WPS access point supports some WPS method
-const NM_802_11_AP_FLAGS_WPS byte = 0x00000002
+const NM_802_11_AP_FLAGS_WPS int = 0x00000002
 
 // NM_802_11_AP_FLAGS_WPS_PBC access point supports push-button WPS
-const NM_802_11_AP_FLAGS_WPS_PBC byte = 0x00000004
+const NM_802_11_AP_FLAGS_WPS_PBC int = 0x00000004
 
 // NM_802_11_AP_FLAGS_WPS_PIN access point supports PIN-based WPS
-const NM_802_11_AP_FLAGS_WPS_PIN byte = 0x00000008
+const NM_802_11_AP_FLAGS_WPS_PIN int = 0x00000008
 
 
 
@@ -262,46 +262,46 @@ const NM_802_11_AP_FLAGS_WPS_PIN byte = 0x00000008
 
 
 // NM_802_11_AP_SEC_NONE the access point has no special security requirements
-const NM_802_11_AP_SEC_NONE byte = 0x00000000
+const NM_802_11_AP_SEC_NONE int = 0x00000000
 
 // NM_802_11_AP_SEC_PAIR_WEP40 40/64-bit WEP is supported for pairwise/unicast encryption
-const NM_802_11_AP_SEC_PAIR_WEP40 byte = 0x00000001
+const NM_802_11_AP_SEC_PAIR_WEP40 int = 0x00000001
 
 // NM_802_11_AP_SEC_PAIR_WEP104 104/128-bit WEP is supported for pairwise/unicast encryption
-const NM_802_11_AP_SEC_PAIR_WEP104 byte = 0x00000002
+const NM_802_11_AP_SEC_PAIR_WEP104 int = 0x00000002
 
 // NM_802_11_AP_SEC_PAIR_TKIP TKIP is supported for pairwise/unicast encryption
-const NM_802_11_AP_SEC_PAIR_TKIP byte = 0x00000004
+const NM_802_11_AP_SEC_PAIR_TKIP int = 0x00000004
 
 // NM_802_11_AP_SEC_PAIR_CCMP AES/CCMP is supported for pairwise/unicast encryption
-const NM_802_11_AP_SEC_PAIR_CCMP byte = 0x00000008
+const NM_802_11_AP_SEC_PAIR_CCMP int = 0x00000008
 
 // NM_802_11_AP_SEC_GROUP_WEP40 40/64-bit WEP is supported for group/broadcast encryption
-const NM_802_11_AP_SEC_GROUP_WEP40 byte = 0x00000010
+const NM_802_11_AP_SEC_GROUP_WEP40 int = 0x00000010
 
 // NM_802_11_AP_SEC_GROUP_WEP104 104/128-bit WEP is supported for group/broadcast encryption
-const NM_802_11_AP_SEC_GROUP_WEP104 byte = 0x00000020
+const NM_802_11_AP_SEC_GROUP_WEP104 int = 0x00000020
 
 // NM_802_11_AP_SEC_GROUP_TKIP TKIP is supported for group/broadcast encryption
-const NM_802_11_AP_SEC_GROUP_TKIP byte = 0x00000040
+const NM_802_11_AP_SEC_GROUP_TKIP int = 0x00000040
 
 // NM_802_11_AP_SEC_GROUP_CCMP AES/CCMP is supported for group/broadcast encryption
-const NM_802_11_AP_SEC_GROUP_CCMP byte = 0x00000080
+const NM_802_11_AP_SEC_GROUP_CCMP int = 0x00000080
 
 // NM_802_11_AP_SEC_KEY_MGMT_PSK WPA/RSN Pre-Shared Key encryption is supported
-const NM_802_11_AP_SEC_KEY_MGMT_PSK byte = 0x00000100
+const NM_802_11_AP_SEC_KEY_MGMT_PSK int = 0x00000100
 
 // NM_802_11_AP_SEC_KEY_MGMT_802_1X 802.1x authentication and key management is supported
-const NM_802_11_AP_SEC_KEY_MGMT_802_1X byte = 0x00000200
+const NM_802_11_AP_SEC_KEY_MGMT_802_1X int = 0x00000200
 
 // NM_802_11_AP_SEC_KEY_MGMT_SAE WPA/RSN Simultaneous Authentication of Equals is supported
-const NM_802_11_AP_SEC_KEY_MGMT_SAE byte = 0x00000400
+const NM_802_11_AP_SEC_KEY_MGMT_SAE int = 0x00000400
 
 // NM_802_11_AP_SEC_KEY_MGMT_OWE WPA/RSN Opportunistic Wireless Encryption is supported
-const NM_802_11_AP_SEC_KEY_MGMT_OWE byte = 0x00000800
+const NM_802_11_AP_SEC_KEY_MGMT_OWE int = 0x00000800
 
 // NM_802_11_AP_SEC_KEY_MGMT_OWE_TM WPA/RSN Opportunistic Wireless Encryption transition mode is supported. Since: 1.26.
-const NM_802_11_AP_SEC_KEY_MGMT_OWE_TM byte = 0x00001000
+const NM_802_11_AP_SEC_KEY_MGMT_OWE_TM int = 0x00001000
 
 
 
@@ -310,19 +310,19 @@ const NM_802_11_AP_SEC_KEY_MGMT_OWE_TM byte = 0x00001000
 
 
 // NM_802_11_MODE_UNKNOWN the device or access point mode is unknown
-const NM_802_11_MODE_UNKNOWN uint16 = 0
+const NM_802_11_MODE_UNKNOWN int = 0
 
 // NM_802_11_MODE_ADHOC for both devices and access point objects, indicates the object is part of an Ad-Hoc 802.11 network without a central coordinating access point.
-const NM_802_11_MODE_ADHOC uint16 = 1
+const NM_802_11_MODE_ADHOC int = 1
 
 // NM_802_11_MODE_INFRA the device or access point is in infrastructure mode. For devices, this indicates the device is an 802.11 client/station.  For access point objects, this indicates the object is an access point that provides connectivity to clients.
-const NM_802_11_MODE_INFRA uint16 = 2
+const NM_802_11_MODE_INFRA int = 2
 
 // NM_802_11_MODE_AP the device is an access point/hotspot.  Not valid for access point objects; used only for hotspot mode on the local machine.
-const NM_802_11_MODE_AP uint16 = 3
+const NM_802_11_MODE_AP int = 3
 
 // NM_802_11_MODE_MESH the device is a 802.11s mesh point. Since: 1.20.
-const NM_802_11_MODE_MESH uint16 = 4
+const NM_802_11_MODE_MESH int = 4
 
 
 
@@ -331,13 +331,13 @@ const NM_802_11_MODE_MESH uint16 = 4
 
 
 // NM_BT_CAPABILITY_NONE device has no usable capabilities
-const NM_BT_CAPABILITY_NONE byte = 0x00000000
+const NM_BT_CAPABILITY_NONE int = 0x00000000
 
 // NM_BT_CAPABILITY_DUN device provides Dial-Up Networking capability
-const NM_BT_CAPABILITY_DUN byte = 0x00000001
+const NM_BT_CAPABILITY_DUN int = 0x00000001
 
 // NM_BT_CAPABILITY_NAP device provides Network Access Point capability
-const NM_BT_CAPABILITY_NAP byte = 0x00000002
+const NM_BT_CAPABILITY_NAP int = 0x00000002
 
 
 
@@ -346,19 +346,19 @@ const NM_BT_CAPABILITY_NAP byte = 0x00000002
 
 
 // NM_DEVICE_MODEM_CAPABILITY_NONE modem has no usable capabilities
-const NM_DEVICE_MODEM_CAPABILITY_NONE byte = 0x00000000
+const NM_DEVICE_MODEM_CAPABILITY_NONE int = 0x00000000
 
 // NM_DEVICE_MODEM_CAPABILITY_POTS modem uses the analog wired telephone network and is not a wireless/cellular device
-const NM_DEVICE_MODEM_CAPABILITY_POTS byte = 0x00000001
+const NM_DEVICE_MODEM_CAPABILITY_POTS int = 0x00000001
 
 // NM_DEVICE_MODEM_CAPABILITY_CDMA_EVDO modem supports at least one of CDMA 1xRTT, EVDO revision 0, EVDO revision A, or EVDO revision B
-const NM_DEVICE_MODEM_CAPABILITY_CDMA_EVDO byte = 0x00000002
+const NM_DEVICE_MODEM_CAPABILITY_CDMA_EVDO int = 0x00000002
 
 // NM_DEVICE_MODEM_CAPABILITY_GSM_UMTS modem supports at least one of GSM, GPRS, EDGE, UMTS, HSDPA, HSUPA, or HSPA&#43; packet switched data capability
-const NM_DEVICE_MODEM_CAPABILITY_GSM_UMTS byte = 0x00000004
+const NM_DEVICE_MODEM_CAPABILITY_GSM_UMTS int = 0x00000004
 
 // NM_DEVICE_MODEM_CAPABILITY_LTE modem has LTE data capability
-const NM_DEVICE_MODEM_CAPABILITY_LTE byte = 0x00000008
+const NM_DEVICE_MODEM_CAPABILITY_LTE int = 0x00000008
 
 
 
@@ -367,16 +367,16 @@ const NM_DEVICE_MODEM_CAPABILITY_LTE byte = 0x00000008
 
 
 // NM_WIMAX_NSP_NETWORK_TYPE_UNKNOWN unknown network type
-const NM_WIMAX_NSP_NETWORK_TYPE_UNKNOWN uint16 = 0
+const NM_WIMAX_NSP_NETWORK_TYPE_UNKNOWN int = 0
 
 // NM_WIMAX_NSP_NETWORK_TYPE_HOME home network
-const NM_WIMAX_NSP_NETWORK_TYPE_HOME uint16 = 1
+const NM_WIMAX_NSP_NETWORK_TYPE_HOME int = 1
 
 // NM_WIMAX_NSP_NETWORK_TYPE_PARTNER partner network
-const NM_WIMAX_NSP_NETWORK_TYPE_PARTNER uint16 = 2
+const NM_WIMAX_NSP_NETWORK_TYPE_PARTNER int = 2
 
 // NM_WIMAX_NSP_NETWORK_TYPE_ROAMING_PARTNER roaming partner network
-const NM_WIMAX_NSP_NETWORK_TYPE_ROAMING_PARTNER uint16 = 3
+const NM_WIMAX_NSP_NETWORK_TYPE_ROAMING_PARTNER int = 3
 
 
 
@@ -385,43 +385,43 @@ const NM_WIMAX_NSP_NETWORK_TYPE_ROAMING_PARTNER uint16 = 3
 
 
 // NM_DEVICE_STATE_UNKNOWN the device&#39;s state is unknown
-const NM_DEVICE_STATE_UNKNOWN uint16 = 0
+const NM_DEVICE_STATE_UNKNOWN int = 0
 
 // NM_DEVICE_STATE_UNMANAGED the device is recognized, but not managed by NetworkManager
-const NM_DEVICE_STATE_UNMANAGED uint16 = 10
+const NM_DEVICE_STATE_UNMANAGED int = 10
 
 // NM_DEVICE_STATE_UNAVAILABLE the device is managed by NetworkManager, but is not available for use.  Reasons may include the wireless switched off, missing firmware, no ethernet carrier, missing supplicant or modem manager, etc.
-const NM_DEVICE_STATE_UNAVAILABLE uint16 = 20
+const NM_DEVICE_STATE_UNAVAILABLE int = 20
 
 // NM_DEVICE_STATE_DISCONNECTED the device can be activated, but is currently idle and not connected to a network.
-const NM_DEVICE_STATE_DISCONNECTED uint16 = 30
+const NM_DEVICE_STATE_DISCONNECTED int = 30
 
 // NM_DEVICE_STATE_PREPARE the device is preparing the connection to the network.  This may include operations like changing the MAC address, setting physical link properties, and anything else required to connect to the requested network.
-const NM_DEVICE_STATE_PREPARE uint16 = 40
+const NM_DEVICE_STATE_PREPARE int = 40
 
 // NM_DEVICE_STATE_CONFIG the device is connecting to the requested network. This may include operations like associating with the Wi-Fi AP, dialing the modem, connecting to the remote Bluetooth device, etc.
-const NM_DEVICE_STATE_CONFIG uint16 = 50
+const NM_DEVICE_STATE_CONFIG int = 50
 
 // NM_DEVICE_STATE_NEED_AUTH the device requires more information to continue connecting to the requested network.  This includes secrets like WiFi passphrases, login passwords, PIN codes, etc.
-const NM_DEVICE_STATE_NEED_AUTH uint16 = 60
+const NM_DEVICE_STATE_NEED_AUTH int = 60
 
 // NM_DEVICE_STATE_IP_CONFIG the device is requesting IPv4 and/or IPv6 addresses and routing information from the network.
-const NM_DEVICE_STATE_IP_CONFIG uint16 = 70
+const NM_DEVICE_STATE_IP_CONFIG int = 70
 
 // NM_DEVICE_STATE_IP_CHECK the device is checking whether further action is required for the requested network connection.  This may include checking whether only local network access is available, whether a captive portal is blocking access to the Internet, etc.
-const NM_DEVICE_STATE_IP_CHECK uint16 = 80
+const NM_DEVICE_STATE_IP_CHECK int = 80
 
 // NM_DEVICE_STATE_SECONDARIES the device is waiting for a secondary connection (like a VPN) which must activated before the device can be activated
-const NM_DEVICE_STATE_SECONDARIES uint16 = 90
+const NM_DEVICE_STATE_SECONDARIES int = 90
 
 // NM_DEVICE_STATE_ACTIVATED the device has a network connection, either local or global.
-const NM_DEVICE_STATE_ACTIVATED uint16 = 100
+const NM_DEVICE_STATE_ACTIVATED int = 100
 
 // NM_DEVICE_STATE_DEACTIVATING a disconnection from the current network connection was requested, and the device is cleaning up resources used for that connection.  The network connection may still be valid.
-const NM_DEVICE_STATE_DEACTIVATING uint16 = 110
+const NM_DEVICE_STATE_DEACTIVATING int = 110
 
 // NM_DEVICE_STATE_FAILED the device failed to connect to the requested network and is cleaning up the connection request
-const NM_DEVICE_STATE_FAILED uint16 = 120
+const NM_DEVICE_STATE_FAILED int = 120
 
 
 
@@ -430,208 +430,208 @@ const NM_DEVICE_STATE_FAILED uint16 = 120
 
 
 // NM_DEVICE_STATE_REASON_NONE No reason given
-const NM_DEVICE_STATE_REASON_NONE uint16 = 0
+const NM_DEVICE_STATE_REASON_NONE int = 0
 
 // NM_DEVICE_STATE_REASON_UNKNOWN Unknown error
-const NM_DEVICE_STATE_REASON_UNKNOWN uint16 = 1
+const NM_DEVICE_STATE_REASON_UNKNOWN int = 1
 
 // NM_DEVICE_STATE_REASON_NOW_MANAGED Device is now managed
-const NM_DEVICE_STATE_REASON_NOW_MANAGED uint16 = 2
+const NM_DEVICE_STATE_REASON_NOW_MANAGED int = 2
 
 // NM_DEVICE_STATE_REASON_NOW_UNMANAGED Device is now unmanaged
-const NM_DEVICE_STATE_REASON_NOW_UNMANAGED uint16 = 3
+const NM_DEVICE_STATE_REASON_NOW_UNMANAGED int = 3
 
 // NM_DEVICE_STATE_REASON_CONFIG_FAILED The device could not be readied for configuration
-const NM_DEVICE_STATE_REASON_CONFIG_FAILED uint16 = 4
+const NM_DEVICE_STATE_REASON_CONFIG_FAILED int = 4
 
 // NM_DEVICE_STATE_REASON_IP_CONFIG_UNAVAILABLE IP configuration could not be reserved (no available address, timeout, etc)
-const NM_DEVICE_STATE_REASON_IP_CONFIG_UNAVAILABLE uint16 = 5
+const NM_DEVICE_STATE_REASON_IP_CONFIG_UNAVAILABLE int = 5
 
 // NM_DEVICE_STATE_REASON_IP_CONFIG_EXPIRED The IP config is no longer valid
-const NM_DEVICE_STATE_REASON_IP_CONFIG_EXPIRED uint16 = 6
+const NM_DEVICE_STATE_REASON_IP_CONFIG_EXPIRED int = 6
 
 // NM_DEVICE_STATE_REASON_NO_SECRETS Secrets were required, but not provided
-const NM_DEVICE_STATE_REASON_NO_SECRETS uint16 = 7
+const NM_DEVICE_STATE_REASON_NO_SECRETS int = 7
 
 // NM_DEVICE_STATE_REASON_SUPPLICANT_DISCONNECT 802.1x supplicant disconnected
-const NM_DEVICE_STATE_REASON_SUPPLICANT_DISCONNECT uint16 = 8
+const NM_DEVICE_STATE_REASON_SUPPLICANT_DISCONNECT int = 8
 
 // NM_DEVICE_STATE_REASON_SUPPLICANT_CONFIG_FAILED 802.1x supplicant configuration failed
-const NM_DEVICE_STATE_REASON_SUPPLICANT_CONFIG_FAILED uint16 = 9
+const NM_DEVICE_STATE_REASON_SUPPLICANT_CONFIG_FAILED int = 9
 
 // NM_DEVICE_STATE_REASON_SUPPLICANT_FAILED 802.1x supplicant failed
-const NM_DEVICE_STATE_REASON_SUPPLICANT_FAILED uint16 = 10
+const NM_DEVICE_STATE_REASON_SUPPLICANT_FAILED int = 10
 
 // NM_DEVICE_STATE_REASON_SUPPLICANT_TIMEOUT 802.1x supplicant took too long to authenticate
-const NM_DEVICE_STATE_REASON_SUPPLICANT_TIMEOUT uint16 = 11
+const NM_DEVICE_STATE_REASON_SUPPLICANT_TIMEOUT int = 11
 
 // NM_DEVICE_STATE_REASON_PPP_START_FAILED PPP service failed to start
-const NM_DEVICE_STATE_REASON_PPP_START_FAILED uint16 = 12
+const NM_DEVICE_STATE_REASON_PPP_START_FAILED int = 12
 
 // NM_DEVICE_STATE_REASON_PPP_DISCONNECT PPP service disconnected
-const NM_DEVICE_STATE_REASON_PPP_DISCONNECT uint16 = 13
+const NM_DEVICE_STATE_REASON_PPP_DISCONNECT int = 13
 
 // NM_DEVICE_STATE_REASON_PPP_FAILED PPP failed
-const NM_DEVICE_STATE_REASON_PPP_FAILED uint16 = 14
+const NM_DEVICE_STATE_REASON_PPP_FAILED int = 14
 
 // NM_DEVICE_STATE_REASON_DHCP_START_FAILED DHCP client failed to start
-const NM_DEVICE_STATE_REASON_DHCP_START_FAILED uint16 = 15
+const NM_DEVICE_STATE_REASON_DHCP_START_FAILED int = 15
 
 // NM_DEVICE_STATE_REASON_DHCP_ERROR DHCP client error
-const NM_DEVICE_STATE_REASON_DHCP_ERROR uint16 = 16
+const NM_DEVICE_STATE_REASON_DHCP_ERROR int = 16
 
 // NM_DEVICE_STATE_REASON_DHCP_FAILED DHCP client failed
-const NM_DEVICE_STATE_REASON_DHCP_FAILED uint16 = 17
+const NM_DEVICE_STATE_REASON_DHCP_FAILED int = 17
 
 // NM_DEVICE_STATE_REASON_SHARED_START_FAILED Shared connection service failed to start
-const NM_DEVICE_STATE_REASON_SHARED_START_FAILED uint16 = 18
+const NM_DEVICE_STATE_REASON_SHARED_START_FAILED int = 18
 
 // NM_DEVICE_STATE_REASON_SHARED_FAILED Shared connection service failed
-const NM_DEVICE_STATE_REASON_SHARED_FAILED uint16 = 19
+const NM_DEVICE_STATE_REASON_SHARED_FAILED int = 19
 
 // NM_DEVICE_STATE_REASON_AUTOIP_START_FAILED AutoIP service failed to start
-const NM_DEVICE_STATE_REASON_AUTOIP_START_FAILED uint16 = 20
+const NM_DEVICE_STATE_REASON_AUTOIP_START_FAILED int = 20
 
 // NM_DEVICE_STATE_REASON_AUTOIP_ERROR AutoIP service error
-const NM_DEVICE_STATE_REASON_AUTOIP_ERROR uint16 = 21
+const NM_DEVICE_STATE_REASON_AUTOIP_ERROR int = 21
 
 // NM_DEVICE_STATE_REASON_AUTOIP_FAILED AutoIP service failed
-const NM_DEVICE_STATE_REASON_AUTOIP_FAILED uint16 = 22
+const NM_DEVICE_STATE_REASON_AUTOIP_FAILED int = 22
 
 // NM_DEVICE_STATE_REASON_MODEM_BUSY The line is busy
-const NM_DEVICE_STATE_REASON_MODEM_BUSY uint16 = 23
+const NM_DEVICE_STATE_REASON_MODEM_BUSY int = 23
 
 // NM_DEVICE_STATE_REASON_MODEM_NO_DIAL_TONE No dial tone
-const NM_DEVICE_STATE_REASON_MODEM_NO_DIAL_TONE uint16 = 24
+const NM_DEVICE_STATE_REASON_MODEM_NO_DIAL_TONE int = 24
 
 // NM_DEVICE_STATE_REASON_MODEM_NO_CARRIER No carrier could be established
-const NM_DEVICE_STATE_REASON_MODEM_NO_CARRIER uint16 = 25
+const NM_DEVICE_STATE_REASON_MODEM_NO_CARRIER int = 25
 
 // NM_DEVICE_STATE_REASON_MODEM_DIAL_TIMEOUT The dialing request timed out
-const NM_DEVICE_STATE_REASON_MODEM_DIAL_TIMEOUT uint16 = 26
+const NM_DEVICE_STATE_REASON_MODEM_DIAL_TIMEOUT int = 26
 
 // NM_DEVICE_STATE_REASON_MODEM_DIAL_FAILED The dialing attempt failed
-const NM_DEVICE_STATE_REASON_MODEM_DIAL_FAILED uint16 = 27
+const NM_DEVICE_STATE_REASON_MODEM_DIAL_FAILED int = 27
 
 // NM_DEVICE_STATE_REASON_MODEM_INIT_FAILED Modem initialization failed
-const NM_DEVICE_STATE_REASON_MODEM_INIT_FAILED uint16 = 28
+const NM_DEVICE_STATE_REASON_MODEM_INIT_FAILED int = 28
 
 // NM_DEVICE_STATE_REASON_GSM_APN_FAILED Failed to select the specified APN
-const NM_DEVICE_STATE_REASON_GSM_APN_FAILED uint16 = 29
+const NM_DEVICE_STATE_REASON_GSM_APN_FAILED int = 29
 
 // NM_DEVICE_STATE_REASON_GSM_REGISTRATION_NOT_SEARCHING Not searching for networks
-const NM_DEVICE_STATE_REASON_GSM_REGISTRATION_NOT_SEARCHING uint16 = 30
+const NM_DEVICE_STATE_REASON_GSM_REGISTRATION_NOT_SEARCHING int = 30
 
 // NM_DEVICE_STATE_REASON_GSM_REGISTRATION_DENIED Network registration denied
-const NM_DEVICE_STATE_REASON_GSM_REGISTRATION_DENIED uint16 = 31
+const NM_DEVICE_STATE_REASON_GSM_REGISTRATION_DENIED int = 31
 
 // NM_DEVICE_STATE_REASON_GSM_REGISTRATION_TIMEOUT Network registration timed out
-const NM_DEVICE_STATE_REASON_GSM_REGISTRATION_TIMEOUT uint16 = 32
+const NM_DEVICE_STATE_REASON_GSM_REGISTRATION_TIMEOUT int = 32
 
 // NM_DEVICE_STATE_REASON_GSM_REGISTRATION_FAILED Failed to register with the requested network
-const NM_DEVICE_STATE_REASON_GSM_REGISTRATION_FAILED uint16 = 33
+const NM_DEVICE_STATE_REASON_GSM_REGISTRATION_FAILED int = 33
 
 // NM_DEVICE_STATE_REASON_GSM_PIN_CHECK_FAILED PIN check failed
-const NM_DEVICE_STATE_REASON_GSM_PIN_CHECK_FAILED uint16 = 34
+const NM_DEVICE_STATE_REASON_GSM_PIN_CHECK_FAILED int = 34
 
 // NM_DEVICE_STATE_REASON_FIRMWARE_MISSING Necessary firmware for the device may be missing
-const NM_DEVICE_STATE_REASON_FIRMWARE_MISSING uint16 = 35
+const NM_DEVICE_STATE_REASON_FIRMWARE_MISSING int = 35
 
 // NM_DEVICE_STATE_REASON_REMOVED The device was removed
-const NM_DEVICE_STATE_REASON_REMOVED uint16 = 36
+const NM_DEVICE_STATE_REASON_REMOVED int = 36
 
 // NM_DEVICE_STATE_REASON_SLEEPING NetworkManager went to sleep
-const NM_DEVICE_STATE_REASON_SLEEPING uint16 = 37
+const NM_DEVICE_STATE_REASON_SLEEPING int = 37
 
 // NM_DEVICE_STATE_REASON_CONNECTION_REMOVED The device&#39;s active connection disappeared
-const NM_DEVICE_STATE_REASON_CONNECTION_REMOVED uint16 = 38
+const NM_DEVICE_STATE_REASON_CONNECTION_REMOVED int = 38
 
 // NM_DEVICE_STATE_REASON_USER_REQUESTED Device disconnected by user or client
-const NM_DEVICE_STATE_REASON_USER_REQUESTED uint16 = 39
+const NM_DEVICE_STATE_REASON_USER_REQUESTED int = 39
 
 // NM_DEVICE_STATE_REASON_CARRIER Carrier/link changed
-const NM_DEVICE_STATE_REASON_CARRIER uint16 = 40
+const NM_DEVICE_STATE_REASON_CARRIER int = 40
 
 // NM_DEVICE_STATE_REASON_CONNECTION_ASSUMED The device&#39;s existing connection was assumed
-const NM_DEVICE_STATE_REASON_CONNECTION_ASSUMED uint16 = 41
+const NM_DEVICE_STATE_REASON_CONNECTION_ASSUMED int = 41
 
 // NM_DEVICE_STATE_REASON_SUPPLICANT_AVAILABLE The supplicant is now available
-const NM_DEVICE_STATE_REASON_SUPPLICANT_AVAILABLE uint16 = 42
+const NM_DEVICE_STATE_REASON_SUPPLICANT_AVAILABLE int = 42
 
 // NM_DEVICE_STATE_REASON_MODEM_NOT_FOUND The modem could not be found
-const NM_DEVICE_STATE_REASON_MODEM_NOT_FOUND uint16 = 43
+const NM_DEVICE_STATE_REASON_MODEM_NOT_FOUND int = 43
 
 // NM_DEVICE_STATE_REASON_BT_FAILED The Bluetooth connection failed or timed out
-const NM_DEVICE_STATE_REASON_BT_FAILED uint16 = 44
+const NM_DEVICE_STATE_REASON_BT_FAILED int = 44
 
 // NM_DEVICE_STATE_REASON_GSM_SIM_NOT_INSERTED GSM Modem&#39;s SIM Card not inserted
-const NM_DEVICE_STATE_REASON_GSM_SIM_NOT_INSERTED uint16 = 45
+const NM_DEVICE_STATE_REASON_GSM_SIM_NOT_INSERTED int = 45
 
 // NM_DEVICE_STATE_REASON_GSM_SIM_PIN_REQUIRED GSM Modem&#39;s SIM Pin required
-const NM_DEVICE_STATE_REASON_GSM_SIM_PIN_REQUIRED uint16 = 46
+const NM_DEVICE_STATE_REASON_GSM_SIM_PIN_REQUIRED int = 46
 
 // NM_DEVICE_STATE_REASON_GSM_SIM_PUK_REQUIRED GSM Modem&#39;s SIM Puk required
-const NM_DEVICE_STATE_REASON_GSM_SIM_PUK_REQUIRED uint16 = 47
+const NM_DEVICE_STATE_REASON_GSM_SIM_PUK_REQUIRED int = 47
 
 // NM_DEVICE_STATE_REASON_GSM_SIM_WRONG GSM Modem&#39;s SIM wrong
-const NM_DEVICE_STATE_REASON_GSM_SIM_WRONG uint16 = 48
+const NM_DEVICE_STATE_REASON_GSM_SIM_WRONG int = 48
 
 // NM_DEVICE_STATE_REASON_INFINIBAND_MODE InfiniBand device does not support connected mode
-const NM_DEVICE_STATE_REASON_INFINIBAND_MODE uint16 = 49
+const NM_DEVICE_STATE_REASON_INFINIBAND_MODE int = 49
 
 // NM_DEVICE_STATE_REASON_DEPENDENCY_FAILED A dependency of the connection failed
-const NM_DEVICE_STATE_REASON_DEPENDENCY_FAILED uint16 = 50
+const NM_DEVICE_STATE_REASON_DEPENDENCY_FAILED int = 50
 
 // NM_DEVICE_STATE_REASON_BR2684_FAILED Problem with the RFC 2684 Ethernet over ADSL bridge
-const NM_DEVICE_STATE_REASON_BR2684_FAILED uint16 = 51
+const NM_DEVICE_STATE_REASON_BR2684_FAILED int = 51
 
 // NM_DEVICE_STATE_REASON_MODEM_MANAGER_UNAVAILABLE ModemManager not running
-const NM_DEVICE_STATE_REASON_MODEM_MANAGER_UNAVAILABLE uint16 = 52
+const NM_DEVICE_STATE_REASON_MODEM_MANAGER_UNAVAILABLE int = 52
 
 // NM_DEVICE_STATE_REASON_SSID_NOT_FOUND The Wi-Fi network could not be found
-const NM_DEVICE_STATE_REASON_SSID_NOT_FOUND uint16 = 53
+const NM_DEVICE_STATE_REASON_SSID_NOT_FOUND int = 53
 
 // NM_DEVICE_STATE_REASON_SECONDARY_CONNECTION_FAILED A secondary connection of the base connection failed
-const NM_DEVICE_STATE_REASON_SECONDARY_CONNECTION_FAILED uint16 = 54
+const NM_DEVICE_STATE_REASON_SECONDARY_CONNECTION_FAILED int = 54
 
 // NM_DEVICE_STATE_REASON_DCB_FCOE_FAILED DCB or FCoE setup failed
-const NM_DEVICE_STATE_REASON_DCB_FCOE_FAILED uint16 = 55
+const NM_DEVICE_STATE_REASON_DCB_FCOE_FAILED int = 55
 
 // NM_DEVICE_STATE_REASON_TEAMD_CONTROL_FAILED teamd control failed
-const NM_DEVICE_STATE_REASON_TEAMD_CONTROL_FAILED uint16 = 56
+const NM_DEVICE_STATE_REASON_TEAMD_CONTROL_FAILED int = 56
 
 // NM_DEVICE_STATE_REASON_MODEM_FAILED Modem failed or no longer available
-const NM_DEVICE_STATE_REASON_MODEM_FAILED uint16 = 57
+const NM_DEVICE_STATE_REASON_MODEM_FAILED int = 57
 
 // NM_DEVICE_STATE_REASON_MODEM_AVAILABLE Modem now ready and available
-const NM_DEVICE_STATE_REASON_MODEM_AVAILABLE uint16 = 58
+const NM_DEVICE_STATE_REASON_MODEM_AVAILABLE int = 58
 
 // NM_DEVICE_STATE_REASON_SIM_PIN_INCORRECT SIM PIN was incorrect
-const NM_DEVICE_STATE_REASON_SIM_PIN_INCORRECT uint16 = 59
+const NM_DEVICE_STATE_REASON_SIM_PIN_INCORRECT int = 59
 
 // NM_DEVICE_STATE_REASON_NEW_ACTIVATION New connection activation was enqueued
-const NM_DEVICE_STATE_REASON_NEW_ACTIVATION uint16 = 60
+const NM_DEVICE_STATE_REASON_NEW_ACTIVATION int = 60
 
 // NM_DEVICE_STATE_REASON_PARENT_CHANGED the device&#39;s parent changed
-const NM_DEVICE_STATE_REASON_PARENT_CHANGED uint16 = 61
+const NM_DEVICE_STATE_REASON_PARENT_CHANGED int = 61
 
 // NM_DEVICE_STATE_REASON_PARENT_MANAGED_CHANGED the device parent&#39;s management changed
-const NM_DEVICE_STATE_REASON_PARENT_MANAGED_CHANGED uint16 = 62
+const NM_DEVICE_STATE_REASON_PARENT_MANAGED_CHANGED int = 62
 
 // NM_DEVICE_STATE_REASON_OVSDB_FAILED problem communicating with Open vSwitch database
-const NM_DEVICE_STATE_REASON_OVSDB_FAILED uint16 = 63
+const NM_DEVICE_STATE_REASON_OVSDB_FAILED int = 63
 
 // NM_DEVICE_STATE_REASON_IP_ADDRESS_DUPLICATE a duplicate IP address was detected
-const NM_DEVICE_STATE_REASON_IP_ADDRESS_DUPLICATE uint16 = 64
+const NM_DEVICE_STATE_REASON_IP_ADDRESS_DUPLICATE int = 64
 
 // NM_DEVICE_STATE_REASON_IP_METHOD_UNSUPPORTED The selected IP method is not supported
-const NM_DEVICE_STATE_REASON_IP_METHOD_UNSUPPORTED uint16 = 65
+const NM_DEVICE_STATE_REASON_IP_METHOD_UNSUPPORTED int = 65
 
 // NM_DEVICE_STATE_REASON_SRIOV_CONFIGURATION_FAILED configuration of SR-IOV parameters failed
-const NM_DEVICE_STATE_REASON_SRIOV_CONFIGURATION_FAILED uint16 = 66
+const NM_DEVICE_STATE_REASON_SRIOV_CONFIGURATION_FAILED int = 66
 
 // NM_DEVICE_STATE_REASON_PEER_NOT_FOUND The Wi-Fi P2P peer could not be found
-const NM_DEVICE_STATE_REASON_PEER_NOT_FOUND uint16 = 67
+const NM_DEVICE_STATE_REASON_PEER_NOT_FOUND int = 67
 
 
 
@@ -640,19 +640,19 @@ const NM_DEVICE_STATE_REASON_PEER_NOT_FOUND uint16 = 67
 
 
 // NM_METERED_UNKNOWN The metered status is unknown
-const NM_METERED_UNKNOWN uint16 = 0
+const NM_METERED_UNKNOWN int = 0
 
 // NM_METERED_YES Metered, the value was explicitly configured
-const NM_METERED_YES uint16 = 1
+const NM_METERED_YES int = 1
 
 // NM_METERED_NO Not metered, the value was explicitly configured
-const NM_METERED_NO uint16 = 2
+const NM_METERED_NO int = 2
 
 // NM_METERED_GUESS_YES Metered, the value was guessed
-const NM_METERED_GUESS_YES uint16 = 3
+const NM_METERED_GUESS_YES int = 3
 
 // NM_METERED_GUESS_NO Not metered, the value was guessed
-const NM_METERED_GUESS_NO uint16 = 4
+const NM_METERED_GUESS_NO int = 4
 
 
 
@@ -661,16 +661,16 @@ const NM_METERED_GUESS_NO uint16 = 4
 
 
 // NM_CONNECTION_MULTI_CONNECT_DEFAULT indicates that the per-connection setting is unspecified. In this case, it will fallback to the default value, which is %NM_CONNECTION_MULTI_CONNECT_SINGLE.
-const NM_CONNECTION_MULTI_CONNECT_DEFAULT uint16 = 0
+const NM_CONNECTION_MULTI_CONNECT_DEFAULT int = 0
 
 // NM_CONNECTION_MULTI_CONNECT_SINGLE the connection profile can only be active once at each moment. Activating a profile that is already active, will first deactivate it.
-const NM_CONNECTION_MULTI_CONNECT_SINGLE uint16 = 1
+const NM_CONNECTION_MULTI_CONNECT_SINGLE int = 1
 
 // NM_CONNECTION_MULTI_CONNECT_MANUAL_MULTIPLE the profile can be manually activated multiple times on different devices. However, regarding autoconnect, the profile will autoconnect only if it is currently not connected otherwise.
-const NM_CONNECTION_MULTI_CONNECT_MANUAL_MULTIPLE uint16 = 2
+const NM_CONNECTION_MULTI_CONNECT_MANUAL_MULTIPLE int = 2
 
 // NM_CONNECTION_MULTI_CONNECT_MULTIPLE the profile can autoactivate and be manually activated multiple times together.
-const NM_CONNECTION_MULTI_CONNECT_MULTIPLE uint16 = 3
+const NM_CONNECTION_MULTI_CONNECT_MULTIPLE int = 3
 
 
 
@@ -679,19 +679,19 @@ const NM_CONNECTION_MULTI_CONNECT_MULTIPLE uint16 = 3
 
 
 // NM_ACTIVE_CONNECTION_STATE_UNKNOWN the state of the connection is unknown
-const NM_ACTIVE_CONNECTION_STATE_UNKNOWN uint16 = 0
+const NM_ACTIVE_CONNECTION_STATE_UNKNOWN int = 0
 
 // NM_ACTIVE_CONNECTION_STATE_ACTIVATING a network connection is being prepared
-const NM_ACTIVE_CONNECTION_STATE_ACTIVATING uint16 = 1
+const NM_ACTIVE_CONNECTION_STATE_ACTIVATING int = 1
 
 // NM_ACTIVE_CONNECTION_STATE_ACTIVATED there is a connection to the network
-const NM_ACTIVE_CONNECTION_STATE_ACTIVATED uint16 = 2
+const NM_ACTIVE_CONNECTION_STATE_ACTIVATED int = 2
 
 // NM_ACTIVE_CONNECTION_STATE_DEACTIVATING the network connection is being torn down and cleaned up
-const NM_ACTIVE_CONNECTION_STATE_DEACTIVATING uint16 = 3
+const NM_ACTIVE_CONNECTION_STATE_DEACTIVATING int = 3
 
 // NM_ACTIVE_CONNECTION_STATE_DEACTIVATED the network connection is disconnected and will be removed
-const NM_ACTIVE_CONNECTION_STATE_DEACTIVATED uint16 = 4
+const NM_ACTIVE_CONNECTION_STATE_DEACTIVATED int = 4
 
 
 
@@ -700,49 +700,49 @@ const NM_ACTIVE_CONNECTION_STATE_DEACTIVATED uint16 = 4
 
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_UNKNOWN The reason for the active connection state change is unknown.
-const NM_ACTIVE_CONNECTION_STATE_REASON_UNKNOWN uint16 = 0
+const NM_ACTIVE_CONNECTION_STATE_REASON_UNKNOWN int = 0
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_NONE No reason was given for the active connection state change.
-const NM_ACTIVE_CONNECTION_STATE_REASON_NONE uint16 = 1
+const NM_ACTIVE_CONNECTION_STATE_REASON_NONE int = 1
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_USER_DISCONNECTED The active connection changed state because the user disconnected it.
-const NM_ACTIVE_CONNECTION_STATE_REASON_USER_DISCONNECTED uint16 = 2
+const NM_ACTIVE_CONNECTION_STATE_REASON_USER_DISCONNECTED int = 2
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_DISCONNECTED The active connection changed state because the device it was using was disconnected.
-const NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_DISCONNECTED uint16 = 3
+const NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_DISCONNECTED int = 3
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_SERVICE_STOPPED The service providing the VPN connection was stopped.
-const NM_ACTIVE_CONNECTION_STATE_REASON_SERVICE_STOPPED uint16 = 4
+const NM_ACTIVE_CONNECTION_STATE_REASON_SERVICE_STOPPED int = 4
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_IP_CONFIG_INVALID The IP config of the active connection was invalid.
-const NM_ACTIVE_CONNECTION_STATE_REASON_IP_CONFIG_INVALID uint16 = 5
+const NM_ACTIVE_CONNECTION_STATE_REASON_IP_CONFIG_INVALID int = 5
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_CONNECT_TIMEOUT The connection attempt to the VPN service timed out.
-const NM_ACTIVE_CONNECTION_STATE_REASON_CONNECT_TIMEOUT uint16 = 6
+const NM_ACTIVE_CONNECTION_STATE_REASON_CONNECT_TIMEOUT int = 6
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_SERVICE_START_TIMEOUT A timeout occurred while starting the service providing the VPN connection.
-const NM_ACTIVE_CONNECTION_STATE_REASON_SERVICE_START_TIMEOUT uint16 = 7
+const NM_ACTIVE_CONNECTION_STATE_REASON_SERVICE_START_TIMEOUT int = 7
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_SERVICE_START_FAILED Starting the service providing the VPN connection failed.
-const NM_ACTIVE_CONNECTION_STATE_REASON_SERVICE_START_FAILED uint16 = 8
+const NM_ACTIVE_CONNECTION_STATE_REASON_SERVICE_START_FAILED int = 8
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_NO_SECRETS Necessary secrets for the connection were not provided.
-const NM_ACTIVE_CONNECTION_STATE_REASON_NO_SECRETS uint16 = 9
+const NM_ACTIVE_CONNECTION_STATE_REASON_NO_SECRETS int = 9
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_LOGIN_FAILED Authentication to the server failed.
-const NM_ACTIVE_CONNECTION_STATE_REASON_LOGIN_FAILED uint16 = 10
+const NM_ACTIVE_CONNECTION_STATE_REASON_LOGIN_FAILED int = 10
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_CONNECTION_REMOVED The connection was deleted from settings.
-const NM_ACTIVE_CONNECTION_STATE_REASON_CONNECTION_REMOVED uint16 = 11
+const NM_ACTIVE_CONNECTION_STATE_REASON_CONNECTION_REMOVED int = 11
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_DEPENDENCY_FAILED Master connection of this connection failed to activate.
-const NM_ACTIVE_CONNECTION_STATE_REASON_DEPENDENCY_FAILED uint16 = 12
+const NM_ACTIVE_CONNECTION_STATE_REASON_DEPENDENCY_FAILED int = 12
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_REALIZE_FAILED Could not create the software device link.
-const NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_REALIZE_FAILED uint16 = 13
+const NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_REALIZE_FAILED int = 13
 
 // NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_REMOVED The device this connection depended on disappeared.
-const NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_REMOVED uint16 = 14
+const NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_REMOVED int = 14
 
 
 
@@ -751,25 +751,25 @@ const NM_ACTIVE_CONNECTION_STATE_REASON_DEVICE_REMOVED uint16 = 14
 
 
 // NM_SECRET_AGENT_GET_SECRETS_FLAG_NONE no special behavior; by default no user interaction is allowed and requests for secrets are fulfilled from persistent storage, or if no secrets are available an error is returned.
-const NM_SECRET_AGENT_GET_SECRETS_FLAG_NONE byte = 0x0
+const NM_SECRET_AGENT_GET_SECRETS_FLAG_NONE int = 0x0
 
 // NM_SECRET_AGENT_GET_SECRETS_FLAG_ALLOW_INTERACTION allows the request to interact with the user, possibly prompting via UI for secrets if any are required, or if none are found in persistent storage.
-const NM_SECRET_AGENT_GET_SECRETS_FLAG_ALLOW_INTERACTION byte = 0x1
+const NM_SECRET_AGENT_GET_SECRETS_FLAG_ALLOW_INTERACTION int = 0x1
 
 // NM_SECRET_AGENT_GET_SECRETS_FLAG_REQUEST_NEW explicitly prompt for new secrets from the user.  This flag signals that NetworkManager thinks any existing secrets are invalid or wrong.  This flag implies that interaction is allowed.
-const NM_SECRET_AGENT_GET_SECRETS_FLAG_REQUEST_NEW byte = 0x2
+const NM_SECRET_AGENT_GET_SECRETS_FLAG_REQUEST_NEW int = 0x2
 
 // NM_SECRET_AGENT_GET_SECRETS_FLAG_USER_REQUESTED set if the request was initiated by user-requested action via the D-Bus interface, as opposed to automatically initiated by NetworkManager in response to (for example) scan results or carrier changes.
-const NM_SECRET_AGENT_GET_SECRETS_FLAG_USER_REQUESTED byte = 0x4
+const NM_SECRET_AGENT_GET_SECRETS_FLAG_USER_REQUESTED int = 0x4
 
 // NM_SECRET_AGENT_GET_SECRETS_FLAG_WPS_PBC_ACTIVE indicates that WPS enrollment is active with PBC method. The agent may suggest that the user pushes a button on the router instead of supplying a PSK.
-const NM_SECRET_AGENT_GET_SECRETS_FLAG_WPS_PBC_ACTIVE byte = 0x8
+const NM_SECRET_AGENT_GET_SECRETS_FLAG_WPS_PBC_ACTIVE int = 0x8
 
 // NM_SECRET_AGENT_GET_SECRETS_FLAG_ONLY_SYSTEM Internal flag, not part of the D-Bus API.
-const NM_SECRET_AGENT_GET_SECRETS_FLAG_ONLY_SYSTEM byte = 0x80000000
+const NM_SECRET_AGENT_GET_SECRETS_FLAG_ONLY_SYSTEM int = 0x80000000
 
 // NM_SECRET_AGENT_GET_SECRETS_FLAG_NO_ERRORS Internal flag, not part of the D-Bus API.
-const NM_SECRET_AGENT_GET_SECRETS_FLAG_NO_ERRORS byte = 0x40000000
+const NM_SECRET_AGENT_GET_SECRETS_FLAG_NO_ERRORS int = 0x40000000
 
 
 
@@ -778,10 +778,10 @@ const NM_SECRET_AGENT_GET_SECRETS_FLAG_NO_ERRORS byte = 0x40000000
 
 
 // NM_SECRET_AGENT_CAPABILITY_NONE the agent supports no special capabilities
-const NM_SECRET_AGENT_CAPABILITY_NONE byte = 0x0
+const NM_SECRET_AGENT_CAPABILITY_NONE int = 0x0
 
 // NM_SECRET_AGENT_CAPABILITY_VPN_HINTS the agent supports passing hints to VPN plugin authentication dialogs.
-const NM_SECRET_AGENT_CAPABILITY_VPN_HINTS byte = 0x1
+const NM_SECRET_AGENT_CAPABILITY_VPN_HINTS int = 0x1
 
 
 
@@ -790,40 +790,40 @@ const NM_SECRET_AGENT_CAPABILITY_VPN_HINTS byte = 0x1
 
 
 // NM_IP_TUNNEL_MODE_UNKNOWN Unknown/unset tunnel mode
-const NM_IP_TUNNEL_MODE_UNKNOWN uint16 = 0
+const NM_IP_TUNNEL_MODE_UNKNOWN int = 0
 
 // NM_IP_TUNNEL_MODE_IPIP IP in IP tunnel
-const NM_IP_TUNNEL_MODE_IPIP uint16 = 1
+const NM_IP_TUNNEL_MODE_IPIP int = 1
 
 // NM_IP_TUNNEL_MODE_GRE GRE tunnel
-const NM_IP_TUNNEL_MODE_GRE uint16 = 2
+const NM_IP_TUNNEL_MODE_GRE int = 2
 
 // NM_IP_TUNNEL_MODE_SIT SIT tunnel
-const NM_IP_TUNNEL_MODE_SIT uint16 = 3
+const NM_IP_TUNNEL_MODE_SIT int = 3
 
 // NM_IP_TUNNEL_MODE_ISATAP ISATAP tunnel
-const NM_IP_TUNNEL_MODE_ISATAP uint16 = 4
+const NM_IP_TUNNEL_MODE_ISATAP int = 4
 
 // NM_IP_TUNNEL_MODE_VTI VTI tunnel
-const NM_IP_TUNNEL_MODE_VTI uint16 = 5
+const NM_IP_TUNNEL_MODE_VTI int = 5
 
 // NM_IP_TUNNEL_MODE_IP6IP6 IPv6 in IPv6 tunnel
-const NM_IP_TUNNEL_MODE_IP6IP6 uint16 = 6
+const NM_IP_TUNNEL_MODE_IP6IP6 int = 6
 
 // NM_IP_TUNNEL_MODE_IPIP6 IPv4 in IPv6 tunnel
-const NM_IP_TUNNEL_MODE_IPIP6 uint16 = 7
+const NM_IP_TUNNEL_MODE_IPIP6 int = 7
 
 // NM_IP_TUNNEL_MODE_IP6GRE IPv6 GRE tunnel
-const NM_IP_TUNNEL_MODE_IP6GRE uint16 = 8
+const NM_IP_TUNNEL_MODE_IP6GRE int = 8
 
 // NM_IP_TUNNEL_MODE_VTI6 IPv6 VTI tunnel
-const NM_IP_TUNNEL_MODE_VTI6 uint16 = 9
+const NM_IP_TUNNEL_MODE_VTI6 int = 9
 
 // NM_IP_TUNNEL_MODE_GRETAP GRETAP tunnel
-const NM_IP_TUNNEL_MODE_GRETAP uint16 = 10
+const NM_IP_TUNNEL_MODE_GRETAP int = 10
 
 // NM_IP_TUNNEL_MODE_IP6GRETAP IPv6 GRETAP tunnel
-const NM_IP_TUNNEL_MODE_IP6GRETAP uint16 = 11
+const NM_IP_TUNNEL_MODE_IP6GRETAP int = 11
 
 
 
@@ -832,19 +832,19 @@ const NM_IP_TUNNEL_MODE_IP6GRETAP uint16 = 11
 
 
 // NM_CHECKPOINT_CREATE_FLAG_NONE no flags
-const NM_CHECKPOINT_CREATE_FLAG_NONE uint16 = 0
+const NM_CHECKPOINT_CREATE_FLAG_NONE int = 0
 
 // NM_CHECKPOINT_CREATE_FLAG_DESTROY_ALL when creating a new checkpoint, destroy all existing ones.
-const NM_CHECKPOINT_CREATE_FLAG_DESTROY_ALL byte = 0x01
+const NM_CHECKPOINT_CREATE_FLAG_DESTROY_ALL int = 0x01
 
 // NM_CHECKPOINT_CREATE_FLAG_DELETE_NEW_CONNECTIONS upon rollback, delete any new connection added after the checkpoint (Since: 1.6)
-const NM_CHECKPOINT_CREATE_FLAG_DELETE_NEW_CONNECTIONS byte = 0x02
+const NM_CHECKPOINT_CREATE_FLAG_DELETE_NEW_CONNECTIONS int = 0x02
 
 // NM_CHECKPOINT_CREATE_FLAG_DISCONNECT_NEW_DEVICES upon rollback, disconnect any new device appeared after the checkpoint (Since: 1.6)
-const NM_CHECKPOINT_CREATE_FLAG_DISCONNECT_NEW_DEVICES byte = 0x04
+const NM_CHECKPOINT_CREATE_FLAG_DISCONNECT_NEW_DEVICES int = 0x04
 
 // NM_CHECKPOINT_CREATE_FLAG_ALLOW_OVERLAPPING by default, creating a checkpoint fails if there are already existing checkoints that reference the same devices. With this flag, creation of such checkpoints is allowed, however, if an older checkpoint that references overlapping devices gets rolled back, it will automatically destroy this checkpoint during rollback. This allows to create several overlapping checkpoints in parallel, and rollback to them at will. With the special case that rolling back to an older checkpoint will invalidate all overlapping younger checkpoints. This opts-in that the checkpoint can be automatically destroyed by the rollback of an older checkpoint. (Since: 1.12)
-const NM_CHECKPOINT_CREATE_FLAG_ALLOW_OVERLAPPING byte = 0x08
+const NM_CHECKPOINT_CREATE_FLAG_ALLOW_OVERLAPPING int = 0x08
 
 
 
@@ -853,16 +853,16 @@ const NM_CHECKPOINT_CREATE_FLAG_ALLOW_OVERLAPPING byte = 0x08
 
 
 // NM_ROLLBACK_RESULT_OK the rollback succeeded.
-const NM_ROLLBACK_RESULT_OK uint16 = 0
+const NM_ROLLBACK_RESULT_OK int = 0
 
 // NM_ROLLBACK_RESULT_ERR_NO_DEVICE the device no longer exists.
-const NM_ROLLBACK_RESULT_ERR_NO_DEVICE uint16 = 1
+const NM_ROLLBACK_RESULT_ERR_NO_DEVICE int = 1
 
 // NM_ROLLBACK_RESULT_ERR_DEVICE_UNMANAGED the device is now unmanaged.
-const NM_ROLLBACK_RESULT_ERR_DEVICE_UNMANAGED uint16 = 2
+const NM_ROLLBACK_RESULT_ERR_DEVICE_UNMANAGED int = 2
 
 // NM_ROLLBACK_RESULT_ERR_FAILED other errors during rollback.
-const NM_ROLLBACK_RESULT_ERR_FAILED uint16 = 3
+const NM_ROLLBACK_RESULT_ERR_FAILED int = 3
 
 
 
@@ -871,19 +871,19 @@ const NM_ROLLBACK_RESULT_ERR_FAILED uint16 = 3
 
 
 // NM_SETTINGS_CONNECTION_FLAG_NONE an alias for numeric zero, no flags set.
-const NM_SETTINGS_CONNECTION_FLAG_NONE uint16 = 0
+const NM_SETTINGS_CONNECTION_FLAG_NONE int = 0
 
 // NM_SETTINGS_CONNECTION_FLAG_UNSAVED the connection is not saved to disk. That either means, that the connection is in-memory only and currently is not backed by a file. Or, that the connection is backed by a file, but has modifications in-memory that were not persisted to disk.
-const NM_SETTINGS_CONNECTION_FLAG_UNSAVED byte = 0x01
+const NM_SETTINGS_CONNECTION_FLAG_UNSAVED int = 0x01
 
 // NM_SETTINGS_CONNECTION_FLAG_NM_GENERATED A connection is &#34;nm-generated&#34; if it was generated by NetworkManger. If the connection gets modified or saved by the user, the flag gets cleared. A nm-generated is also unsaved and has no backing file as it is in-memory only.
-const NM_SETTINGS_CONNECTION_FLAG_NM_GENERATED byte = 0x02
+const NM_SETTINGS_CONNECTION_FLAG_NM_GENERATED int = 0x02
 
 // NM_SETTINGS_CONNECTION_FLAG_VOLATILE The connection will be deleted when it disconnects. That is for in-memory connections (unsaved), which are currently active but deleted on disconnect. Volatile connections are always unsaved, but they are also no backing file on disk and are entirely in-memory only.
-const NM_SETTINGS_CONNECTION_FLAG_VOLATILE byte = 0x04
+const NM_SETTINGS_CONNECTION_FLAG_VOLATILE int = 0x04
 
 // NM_SETTINGS_CONNECTION_FLAG_EXTERNAL the profile was generated to represent an external configuration of a networking device. Since: 1.26
-const NM_SETTINGS_CONNECTION_FLAG_EXTERNAL byte = 0x08
+const NM_SETTINGS_CONNECTION_FLAG_EXTERNAL int = 0x08
 
 
 
@@ -892,31 +892,31 @@ const NM_SETTINGS_CONNECTION_FLAG_EXTERNAL byte = 0x08
 
 
 // NM_ACTIVATION_STATE_FLAG_NONE an alias for numeric zero, no flags set.
-const NM_ACTIVATION_STATE_FLAG_NONE uint16 = 0
+const NM_ACTIVATION_STATE_FLAG_NONE int = 0
 
 // NM_ACTIVATION_STATE_FLAG_IS_MASTER the device is a master.
-const NM_ACTIVATION_STATE_FLAG_IS_MASTER byte = 0x1
+const NM_ACTIVATION_STATE_FLAG_IS_MASTER int = 0x1
 
 // NM_ACTIVATION_STATE_FLAG_IS_SLAVE the device is a slave.
-const NM_ACTIVATION_STATE_FLAG_IS_SLAVE byte = 0x2
+const NM_ACTIVATION_STATE_FLAG_IS_SLAVE int = 0x2
 
 // NM_ACTIVATION_STATE_FLAG_LAYER2_READY layer2 is activated and ready.
-const NM_ACTIVATION_STATE_FLAG_LAYER2_READY byte = 0x4
+const NM_ACTIVATION_STATE_FLAG_LAYER2_READY int = 0x4
 
 // NM_ACTIVATION_STATE_FLAG_IP4_READY IPv4 setting is completed.
-const NM_ACTIVATION_STATE_FLAG_IP4_READY byte = 0x8
+const NM_ACTIVATION_STATE_FLAG_IP4_READY int = 0x8
 
 // NM_ACTIVATION_STATE_FLAG_IP6_READY IPv6 setting is completed.
-const NM_ACTIVATION_STATE_FLAG_IP6_READY byte = 0x10
+const NM_ACTIVATION_STATE_FLAG_IP6_READY int = 0x10
 
 // NM_ACTIVATION_STATE_FLAG_MASTER_HAS_SLAVES The master has any slave devices attached. This only makes sense if the device is a master.
-const NM_ACTIVATION_STATE_FLAG_MASTER_HAS_SLAVES byte = 0x20
+const NM_ACTIVATION_STATE_FLAG_MASTER_HAS_SLAVES int = 0x20
 
 // NM_ACTIVATION_STATE_FLAG_LIFETIME_BOUND_TO_PROFILE_VISIBILITY the lifetime of the activation is bound to the visilibity of the connection profile, which in turn depends on &#34;connection.permissions&#34; and whether a session for the user exists. Since: 1.16
-const NM_ACTIVATION_STATE_FLAG_LIFETIME_BOUND_TO_PROFILE_VISIBILITY byte = 0x40
+const NM_ACTIVATION_STATE_FLAG_LIFETIME_BOUND_TO_PROFILE_VISIBILITY int = 0x40
 
 // NM_ACTIVATION_STATE_FLAG_EXTERNAL the active connection was generated to represent an external configuration of a networking device. Since: 1.26
-const NM_ACTIVATION_STATE_FLAG_EXTERNAL byte = 0x80
+const NM_ACTIVATION_STATE_FLAG_EXTERNAL int = 0x80
 
 
 
@@ -925,16 +925,16 @@ const NM_ACTIVATION_STATE_FLAG_EXTERNAL byte = 0x80
 
 
 // NM_SETTINGS_ADD_CONNECTION2_FLAG_NONE an alias for numeric zero, no flags set.
-const NM_SETTINGS_ADD_CONNECTION2_FLAG_NONE uint16 = 0
+const NM_SETTINGS_ADD_CONNECTION2_FLAG_NONE int = 0
 
 // NM_SETTINGS_ADD_CONNECTION2_FLAG_TO_DISK to persist the connection to disk.
-const NM_SETTINGS_ADD_CONNECTION2_FLAG_TO_DISK byte = 0x1
+const NM_SETTINGS_ADD_CONNECTION2_FLAG_TO_DISK int = 0x1
 
 // NM_SETTINGS_ADD_CONNECTION2_FLAG_IN_MEMORY to make the connection in-memory only.
-const NM_SETTINGS_ADD_CONNECTION2_FLAG_IN_MEMORY byte = 0x2
+const NM_SETTINGS_ADD_CONNECTION2_FLAG_IN_MEMORY int = 0x2
 
 // NM_SETTINGS_ADD_CONNECTION2_FLAG_BLOCK_AUTOCONNECT usually, when the connection has autoconnect enabled and gets added, it becomes eligible to autoconnect right away. Setting this flag, disables autoconnect until the connection is manually activated.
-const NM_SETTINGS_ADD_CONNECTION2_FLAG_BLOCK_AUTOCONNECT byte = 0x20
+const NM_SETTINGS_ADD_CONNECTION2_FLAG_BLOCK_AUTOCONNECT int = 0x20
 
 
 
@@ -943,28 +943,28 @@ const NM_SETTINGS_ADD_CONNECTION2_FLAG_BLOCK_AUTOCONNECT byte = 0x20
 
 
 // NM_SETTINGS_UPDATE2_FLAG_NONE an alias for numeric zero, no flags set.
-const NM_SETTINGS_UPDATE2_FLAG_NONE uint16 = 0
+const NM_SETTINGS_UPDATE2_FLAG_NONE int = 0
 
 // NM_SETTINGS_UPDATE2_FLAG_TO_DISK to persist the connection to disk.
-const NM_SETTINGS_UPDATE2_FLAG_TO_DISK byte = 0x1
+const NM_SETTINGS_UPDATE2_FLAG_TO_DISK int = 0x1
 
 // NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY makes the profile in-memory. Note that such profiles are stored in keyfile format under /run. If the file is already in-memory, the file in /run is updated in-place. Otherwise, the previous storage for the profile is left unchanged on disk, and the in-memory copy shadows it. Note that the original filename of the previous persistent storage (if any) is remembered. That means, when later persisting the profile again to disk, the file on disk will be overwritten again. Likewise, when finally deleting the profile, both the storage from /run and persistent storage are deleted (or if the persistent storage does not allow deletion, and nmmeta file is written to mark the UUID as deleted).
-const NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY byte = 0x2
+const NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY int = 0x2
 
 // NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY_DETACHED this is almost the same as %NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY, with one difference: when later deleting the profile, the original profile will not be deleted. Instead a nmmeta file is written to /run to indicate that the profile is gone. Note that if such a nmmeta tombstone file exists and hides a file in persistant storage, then when re-adding the profile with the same UUID, then the original storage is taken over again.
-const NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY_DETACHED byte = 0x4
+const NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY_DETACHED int = 0x4
 
 // NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY_ONLY this is like %NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY, but if the connection has a corresponding file on persistent storage, the file will be deleted right away. If the profile is later again persisted to disk, a new, unused filename will be chosen.
-const NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY_ONLY byte = 0x8
+const NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY_ONLY int = 0x8
 
 // NM_SETTINGS_UPDATE2_FLAG_VOLATILE This can be specified with either %NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY, %NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY_DETACHED or %NM_SETTINGS_UPDATE2_FLAG_IN_MEMORY_ONLY. After making the connection in-memory only, the connection is marked as volatile. That means, if the connection is currently not active it will be deleted right away. Otherwise, it is marked to for deletion once the connection deactivates. A volatile connection cannot autoactivate again (because it&#39;s about to be deleted), but a manual activation will clear the volatile flag.
-const NM_SETTINGS_UPDATE2_FLAG_VOLATILE byte = 0x10
+const NM_SETTINGS_UPDATE2_FLAG_VOLATILE int = 0x10
 
 // NM_SETTINGS_UPDATE2_FLAG_BLOCK_AUTOCONNECT usually, when the connection has autoconnect enabled and is modified, it becomes eligible to autoconnect right away. Setting this flag, disables autoconnect until the connection is manually activated.
-const NM_SETTINGS_UPDATE2_FLAG_BLOCK_AUTOCONNECT byte = 0x20
+const NM_SETTINGS_UPDATE2_FLAG_BLOCK_AUTOCONNECT int = 0x20
 
 // NM_SETTINGS_UPDATE2_FLAG_NO_REAPPLY when a profile gets modified that is currently active, then these changes don&#39;t take effect for the active device unless the profile gets reactivated or the configuration reapplied. There are two exceptions: by default &#34;connection.zone&#34; and &#34;connection.metered&#34; properties take effect immediately. Specify this flag to prevent these properties to take effect, so that the change is restricted to modify the profile. Since: 1.20.
-const NM_SETTINGS_UPDATE2_FLAG_NO_REAPPLY byte = 0x40
+const NM_SETTINGS_UPDATE2_FLAG_NO_REAPPLY int = 0x40
 
 
 
@@ -973,13 +973,13 @@ const NM_SETTINGS_UPDATE2_FLAG_NO_REAPPLY byte = 0x40
 
 
 // NM_TERNARY_DEFAULT use the globally-configured default value.
-const NM_TERNARY_DEFAULT uint16 = -1
+const NM_TERNARY_DEFAULT int = -1
 
 // NM_TERNARY_FALSE the option is disabled.
-const NM_TERNARY_FALSE uint16 = 0
+const NM_TERNARY_FALSE int = 0
 
 // NM_TERNARY_TRUE the option is enabled.
-const NM_TERNARY_TRUE uint16 = 1
+const NM_TERNARY_TRUE int = 1
 
 
 
@@ -988,19 +988,19 @@ const NM_TERNARY_TRUE uint16 = 1
 
 
 // NM_MANAGER_RELOAD_FLAG_NONE an alias for numeric zero, no flags set. This reloads everything that is supported and is identical to a SIGHUP.
-const NM_MANAGER_RELOAD_FLAG_NONE uint16 = 0
+const NM_MANAGER_RELOAD_FLAG_NONE int = 0
 
 // NM_MANAGER_RELOAD_FLAG_CONF reload the NetworkManager.conf configuration from disk. Note that this does not include connections, which can be reloaded via Setting&#39;s ReloadConnections().
-const NM_MANAGER_RELOAD_FLAG_CONF byte = 0x1
+const NM_MANAGER_RELOAD_FLAG_CONF int = 0x1
 
 // NM_MANAGER_RELOAD_FLAG_DNS_RC update DNS configuration, which usually involves writing /etc/resolv.conf anew.
-const NM_MANAGER_RELOAD_FLAG_DNS_RC byte = 0x2
+const NM_MANAGER_RELOAD_FLAG_DNS_RC int = 0x2
 
 // NM_MANAGER_RELOAD_FLAG_DNS_FULL means to restart the DNS plugin. This is for example useful when using dnsmasq plugin, which uses additional configuration in /etc/NetworkManager/dnsmasq.d. If you edit those files, you can restart the DNS plugin. This action shortly interrupts name resolution.
-const NM_MANAGER_RELOAD_FLAG_DNS_FULL byte = 0x4
+const NM_MANAGER_RELOAD_FLAG_DNS_FULL int = 0x4
 
 // NM_MANAGER_RELOAD_FLAG_ALL all flags.
-const NM_MANAGER_RELOAD_FLAG_ALL byte = 0x7
+const NM_MANAGER_RELOAD_FLAG_ALL int = 0x7
 
 
 
@@ -1009,16 +1009,16 @@ const NM_MANAGER_RELOAD_FLAG_ALL byte = 0x7
 
 
 // NM_DEVICE_INTERFACE_FLAG_NONE an alias for numeric zero, no flags set.
-const NM_DEVICE_INTERFACE_FLAG_NONE uint16 = 0
+const NM_DEVICE_INTERFACE_FLAG_NONE int = 0
 
 // NM_DEVICE_INTERFACE_FLAG_UP the interface is enabled from the administrative point of view. Corresponds to kernel IFF_UP.
-const NM_DEVICE_INTERFACE_FLAG_UP byte = 0x1
+const NM_DEVICE_INTERFACE_FLAG_UP int = 0x1
 
 // NM_DEVICE_INTERFACE_FLAG_LOWER_UP the physical link is up. Corresponds to kernel IFF_LOWER_UP.
-const NM_DEVICE_INTERFACE_FLAG_LOWER_UP byte = 0x2
+const NM_DEVICE_INTERFACE_FLAG_LOWER_UP int = 0x2
 
 // NM_DEVICE_INTERFACE_FLAG_CARRIER the interface has carrier. In most cases this is equal to the value of @NM_DEVICE_INTERFACE_FLAG_LOWER_UP. However some devices have a non-standard carrier detection mechanism.
-const NM_DEVICE_INTERFACE_FLAG_CARRIER byte = 0x10000
+const NM_DEVICE_INTERFACE_FLAG_CARRIER int = 0x10000
 
 
 
@@ -1027,58 +1027,58 @@ const NM_DEVICE_INTERFACE_FLAG_CARRIER byte = 0x10000
 
 
 // NM_CLIENT_PERMISSION_NONE unknown or no permission
-const NM_CLIENT_PERMISSION_NONE uint16 = 0
+const NM_CLIENT_PERMISSION_NONE int = 0
 
 // NM_CLIENT_PERMISSION_ENABLE_DISABLE_NETWORK controls whether networking can be globally enabled or disabled
-const NM_CLIENT_PERMISSION_ENABLE_DISABLE_NETWORK uint16 = 1
+const NM_CLIENT_PERMISSION_ENABLE_DISABLE_NETWORK int = 1
 
 // NM_CLIENT_PERMISSION_ENABLE_DISABLE_WIFI controls whether Wi-Fi can be globally enabled or disabled
-const NM_CLIENT_PERMISSION_ENABLE_DISABLE_WIFI uint16 = 2
+const NM_CLIENT_PERMISSION_ENABLE_DISABLE_WIFI int = 2
 
 // NM_CLIENT_PERMISSION_ENABLE_DISABLE_WWAN controls whether WWAN (3G) can be globally enabled or disabled
-const NM_CLIENT_PERMISSION_ENABLE_DISABLE_WWAN uint16 = 3
+const NM_CLIENT_PERMISSION_ENABLE_DISABLE_WWAN int = 3
 
 // NM_CLIENT_PERMISSION_ENABLE_DISABLE_WIMAX controls whether WiMAX can be globally enabled or disabled
-const NM_CLIENT_PERMISSION_ENABLE_DISABLE_WIMAX uint16 = 4
+const NM_CLIENT_PERMISSION_ENABLE_DISABLE_WIMAX int = 4
 
 // NM_CLIENT_PERMISSION_SLEEP_WAKE controls whether the client can ask NetworkManager to sleep and wake
-const NM_CLIENT_PERMISSION_SLEEP_WAKE uint16 = 5
+const NM_CLIENT_PERMISSION_SLEEP_WAKE int = 5
 
 // NM_CLIENT_PERMISSION_NETWORK_CONTROL controls whether networking connections can be started, stopped, and changed
-const NM_CLIENT_PERMISSION_NETWORK_CONTROL uint16 = 6
+const NM_CLIENT_PERMISSION_NETWORK_CONTROL int = 6
 
 // NM_CLIENT_PERMISSION_WIFI_SHARE_PROTECTED controls whether a password protected Wi-Fi hotspot can be created
-const NM_CLIENT_PERMISSION_WIFI_SHARE_PROTECTED uint16 = 7
+const NM_CLIENT_PERMISSION_WIFI_SHARE_PROTECTED int = 7
 
 // NM_CLIENT_PERMISSION_WIFI_SHARE_OPEN controls whether an open Wi-Fi hotspot can be created
-const NM_CLIENT_PERMISSION_WIFI_SHARE_OPEN uint16 = 8
+const NM_CLIENT_PERMISSION_WIFI_SHARE_OPEN int = 8
 
 // NM_CLIENT_PERMISSION_SETTINGS_MODIFY_SYSTEM controls whether connections that are available to all users can be modified
-const NM_CLIENT_PERMISSION_SETTINGS_MODIFY_SYSTEM uint16 = 9
+const NM_CLIENT_PERMISSION_SETTINGS_MODIFY_SYSTEM int = 9
 
 // NM_CLIENT_PERMISSION_SETTINGS_MODIFY_OWN controls whether connections owned by the current user can be modified
-const NM_CLIENT_PERMISSION_SETTINGS_MODIFY_OWN uint16 = 10
+const NM_CLIENT_PERMISSION_SETTINGS_MODIFY_OWN int = 10
 
 // NM_CLIENT_PERMISSION_SETTINGS_MODIFY_HOSTNAME controls whether the persistent hostname can be changed
-const NM_CLIENT_PERMISSION_SETTINGS_MODIFY_HOSTNAME uint16 = 11
+const NM_CLIENT_PERMISSION_SETTINGS_MODIFY_HOSTNAME int = 11
 
 // NM_CLIENT_PERMISSION_SETTINGS_MODIFY_GLOBAL_DNS modify persistent global DNS configuration
-const NM_CLIENT_PERMISSION_SETTINGS_MODIFY_GLOBAL_DNS uint16 = 12
+const NM_CLIENT_PERMISSION_SETTINGS_MODIFY_GLOBAL_DNS int = 12
 
 // NM_CLIENT_PERMISSION_RELOAD controls access to Reload.
-const NM_CLIENT_PERMISSION_RELOAD uint16 = 13
+const NM_CLIENT_PERMISSION_RELOAD int = 13
 
 // NM_CLIENT_PERMISSION_CHECKPOINT_ROLLBACK permission to create checkpoints.
-const NM_CLIENT_PERMISSION_CHECKPOINT_ROLLBACK uint16 = 14
+const NM_CLIENT_PERMISSION_CHECKPOINT_ROLLBACK int = 14
 
 // NM_CLIENT_PERMISSION_ENABLE_DISABLE_STATISTICS controls whether device statistics can be globally enabled or disabled
-const NM_CLIENT_PERMISSION_ENABLE_DISABLE_STATISTICS uint16 = 15
+const NM_CLIENT_PERMISSION_ENABLE_DISABLE_STATISTICS int = 15
 
 // NM_CLIENT_PERMISSION_ENABLE_DISABLE_CONNECTIVITY_CHECK controls whether connectivity check can be enabled or disabled
-const NM_CLIENT_PERMISSION_ENABLE_DISABLE_CONNECTIVITY_CHECK uint16 = 16
+const NM_CLIENT_PERMISSION_ENABLE_DISABLE_CONNECTIVITY_CHECK int = 16
 
 // NM_CLIENT_PERMISSION_WIFI_SCAN controls whether wifi scans can be performed
-const NM_CLIENT_PERMISSION_WIFI_SCAN uint16 = 17
+const NM_CLIENT_PERMISSION_WIFI_SCAN int = 17
 
 
 
@@ -1087,16 +1087,16 @@ const NM_CLIENT_PERMISSION_WIFI_SCAN uint16 = 17
 
 
 // NM_CLIENT_PERMISSION_RESULT_UNKNOWN unknown or no authorization
-const NM_CLIENT_PERMISSION_RESULT_UNKNOWN uint16 = 0
+const NM_CLIENT_PERMISSION_RESULT_UNKNOWN int = 0
 
 // NM_CLIENT_PERMISSION_RESULT_YES the permission is available
-const NM_CLIENT_PERMISSION_RESULT_YES uint16 = 1
+const NM_CLIENT_PERMISSION_RESULT_YES int = 1
 
 // NM_CLIENT_PERMISSION_RESULT_AUTH authorization is necessary before the permission is available
-const NM_CLIENT_PERMISSION_RESULT_AUTH uint16 = 2
+const NM_CLIENT_PERMISSION_RESULT_AUTH int = 2
 
 // NM_CLIENT_PERMISSION_RESULT_NO permission to perform the operation is denied by system policy
-const NM_CLIENT_PERMISSION_RESULT_NO uint16 = 3
+const NM_CLIENT_PERMISSION_RESULT_NO int = 3
 
 
 

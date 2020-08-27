@@ -43,10 +43,8 @@ $(".refsect2").each((i, el) => {
     const label = clean($(row).find("td:eq(0)").text())
     const value = clean($(row).find("td:eq(1)").text()).replace("= ", "")
     const desc = clean($(row).find("td:eq(2)").text())
-    const valueType = value.indexOf("0x") > -1 ? "byte" : "uint16"
 
-    console.log(value, valueType)
-    items.push({label, value, valueType, desc})
+    items.push({label, value, desc})
   })
 
   list.push({
