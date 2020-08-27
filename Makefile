@@ -17,5 +17,7 @@ copy: clean
 generate:
 	$(eval LIST := $(shell ls ./interfaces/*.xml))
 	dbus-codegen-go -system=true -prefix=org.freedesktop -client-only -gofmt=true -package=network_manager < $(LIST) > network_manager.go
+	go run gen/enum.go | gofmt > enum.go
+
 
 all: setup copy generate
