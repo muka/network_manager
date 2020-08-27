@@ -24,10 +24,11 @@ make
 
 Types documentation is available at https://developer.gnome.org/NetworkManager/stable/nm-dbus-types.html
 
-To extract, open the console in your browser and extract the enum.json
+To extract, open the console in your browser and extract content using the following script and save in enum.json.
 
-Run `go run gen/enum.go` to generate the go sources
+Run `go run gen/enum.go` to generate go sources from enum.json
 
+**JS Snippet**
 ```js
 
 let list = []
