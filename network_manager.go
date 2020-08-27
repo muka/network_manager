@@ -18,11 +18,6 @@ type Signal interface {
 	values() []interface{}
 }
 
-// Emit sends the given signal to the bus.
-func Emit(conn *dbus.Conn, s Signal) error {
-	return conn.Emit(s.path(), s.Interface()+"."+s.Name(), s.values()...)
-}
-
 // ErrUnknownSignal is returned by LookupSignal when a signal cannot be resolved.
 var ErrUnknownSignal = errors.New("unknown signal")
 
@@ -30,19 +25,19 @@ var ErrUnknownSignal = errors.New("unknown signal")
 // into one with typed structured body or returns ErrUnknownSignal error.
 func LookupSignal(signal *dbus.Signal) (Signal, error) {
 	switch signal.Name {
-	case InterfaceOrg_Freedesktop_NetworkManager_Checkpoint + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Checkpoint + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignal{
+		return &NetworkManager_Checkpoint_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Checkpoint_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Connection_Active + "." + "StateChanged":
+	case InterfaceNetworkManager_Connection_Active + "." + "StateChanged":
 		v0, ok := signal.Body[0].(uint32)
 		if !ok {
 			return nil, fmt.Errorf("prop .State is %T, not uint32", signal.Body[0])
@@ -51,399 +46,399 @@ func LookupSignal(signal *dbus.Signal) (Signal, error) {
 		if !ok {
 			return nil, fmt.Errorf("prop .Reason is %T, not uint32", signal.Body[1])
 		}
-		return &Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignal{
+		return &NetworkManager_Connection_Active_StateChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignalBody{
+			Body: &NetworkManager_Connection_Active_StateChangedSignalBody{
 				State:  v0,
 				Reason: v1,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Connection_Active + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Connection_Active + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignal{
+		return &NetworkManager_Connection_Active_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Connection_Active_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Adsl + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Adsl + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignal{
+		return &NetworkManager_Device_Adsl_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Adsl_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Bluetooth + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Bluetooth + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignal{
+		return &NetworkManager_Device_Bluetooth_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Bluetooth_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Bond + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Bond + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignal{
+		return &NetworkManager_Device_Bond_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Bond_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Bridge + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Bridge + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignal{
+		return &NetworkManager_Device_Bridge_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Bridge_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Dummy + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Dummy + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignal{
+		return &NetworkManager_Device_Dummy_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Dummy_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Generic + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Generic + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignal{
+		return &NetworkManager_Device_Generic_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Generic_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Infiniband + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Infiniband + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignal{
+		return &NetworkManager_Device_Infiniband_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Infiniband_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_IPTunnel + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignal{
+		return &NetworkManager_Device_IPTunnel_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_IPTunnel_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Macsec + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignal{
+		return &NetworkManager_Device_Macsec_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Macsec_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Macvlan + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignal{
+		return &NetworkManager_Device_Macvlan_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Macvlan_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Modem + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Modem + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignal{
+		return &NetworkManager_Device_Modem_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Modem_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_OlpcMesh + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_OlpcMesh + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignal{
+		return &NetworkManager_Device_OlpcMesh_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_OlpcMesh_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_OvsBridge + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_OvsBridge + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignal{
+		return &NetworkManager_Device_OvsBridge_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_OvsBridge_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_OvsInterface + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_OvsInterface + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignal{
+		return &NetworkManager_Device_OvsInterface_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_OvsInterface_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_OvsPort + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_OvsPort + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignal{
+		return &NetworkManager_Device_OvsPort_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_OvsPort_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Ppp + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Ppp + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignal{
+		return &NetworkManager_Device_Ppp_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Ppp_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Statistics + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignal{
+		return &NetworkManager_Device_Statistics_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Statistics_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Team + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Team + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignal{
+		return &NetworkManager_Device_Team_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Team_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Tun + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Tun + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignal{
+		return &NetworkManager_Device_Tun_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Tun_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Veth + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Veth + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignal{
+		return &NetworkManager_Device_Veth_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Veth_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Vlan + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignal{
+		return &NetworkManager_Device_Vlan_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Vlan_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Vxlan + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignal{
+		return &NetworkManager_Device_Vxlan_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Vxlan_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P + "." + "PeerAdded":
+	case InterfaceNetworkManager_Device_WifiP2P + "." + "PeerAdded":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .Peer is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignal{
+		return &NetworkManager_Device_WifiP2P_PeerAddedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignalBody{
+			Body: &NetworkManager_Device_WifiP2P_PeerAddedSignalBody{
 				Peer: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P + "." + "PeerRemoved":
+	case InterfaceNetworkManager_Device_WifiP2P + "." + "PeerRemoved":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .Peer is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignal{
+		return &NetworkManager_Device_WifiP2P_PeerRemovedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignalBody{
+			Body: &NetworkManager_Device_WifiP2P_PeerRemovedSignalBody{
 				Peer: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_WiMax + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignal{
+		return &NetworkManager_Device_WiMax_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_WiMax_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax + "." + "NspAdded":
+	case InterfaceNetworkManager_Device_WiMax + "." + "NspAdded":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .Nsp is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignal{
+		return &NetworkManager_Device_WiMax_NspAddedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignalBody{
+			Body: &NetworkManager_Device_WiMax_NspAddedSignalBody{
 				Nsp: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax + "." + "NspRemoved":
+	case InterfaceNetworkManager_Device_WiMax + "." + "NspRemoved":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .Nsp is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignal{
+		return &NetworkManager_Device_WiMax_NspRemovedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignalBody{
+			Body: &NetworkManager_Device_WiMax_NspRemovedSignalBody{
 				Nsp: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Wired + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Wired + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignal{
+		return &NetworkManager_Device_Wired_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Wired_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Device_Wireless + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignal{
+		return &NetworkManager_Device_Wireless_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Device_Wireless_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless + "." + "AccessPointAdded":
+	case InterfaceNetworkManager_Device_Wireless + "." + "AccessPointAdded":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .AccessPoint is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignal{
+		return &NetworkManager_Device_Wireless_AccessPointAddedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignalBody{
+			Body: &NetworkManager_Device_Wireless_AccessPointAddedSignalBody{
 				AccessPoint: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless + "." + "AccessPointRemoved":
+	case InterfaceNetworkManager_Device_Wireless + "." + "AccessPointRemoved":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .AccessPoint is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignal{
+		return &NetworkManager_Device_Wireless_AccessPointRemovedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignalBody{
+			Body: &NetworkManager_Device_Wireless_AccessPointRemovedSignalBody{
 				AccessPoint: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Device + "." + "StateChanged":
+	case InterfaceNetworkManager_Device + "." + "StateChanged":
 		v0, ok := signal.Body[0].(uint32)
 		if !ok {
 			return nil, fmt.Errorf("prop .NewState is %T, not uint32", signal.Body[0])
@@ -456,136 +451,136 @@ func LookupSignal(signal *dbus.Signal) (Signal, error) {
 		if !ok {
 			return nil, fmt.Errorf("prop .Reason is %T, not uint32", signal.Body[2])
 		}
-		return &Org_Freedesktop_NetworkManager_Device_StateChangedSignal{
+		return &NetworkManager_Device_StateChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Device_StateChangedSignalBody{
+			Body: &NetworkManager_Device_StateChangedSignalBody{
 				NewState: v0,
 				OldState: v1,
 				Reason:   v2,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_DHCP4Config + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_DHCP4Config + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignal{
+		return &NetworkManager_DHCP4Config_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignalBody{
+			Body: &NetworkManager_DHCP4Config_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_DHCP6Config + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_DHCP6Config + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignal{
+		return &NetworkManager_DHCP6Config_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignalBody{
+			Body: &NetworkManager_DHCP6Config_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_IP4Config + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_IP4Config + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignal{
+		return &NetworkManager_IP4Config_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignalBody{
+			Body: &NetworkManager_IP4Config_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_IP6Config + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_IP6Config + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignal{
+		return &NetworkManager_IP6Config_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignalBody{
+			Body: &NetworkManager_IP6Config_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection + "." + "Updated":
-		return &Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignal{
+	case InterfaceNetworkManager_Settings_Connection + "." + "Updated":
+		return &NetworkManager_Settings_Connection_UpdatedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body:   &Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignalBody{},
+			Body:   &NetworkManager_Settings_Connection_UpdatedSignalBody{},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection + "." + "Removed":
-		return &Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignal{
+	case InterfaceNetworkManager_Settings_Connection + "." + "Removed":
+		return &NetworkManager_Settings_Connection_RemovedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body:   &Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignalBody{},
+			Body:   &NetworkManager_Settings_Connection_RemovedSignalBody{},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Settings_Connection + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignal{
+		return &NetworkManager_Settings_Connection_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Settings_Connection_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Settings + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_Settings + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignal{
+		return &NetworkManager_Settings_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignalBody{
+			Body: &NetworkManager_Settings_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Settings + "." + "NewConnection":
+	case InterfaceNetworkManager_Settings + "." + "NewConnection":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .Connection is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Settings_NewConnectionSignal{
+		return &NetworkManager_Settings_NewConnectionSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Settings_NewConnectionSignalBody{
+			Body: &NetworkManager_Settings_NewConnectionSignalBody{
 				Connection: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_Settings + "." + "ConnectionRemoved":
+	case InterfaceNetworkManager_Settings + "." + "ConnectionRemoved":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .Connection is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignal{
+		return &NetworkManager_Settings_ConnectionRemovedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignalBody{
+			Body: &NetworkManager_Settings_ConnectionRemovedSignalBody{
 				Connection: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_VPN_Connection + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignal{
+		return &NetworkManager_VPN_Connection_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignalBody{
+			Body: &NetworkManager_VPN_Connection_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection + "." + "VpnStateChanged":
+	case InterfaceNetworkManager_VPN_Connection + "." + "VpnStateChanged":
 		v0, ok := signal.Body[0].(uint32)
 		if !ok {
 			return nil, fmt.Errorf("prop .State is %T, not uint32", signal.Body[0])
@@ -594,27 +589,27 @@ func LookupSignal(signal *dbus.Signal) (Signal, error) {
 		if !ok {
 			return nil, fmt.Errorf("prop .Reason is %T, not uint32", signal.Body[1])
 		}
-		return &Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignal{
+		return &NetworkManager_VPN_Connection_VpnStateChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignalBody{
+			Body: &NetworkManager_VPN_Connection_VpnStateChangedSignalBody{
 				State:  v0,
 				Reason: v1,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin + "." + "StateChanged":
+	case InterfaceNetworkManager_VPN_Plugin + "." + "StateChanged":
 		v0, ok := signal.Body[0].(uint32)
 		if !ok {
 			return nil, fmt.Errorf("prop .State is %T, not uint32", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignal{
+		return &NetworkManager_VPN_Plugin_StateChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignalBody{
+			Body: &NetworkManager_VPN_Plugin_StateChangedSignalBody{
 				State: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin + "." + "SecretsRequired":
+	case InterfaceNetworkManager_VPN_Plugin + "." + "SecretsRequired":
 		v0, ok := signal.Body[0].(string)
 		if !ok {
 			return nil, fmt.Errorf("prop .Message is %T, not string", signal.Body[0])
@@ -623,137 +618,137 @@ func LookupSignal(signal *dbus.Signal) (Signal, error) {
 		if !ok {
 			return nil, fmt.Errorf("prop .Secrets is %T, not []string", signal.Body[1])
 		}
-		return &Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignal{
+		return &NetworkManager_VPN_Plugin_SecretsRequiredSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignalBody{
+			Body: &NetworkManager_VPN_Plugin_SecretsRequiredSignalBody{
 				Message: v0,
 				Secrets: v1,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin + "." + "Config":
+	case InterfaceNetworkManager_VPN_Plugin + "." + "Config":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Config is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignal{
+		return &NetworkManager_VPN_Plugin_ConfigSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignalBody{
+			Body: &NetworkManager_VPN_Plugin_ConfigSignalBody{
 				Config: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin + "." + "Ip4Config":
+	case InterfaceNetworkManager_VPN_Plugin + "." + "Ip4Config":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Ip4config is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignal{
+		return &NetworkManager_VPN_Plugin_Ip4ConfigSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignalBody{
+			Body: &NetworkManager_VPN_Plugin_Ip4ConfigSignalBody{
 				Ip4config: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin + "." + "Ip6Config":
+	case InterfaceNetworkManager_VPN_Plugin + "." + "Ip6Config":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Ip6config is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignal{
+		return &NetworkManager_VPN_Plugin_Ip6ConfigSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignalBody{
+			Body: &NetworkManager_VPN_Plugin_Ip6ConfigSignalBody{
 				Ip6config: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin + "." + "LoginBanner":
+	case InterfaceNetworkManager_VPN_Plugin + "." + "LoginBanner":
 		v0, ok := signal.Body[0].(string)
 		if !ok {
 			return nil, fmt.Errorf("prop .Banner is %T, not string", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignal{
+		return &NetworkManager_VPN_Plugin_LoginBannerSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignalBody{
+			Body: &NetworkManager_VPN_Plugin_LoginBannerSignalBody{
 				Banner: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin + "." + "Failure":
+	case InterfaceNetworkManager_VPN_Plugin + "." + "Failure":
 		v0, ok := signal.Body[0].(uint32)
 		if !ok {
 			return nil, fmt.Errorf("prop .Reason is %T, not uint32", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignal{
+		return &NetworkManager_VPN_Plugin_FailureSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignalBody{
+			Body: &NetworkManager_VPN_Plugin_FailureSignalBody{
 				Reason: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager_WiMax_Nsp + "." + "PropertiesChanged":
+	case InterfaceNetworkManager_WiMax_Nsp + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignal{
+		return &NetworkManager_WiMax_Nsp_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignalBody{
+			Body: &NetworkManager_WiMax_Nsp_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager + "." + "CheckPermissions":
-		return &Org_Freedesktop_NetworkManager_CheckPermissionsSignal{
+	case InterfaceNetworkManager + "." + "CheckPermissions":
+		return &NetworkManager_CheckPermissionsSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body:   &Org_Freedesktop_NetworkManager_CheckPermissionsSignalBody{},
+			Body:   &NetworkManager_CheckPermissionsSignalBody{},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager + "." + "StateChanged":
+	case InterfaceNetworkManager + "." + "StateChanged":
 		v0, ok := signal.Body[0].(uint32)
 		if !ok {
 			return nil, fmt.Errorf("prop .State is %T, not uint32", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_StateChangedSignal{
+		return &NetworkManager_StateChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_StateChangedSignalBody{
+			Body: &NetworkManager_StateChangedSignalBody{
 				State: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager + "." + "PropertiesChanged":
+	case InterfaceNetworkManager + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
 			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_PropertiesChangedSignal{
+		return &NetworkManager_PropertiesChangedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_PropertiesChangedSignalBody{
+			Body: &NetworkManager_PropertiesChangedSignalBody{
 				Properties: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager + "." + "DeviceAdded":
+	case InterfaceNetworkManager + "." + "DeviceAdded":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .DevicePath is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_DeviceAddedSignal{
+		return &NetworkManager_DeviceAddedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_DeviceAddedSignalBody{
+			Body: &NetworkManager_DeviceAddedSignalBody{
 				DevicePath: v0,
 			},
 		}, nil
-	case InterfaceOrg_Freedesktop_NetworkManager + "." + "DeviceRemoved":
+	case InterfaceNetworkManager + "." + "DeviceRemoved":
 		v0, ok := signal.Body[0].(dbus.ObjectPath)
 		if !ok {
 			return nil, fmt.Errorf("prop .DevicePath is %T, not dbus.ObjectPath", signal.Body[0])
 		}
-		return &Org_Freedesktop_NetworkManager_DeviceRemovedSignal{
+		return &NetworkManager_DeviceRemovedSignal{
 			sender: signal.Sender,
 			Path:   signal.Path,
-			Body: &Org_Freedesktop_NetworkManager_DeviceRemovedSignalBody{
+			Body: &NetworkManager_DeviceRemovedSignalBody{
 				DevicePath: v0,
 			},
 		}, nil
@@ -781,2928 +776,2247 @@ func RemoveMatchSignal(conn *dbus.Conn, s Signal, opts ...dbus.MatchOption) erro
 
 // Interface name constants.
 const (
-	InterfaceOrg_Freedesktop_NetworkManager_AgentManager        = "org.freedesktop.NetworkManager.AgentManager"
-	InterfaceOrg_Freedesktop_NetworkManager_Checkpoint          = "org.freedesktop.NetworkManager.Checkpoint"
-	InterfaceOrg_Freedesktop_NetworkManager_Connection_Active   = "org.freedesktop.NetworkManager.Connection.Active"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Adsl         = "org.freedesktop.NetworkManager.Device.Adsl"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Bluetooth    = "org.freedesktop.NetworkManager.Device.Bluetooth"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Bond         = "org.freedesktop.NetworkManager.Device.Bond"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Bridge       = "org.freedesktop.NetworkManager.Device.Bridge"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Dummy        = "org.freedesktop.NetworkManager.Device.Dummy"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Generic      = "org.freedesktop.NetworkManager.Device.Generic"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Infiniband   = "org.freedesktop.NetworkManager.Device.Infiniband"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel     = "org.freedesktop.NetworkManager.Device.IPTunnel"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Lowpan       = "org.freedesktop.NetworkManager.Device.Lowpan"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec       = "org.freedesktop.NetworkManager.Device.Macsec"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan      = "org.freedesktop.NetworkManager.Device.Macvlan"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Modem        = "org.freedesktop.NetworkManager.Device.Modem"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_OlpcMesh     = "org.freedesktop.NetworkManager.Device.OlpcMesh"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_OvsBridge    = "org.freedesktop.NetworkManager.Device.OvsBridge"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_OvsInterface = "org.freedesktop.NetworkManager.Device.OvsInterface"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_OvsPort      = "org.freedesktop.NetworkManager.Device.OvsPort"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Ppp          = "org.freedesktop.NetworkManager.Device.Ppp"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics   = "org.freedesktop.NetworkManager.Device.Statistics"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Team         = "org.freedesktop.NetworkManager.Device.Team"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Tun          = "org.freedesktop.NetworkManager.Device.Tun"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Veth         = "org.freedesktop.NetworkManager.Device.Veth"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan         = "org.freedesktop.NetworkManager.Device.Vlan"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan        = "org.freedesktop.NetworkManager.Device.Vxlan"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P      = "org.freedesktop.NetworkManager.Device.WifiP2P"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax        = "org.freedesktop.NetworkManager.Device.WiMax"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Wired        = "org.freedesktop.NetworkManager.Device.Wired"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_WireGuard    = "org.freedesktop.NetworkManager.Device.WireGuard"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless     = "org.freedesktop.NetworkManager.Device.Wireless"
-	InterfaceOrg_Freedesktop_NetworkManager_Device_Wpan         = "org.freedesktop.NetworkManager.Device.Wpan"
-	InterfaceOrg_Freedesktop_NetworkManager_Device              = "org.freedesktop.NetworkManager.Device"
-	InterfaceOrg_Freedesktop_NetworkManager_DHCP4Config         = "org.freedesktop.NetworkManager.DHCP4Config"
-	InterfaceOrg_Freedesktop_NetworkManager_DHCP6Config         = "org.freedesktop.NetworkManager.DHCP6Config"
-	InterfaceOrg_Freedesktop_NetworkManager_DnsManager          = "org.freedesktop.NetworkManager.DnsManager"
-	InterfaceOrg_Freedesktop_NetworkManager_IP4Config           = "org.freedesktop.NetworkManager.IP4Config"
-	InterfaceOrg_Freedesktop_NetworkManager_IP6Config           = "org.freedesktop.NetworkManager.IP6Config"
-	InterfaceOrg_Freedesktop_NetworkManager_PPP                 = "org.freedesktop.NetworkManager.PPP"
-	InterfaceOrg_Freedesktop_NetworkManager_SecretAgent         = "org.freedesktop.NetworkManager.SecretAgent"
-	InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection = "org.freedesktop.NetworkManager.Settings.Connection"
-	InterfaceOrg_Freedesktop_NetworkManager_Settings            = "org.freedesktop.NetworkManager.Settings"
-	InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection      = "org.freedesktop.NetworkManager.VPN.Connection"
-	InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin          = "org.freedesktop.NetworkManager.VPN.Plugin"
-	InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer         = "org.freedesktop.NetworkManager.WifiP2PPeer"
-	InterfaceOrg_Freedesktop_NetworkManager_WiMax_Nsp           = "org.freedesktop.NetworkManager.WiMax.Nsp"
-	InterfaceOrg_Freedesktop_NetworkManager                     = "org.freedesktop.NetworkManager"
+	InterfaceNetworkManager_AgentManager        = "org.freedesktop.NetworkManager.AgentManager"
+	InterfaceNetworkManager_Checkpoint          = "org.freedesktop.NetworkManager.Checkpoint"
+	InterfaceNetworkManager_Connection_Active   = "org.freedesktop.NetworkManager.Connection.Active"
+	InterfaceNetworkManager_Device_Adsl         = "org.freedesktop.NetworkManager.Device.Adsl"
+	InterfaceNetworkManager_Device_Bluetooth    = "org.freedesktop.NetworkManager.Device.Bluetooth"
+	InterfaceNetworkManager_Device_Bond         = "org.freedesktop.NetworkManager.Device.Bond"
+	InterfaceNetworkManager_Device_Bridge       = "org.freedesktop.NetworkManager.Device.Bridge"
+	InterfaceNetworkManager_Device_Dummy        = "org.freedesktop.NetworkManager.Device.Dummy"
+	InterfaceNetworkManager_Device_Generic      = "org.freedesktop.NetworkManager.Device.Generic"
+	InterfaceNetworkManager_Device_Infiniband   = "org.freedesktop.NetworkManager.Device.Infiniband"
+	InterfaceNetworkManager_Device_IPTunnel     = "org.freedesktop.NetworkManager.Device.IPTunnel"
+	InterfaceNetworkManager_Device_Lowpan       = "org.freedesktop.NetworkManager.Device.Lowpan"
+	InterfaceNetworkManager_Device_Macsec       = "org.freedesktop.NetworkManager.Device.Macsec"
+	InterfaceNetworkManager_Device_Macvlan      = "org.freedesktop.NetworkManager.Device.Macvlan"
+	InterfaceNetworkManager_Device_Modem        = "org.freedesktop.NetworkManager.Device.Modem"
+	InterfaceNetworkManager_Device_OlpcMesh     = "org.freedesktop.NetworkManager.Device.OlpcMesh"
+	InterfaceNetworkManager_Device_OvsBridge    = "org.freedesktop.NetworkManager.Device.OvsBridge"
+	InterfaceNetworkManager_Device_OvsInterface = "org.freedesktop.NetworkManager.Device.OvsInterface"
+	InterfaceNetworkManager_Device_OvsPort      = "org.freedesktop.NetworkManager.Device.OvsPort"
+	InterfaceNetworkManager_Device_Ppp          = "org.freedesktop.NetworkManager.Device.Ppp"
+	InterfaceNetworkManager_Device_Statistics   = "org.freedesktop.NetworkManager.Device.Statistics"
+	InterfaceNetworkManager_Device_Team         = "org.freedesktop.NetworkManager.Device.Team"
+	InterfaceNetworkManager_Device_Tun          = "org.freedesktop.NetworkManager.Device.Tun"
+	InterfaceNetworkManager_Device_Veth         = "org.freedesktop.NetworkManager.Device.Veth"
+	InterfaceNetworkManager_Device_Vlan         = "org.freedesktop.NetworkManager.Device.Vlan"
+	InterfaceNetworkManager_Device_Vxlan        = "org.freedesktop.NetworkManager.Device.Vxlan"
+	InterfaceNetworkManager_Device_WifiP2P      = "org.freedesktop.NetworkManager.Device.WifiP2P"
+	InterfaceNetworkManager_Device_WiMax        = "org.freedesktop.NetworkManager.Device.WiMax"
+	InterfaceNetworkManager_Device_Wired        = "org.freedesktop.NetworkManager.Device.Wired"
+	InterfaceNetworkManager_Device_WireGuard    = "org.freedesktop.NetworkManager.Device.WireGuard"
+	InterfaceNetworkManager_Device_Wireless     = "org.freedesktop.NetworkManager.Device.Wireless"
+	InterfaceNetworkManager_Device_Wpan         = "org.freedesktop.NetworkManager.Device.Wpan"
+	InterfaceNetworkManager_Device              = "org.freedesktop.NetworkManager.Device"
+	InterfaceNetworkManager_DHCP4Config         = "org.freedesktop.NetworkManager.DHCP4Config"
+	InterfaceNetworkManager_DHCP6Config         = "org.freedesktop.NetworkManager.DHCP6Config"
+	InterfaceNetworkManager_DnsManager          = "org.freedesktop.NetworkManager.DnsManager"
+	InterfaceNetworkManager_IP4Config           = "org.freedesktop.NetworkManager.IP4Config"
+	InterfaceNetworkManager_IP6Config           = "org.freedesktop.NetworkManager.IP6Config"
+	InterfaceNetworkManager_PPP                 = "org.freedesktop.NetworkManager.PPP"
+	InterfaceNetworkManager_SecretAgent         = "org.freedesktop.NetworkManager.SecretAgent"
+	InterfaceNetworkManager_Settings_Connection = "org.freedesktop.NetworkManager.Settings.Connection"
+	InterfaceNetworkManager_Settings            = "org.freedesktop.NetworkManager.Settings"
+	InterfaceNetworkManager_VPN_Connection      = "org.freedesktop.NetworkManager.VPN.Connection"
+	InterfaceNetworkManager_VPN_Plugin          = "org.freedesktop.NetworkManager.VPN.Plugin"
+	InterfaceNetworkManager_WifiP2PPeer         = "org.freedesktop.NetworkManager.WifiP2PPeer"
+	InterfaceNetworkManager_WiMax_Nsp           = "org.freedesktop.NetworkManager.WiMax.Nsp"
+	InterfaceNetworkManager                     = "org.freedesktop.NetworkManager"
 )
 
-// Org_Freedesktop_NetworkManager_AgentManagerer is org.freedesktop.NetworkManager.AgentManager interface.
-type Org_Freedesktop_NetworkManager_AgentManagerer interface {
-	// Register is org.freedesktop.NetworkManager.AgentManager.Register method.
-	Register(identifier string) (err *dbus.Error)
-	// RegisterWithCapabilities is org.freedesktop.NetworkManager.AgentManager.RegisterWithCapabilities method.
-	RegisterWithCapabilities(identifier string, capabilities uint32) (err *dbus.Error)
-	// Unregister is org.freedesktop.NetworkManager.AgentManager.Unregister method.
-	Unregister() (err *dbus.Error)
+// NewNetworkManager_AgentManager creates and allocates org.freedesktop.NetworkManager.AgentManager.
+func NewNetworkManager_AgentManager(object dbus.BusObject) *NetworkManager_AgentManager {
+	return &NetworkManager_AgentManager{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_AgentManager exports the given object that implements org.freedesktop.NetworkManager.AgentManager on the bus.
-func ExportOrg_Freedesktop_NetworkManager_AgentManager(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_AgentManagerer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"Register":                 v.Register,
-		"RegisterWithCapabilities": v.RegisterWithCapabilities,
-		"Unregister":               v.Unregister,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_AgentManager)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_AgentManager unexports org.freedesktop.NetworkManager.AgentManager interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_AgentManager(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_AgentManager)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_AgentManager can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_AgentManager struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_AgentManager) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_AgentManager
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_AgentManager) Register(identifier string) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_AgentManager) RegisterWithCapabilities(identifier string, capabilities uint32) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_AgentManager) Unregister() (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_AgentManager creates and allocates org.freedesktop.NetworkManager.AgentManager.
-func NewOrg_Freedesktop_NetworkManager_AgentManager(object dbus.BusObject) *Org_Freedesktop_NetworkManager_AgentManager {
-	return &Org_Freedesktop_NetworkManager_AgentManager{object}
-}
-
-// Org_Freedesktop_NetworkManager_AgentManager implements org.freedesktop.NetworkManager.AgentManager D-Bus interface.
-type Org_Freedesktop_NetworkManager_AgentManager struct {
+// NetworkManager_AgentManager implements org.freedesktop.NetworkManager.AgentManager D-Bus interface.
+type NetworkManager_AgentManager struct {
 	object dbus.BusObject
 }
 
 // Register calls org.freedesktop.NetworkManager.AgentManager.Register method.
-func (o *Org_Freedesktop_NetworkManager_AgentManager) Register(ctx context.Context, identifier string) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_AgentManager+".Register", 0, identifier).Store()
+func (o *NetworkManager_AgentManager) Register(ctx context.Context, identifier string) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_AgentManager+".Register", 0, identifier).Store()
 	return
 }
 
 // RegisterWithCapabilities calls org.freedesktop.NetworkManager.AgentManager.RegisterWithCapabilities method.
-func (o *Org_Freedesktop_NetworkManager_AgentManager) RegisterWithCapabilities(ctx context.Context, identifier string, capabilities uint32) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_AgentManager+".RegisterWithCapabilities", 0, identifier, capabilities).Store()
+func (o *NetworkManager_AgentManager) RegisterWithCapabilities(ctx context.Context, identifier string, capabilities uint32) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_AgentManager+".RegisterWithCapabilities", 0, identifier, capabilities).Store()
 	return
 }
 
 // Unregister calls org.freedesktop.NetworkManager.AgentManager.Unregister method.
-func (o *Org_Freedesktop_NetworkManager_AgentManager) Unregister(ctx context.Context) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_AgentManager+".Unregister", 0).Store()
+func (o *NetworkManager_AgentManager) Unregister(ctx context.Context) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_AgentManager+".Unregister", 0).Store()
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Checkpointer is org.freedesktop.NetworkManager.Checkpoint interface.
-type Org_Freedesktop_NetworkManager_Checkpointer interface {
+// NewNetworkManager_Checkpoint creates and allocates org.freedesktop.NetworkManager.Checkpoint.
+func NewNetworkManager_Checkpoint(object dbus.BusObject) *NetworkManager_Checkpoint {
+	return &NetworkManager_Checkpoint{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Checkpoint exports the given object that implements org.freedesktop.NetworkManager.Checkpoint on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Checkpoint(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Checkpointer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Checkpoint)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Checkpoint unexports org.freedesktop.NetworkManager.Checkpoint interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Checkpoint(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Checkpoint)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Checkpoint can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Checkpoint struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Checkpoint) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Checkpoint
-}
-
-// NewOrg_Freedesktop_NetworkManager_Checkpoint creates and allocates org.freedesktop.NetworkManager.Checkpoint.
-func NewOrg_Freedesktop_NetworkManager_Checkpoint(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Checkpoint {
-	return &Org_Freedesktop_NetworkManager_Checkpoint{object}
-}
-
-// Org_Freedesktop_NetworkManager_Checkpoint implements org.freedesktop.NetworkManager.Checkpoint D-Bus interface.
+// NetworkManager_Checkpoint implements org.freedesktop.NetworkManager.Checkpoint D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = Checkpoint
-type Org_Freedesktop_NetworkManager_Checkpoint struct {
+type NetworkManager_Checkpoint struct {
 	object dbus.BusObject
 }
 
 // GetDevices gets org.freedesktop.NetworkManager.Checkpoint.Devices property.
-func (o *Org_Freedesktop_NetworkManager_Checkpoint) GetDevices(ctx context.Context) (devices []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Checkpoint, "Devices").Store(&devices)
+func (o *NetworkManager_Checkpoint) GetDevices(ctx context.Context) (devices []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Checkpoint, "Devices").Store(&devices)
 	return
 }
 
 // GetCreated gets org.freedesktop.NetworkManager.Checkpoint.Created property.
-func (o *Org_Freedesktop_NetworkManager_Checkpoint) GetCreated(ctx context.Context) (created int64, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Checkpoint, "Created").Store(&created)
+func (o *NetworkManager_Checkpoint) GetCreated(ctx context.Context) (created int64, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Checkpoint, "Created").Store(&created)
 	return
 }
 
 // GetRollbackTimeout gets org.freedesktop.NetworkManager.Checkpoint.RollbackTimeout property.
-func (o *Org_Freedesktop_NetworkManager_Checkpoint) GetRollbackTimeout(ctx context.Context) (rollbackTimeout uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Checkpoint, "RollbackTimeout").Store(&rollbackTimeout)
+func (o *NetworkManager_Checkpoint) GetRollbackTimeout(ctx context.Context) (rollbackTimeout uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Checkpoint, "RollbackTimeout").Store(&rollbackTimeout)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Checkpoint.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignal struct {
+// NetworkManager_Checkpoint_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Checkpoint.PropertiesChanged signal.
+type NetworkManager_Checkpoint_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignalBody
+	Body   *NetworkManager_Checkpoint_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Checkpoint_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Checkpoint
+func (s *NetworkManager_Checkpoint_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Checkpoint
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Checkpoint_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Checkpoint_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Checkpoint_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Checkpoint_PropertiesChangedSignalBody struct {
+// NetworkManager_Checkpoint_PropertiesChangedSignalBody is body container.
+type NetworkManager_Checkpoint_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Connection_Activeer is org.freedesktop.NetworkManager.Connection.Active interface.
-type Org_Freedesktop_NetworkManager_Connection_Activeer interface {
+// NewNetworkManager_Connection_Active creates and allocates org.freedesktop.NetworkManager.Connection.Active.
+func NewNetworkManager_Connection_Active(object dbus.BusObject) *NetworkManager_Connection_Active {
+	return &NetworkManager_Connection_Active{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Connection_Active exports the given object that implements org.freedesktop.NetworkManager.Connection.Active on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Connection_Active(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Connection_Activeer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Connection_Active unexports org.freedesktop.NetworkManager.Connection.Active interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Connection_Active(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Connection_Active can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Connection_Active struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Connection_Active) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Connection_Active
-}
-
-// NewOrg_Freedesktop_NetworkManager_Connection_Active creates and allocates org.freedesktop.NetworkManager.Connection.Active.
-func NewOrg_Freedesktop_NetworkManager_Connection_Active(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Connection_Active {
-	return &Org_Freedesktop_NetworkManager_Connection_Active{object}
-}
-
-// Org_Freedesktop_NetworkManager_Connection_Active implements org.freedesktop.NetworkManager.Connection.Active D-Bus interface.
+// NetworkManager_Connection_Active implements org.freedesktop.NetworkManager.Connection.Active D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = ActiveConnection
-type Org_Freedesktop_NetworkManager_Connection_Active struct {
+type NetworkManager_Connection_Active struct {
 	object dbus.BusObject
 }
 
 // GetConnection gets org.freedesktop.NetworkManager.Connection.Active.Connection property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetConnection(ctx context.Context) (connection dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Connection").Store(&connection)
+func (o *NetworkManager_Connection_Active) GetConnection(ctx context.Context) (connection dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Connection").Store(&connection)
 	return
 }
 
 // GetSpecificObject gets org.freedesktop.NetworkManager.Connection.Active.SpecificObject property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetSpecificObject(ctx context.Context) (specificObject dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "SpecificObject").Store(&specificObject)
+func (o *NetworkManager_Connection_Active) GetSpecificObject(ctx context.Context) (specificObject dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "SpecificObject").Store(&specificObject)
 	return
 }
 
 // GetId gets org.freedesktop.NetworkManager.Connection.Active.Id property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetId(ctx context.Context) (id string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Id").Store(&id)
+func (o *NetworkManager_Connection_Active) GetId(ctx context.Context) (id string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Id").Store(&id)
 	return
 }
 
 // GetUuid gets org.freedesktop.NetworkManager.Connection.Active.Uuid property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetUuid(ctx context.Context) (uuid string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Uuid").Store(&uuid)
+func (o *NetworkManager_Connection_Active) GetUuid(ctx context.Context) (uuid string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Uuid").Store(&uuid)
 	return
 }
 
 // GetType gets org.freedesktop.NetworkManager.Connection.Active.Type property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetType(ctx context.Context) (vType string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Type").Store(&vType)
+func (o *NetworkManager_Connection_Active) GetType(ctx context.Context) (vType string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Type").Store(&vType)
 	return
 }
 
 // GetDevices gets org.freedesktop.NetworkManager.Connection.Active.Devices property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetDevices(ctx context.Context) (devices []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Devices").Store(&devices)
+func (o *NetworkManager_Connection_Active) GetDevices(ctx context.Context) (devices []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Devices").Store(&devices)
 	return
 }
 
 // GetState gets org.freedesktop.NetworkManager.Connection.Active.State property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetState(ctx context.Context) (state uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "State").Store(&state)
+func (o *NetworkManager_Connection_Active) GetState(ctx context.Context) (state uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "State").Store(&state)
 	return
 }
 
 // GetStateFlags gets org.freedesktop.NetworkManager.Connection.Active.StateFlags property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetStateFlags(ctx context.Context) (stateFlags uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "StateFlags").Store(&stateFlags)
+func (o *NetworkManager_Connection_Active) GetStateFlags(ctx context.Context) (stateFlags uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "StateFlags").Store(&stateFlags)
 	return
 }
 
 // GetDefault gets org.freedesktop.NetworkManager.Connection.Active.Default property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetDefault(ctx context.Context) (vDefault bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Default").Store(&vDefault)
+func (o *NetworkManager_Connection_Active) GetDefault(ctx context.Context) (vDefault bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Default").Store(&vDefault)
 	return
 }
 
 // GetIp4Config gets org.freedesktop.NetworkManager.Connection.Active.Ip4Config property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetIp4Config(ctx context.Context) (ip4Config dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Ip4Config").Store(&ip4Config)
+func (o *NetworkManager_Connection_Active) GetIp4Config(ctx context.Context) (ip4Config dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Ip4Config").Store(&ip4Config)
 	return
 }
 
 // GetDhcp4Config gets org.freedesktop.NetworkManager.Connection.Active.Dhcp4Config property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetDhcp4Config(ctx context.Context) (dhcp4Config dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Dhcp4Config").Store(&dhcp4Config)
+func (o *NetworkManager_Connection_Active) GetDhcp4Config(ctx context.Context) (dhcp4Config dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Dhcp4Config").Store(&dhcp4Config)
 	return
 }
 
 // GetDefault6 gets org.freedesktop.NetworkManager.Connection.Active.Default6 property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetDefault6(ctx context.Context) (default6 bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Default6").Store(&default6)
+func (o *NetworkManager_Connection_Active) GetDefault6(ctx context.Context) (default6 bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Default6").Store(&default6)
 	return
 }
 
 // GetIp6Config gets org.freedesktop.NetworkManager.Connection.Active.Ip6Config property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetIp6Config(ctx context.Context) (ip6Config dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Ip6Config").Store(&ip6Config)
+func (o *NetworkManager_Connection_Active) GetIp6Config(ctx context.Context) (ip6Config dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Ip6Config").Store(&ip6Config)
 	return
 }
 
 // GetDhcp6Config gets org.freedesktop.NetworkManager.Connection.Active.Dhcp6Config property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetDhcp6Config(ctx context.Context) (dhcp6Config dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Dhcp6Config").Store(&dhcp6Config)
+func (o *NetworkManager_Connection_Active) GetDhcp6Config(ctx context.Context) (dhcp6Config dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Dhcp6Config").Store(&dhcp6Config)
 	return
 }
 
 // GetVpn gets org.freedesktop.NetworkManager.Connection.Active.Vpn property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetVpn(ctx context.Context) (vpn bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Vpn").Store(&vpn)
+func (o *NetworkManager_Connection_Active) GetVpn(ctx context.Context) (vpn bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Vpn").Store(&vpn)
 	return
 }
 
 // GetMaster gets org.freedesktop.NetworkManager.Connection.Active.Master property.
-func (o *Org_Freedesktop_NetworkManager_Connection_Active) GetMaster(ctx context.Context) (master dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Connection_Active, "Master").Store(&master)
+func (o *NetworkManager_Connection_Active) GetMaster(ctx context.Context) (master dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Connection_Active, "Master").Store(&master)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignal represents org.freedesktop.NetworkManager.Connection.Active.StateChanged signal.
-type Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignal struct {
+// NetworkManager_Connection_Active_StateChangedSignal represents org.freedesktop.NetworkManager.Connection.Active.StateChanged signal.
+type NetworkManager_Connection_Active_StateChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignalBody
+	Body   *NetworkManager_Connection_Active_StateChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignal) Name() string {
+func (s *NetworkManager_Connection_Active_StateChangedSignal) Name() string {
 	return "StateChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Connection_Active
+func (s *NetworkManager_Connection_Active_StateChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Connection_Active
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignal) Sender() string {
+func (s *NetworkManager_Connection_Active_StateChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Connection_Active_StateChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignal) values() []interface{} {
+func (s *NetworkManager_Connection_Active_StateChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.State, s.Body.Reason}
 }
 
-// Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Connection_Active_StateChangedSignalBody struct {
+// NetworkManager_Connection_Active_StateChangedSignalBody is body container.
+type NetworkManager_Connection_Active_StateChangedSignalBody struct {
 	State  uint32
 	Reason uint32
 }
 
-// Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Connection.Active.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignal struct {
+// NetworkManager_Connection_Active_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Connection.Active.PropertiesChanged signal.
+type NetworkManager_Connection_Active_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignalBody
+	Body   *NetworkManager_Connection_Active_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Connection_Active_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Connection_Active
+func (s *NetworkManager_Connection_Active_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Connection_Active
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Connection_Active_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Connection_Active_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Connection_Active_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Connection_Active_PropertiesChangedSignalBody struct {
+// NetworkManager_Connection_Active_PropertiesChangedSignalBody is body container.
+type NetworkManager_Connection_Active_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Adsler is org.freedesktop.NetworkManager.Device.Adsl interface.
-type Org_Freedesktop_NetworkManager_Device_Adsler interface {
+// NewNetworkManager_Device_Adsl creates and allocates org.freedesktop.NetworkManager.Device.Adsl.
+func NewNetworkManager_Device_Adsl(object dbus.BusObject) *NetworkManager_Device_Adsl {
+	return &NetworkManager_Device_Adsl{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Adsl exports the given object that implements org.freedesktop.NetworkManager.Device.Adsl on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Adsl(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Adsler) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Adsl)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Adsl unexports org.freedesktop.NetworkManager.Device.Adsl interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Adsl(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Adsl)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Adsl can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Adsl struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Adsl) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Adsl
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Adsl creates and allocates org.freedesktop.NetworkManager.Device.Adsl.
-func NewOrg_Freedesktop_NetworkManager_Device_Adsl(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Adsl {
-	return &Org_Freedesktop_NetworkManager_Device_Adsl{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Adsl implements org.freedesktop.NetworkManager.Device.Adsl D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Adsl struct {
+// NetworkManager_Device_Adsl implements org.freedesktop.NetworkManager.Device.Adsl D-Bus interface.
+type NetworkManager_Device_Adsl struct {
 	object dbus.BusObject
 }
 
 // GetCarrier gets org.freedesktop.NetworkManager.Device.Adsl.Carrier property.
-func (o *Org_Freedesktop_NetworkManager_Device_Adsl) GetCarrier(ctx context.Context) (carrier bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Adsl, "Carrier").Store(&carrier)
+func (o *NetworkManager_Device_Adsl) GetCarrier(ctx context.Context) (carrier bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Adsl, "Carrier").Store(&carrier)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Adsl.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignal struct {
+// NetworkManager_Device_Adsl_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Adsl.PropertiesChanged signal.
+type NetworkManager_Device_Adsl_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Adsl_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Adsl_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Adsl
+func (s *NetworkManager_Device_Adsl_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Adsl
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Adsl_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Adsl_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Adsl_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Adsl_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Adsl_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Adsl_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Bluetoother is org.freedesktop.NetworkManager.Device.Bluetooth interface.
-type Org_Freedesktop_NetworkManager_Device_Bluetoother interface {
+// NewNetworkManager_Device_Bluetooth creates and allocates org.freedesktop.NetworkManager.Device.Bluetooth.
+func NewNetworkManager_Device_Bluetooth(object dbus.BusObject) *NetworkManager_Device_Bluetooth {
+	return &NetworkManager_Device_Bluetooth{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Bluetooth exports the given object that implements org.freedesktop.NetworkManager.Device.Bluetooth on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Bluetooth(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Bluetoother) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Bluetooth)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Bluetooth unexports org.freedesktop.NetworkManager.Device.Bluetooth interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Bluetooth(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Bluetooth)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Bluetooth can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Bluetooth struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Bluetooth) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Bluetooth
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Bluetooth creates and allocates org.freedesktop.NetworkManager.Device.Bluetooth.
-func NewOrg_Freedesktop_NetworkManager_Device_Bluetooth(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Bluetooth {
-	return &Org_Freedesktop_NetworkManager_Device_Bluetooth{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Bluetooth implements org.freedesktop.NetworkManager.Device.Bluetooth D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Bluetooth struct {
+// NetworkManager_Device_Bluetooth implements org.freedesktop.NetworkManager.Device.Bluetooth D-Bus interface.
+type NetworkManager_Device_Bluetooth struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Bluetooth.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Bluetooth) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Bluetooth, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Bluetooth) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Bluetooth, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetName gets org.freedesktop.NetworkManager.Device.Bluetooth.Name property.
-func (o *Org_Freedesktop_NetworkManager_Device_Bluetooth) GetName(ctx context.Context) (name string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Bluetooth, "Name").Store(&name)
+func (o *NetworkManager_Device_Bluetooth) GetName(ctx context.Context) (name string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Bluetooth, "Name").Store(&name)
 	return
 }
 
 // GetBtCapabilities gets org.freedesktop.NetworkManager.Device.Bluetooth.BtCapabilities property.
-func (o *Org_Freedesktop_NetworkManager_Device_Bluetooth) GetBtCapabilities(ctx context.Context) (btCapabilities uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Bluetooth, "BtCapabilities").Store(&btCapabilities)
+func (o *NetworkManager_Device_Bluetooth) GetBtCapabilities(ctx context.Context) (btCapabilities uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Bluetooth, "BtCapabilities").Store(&btCapabilities)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Bluetooth.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignal struct {
+// NetworkManager_Device_Bluetooth_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Bluetooth.PropertiesChanged signal.
+type NetworkManager_Device_Bluetooth_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Bluetooth_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Bluetooth_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Bluetooth
+func (s *NetworkManager_Device_Bluetooth_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Bluetooth
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Bluetooth_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Bluetooth_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Bluetooth_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Bluetooth_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Bluetooth_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Bluetooth_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Bonder is org.freedesktop.NetworkManager.Device.Bond interface.
-type Org_Freedesktop_NetworkManager_Device_Bonder interface {
+// NewNetworkManager_Device_Bond creates and allocates org.freedesktop.NetworkManager.Device.Bond.
+func NewNetworkManager_Device_Bond(object dbus.BusObject) *NetworkManager_Device_Bond {
+	return &NetworkManager_Device_Bond{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Bond exports the given object that implements org.freedesktop.NetworkManager.Device.Bond on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Bond(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Bonder) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Bond)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Bond unexports org.freedesktop.NetworkManager.Device.Bond interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Bond(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Bond)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Bond can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Bond struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Bond) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Bond
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Bond creates and allocates org.freedesktop.NetworkManager.Device.Bond.
-func NewOrg_Freedesktop_NetworkManager_Device_Bond(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Bond {
-	return &Org_Freedesktop_NetworkManager_Device_Bond{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Bond implements org.freedesktop.NetworkManager.Device.Bond D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Bond struct {
+// NetworkManager_Device_Bond implements org.freedesktop.NetworkManager.Device.Bond D-Bus interface.
+type NetworkManager_Device_Bond struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Bond.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Bond) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Bond, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Bond) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Bond, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetCarrier gets org.freedesktop.NetworkManager.Device.Bond.Carrier property.
-func (o *Org_Freedesktop_NetworkManager_Device_Bond) GetCarrier(ctx context.Context) (carrier bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Bond, "Carrier").Store(&carrier)
+func (o *NetworkManager_Device_Bond) GetCarrier(ctx context.Context) (carrier bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Bond, "Carrier").Store(&carrier)
 	return
 }
 
 // GetSlaves gets org.freedesktop.NetworkManager.Device.Bond.Slaves property.
-func (o *Org_Freedesktop_NetworkManager_Device_Bond) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Bond, "Slaves").Store(&slaves)
+func (o *NetworkManager_Device_Bond) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Bond, "Slaves").Store(&slaves)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Bond.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignal struct {
+// NetworkManager_Device_Bond_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Bond.PropertiesChanged signal.
+type NetworkManager_Device_Bond_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Bond_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Bond_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Bond
+func (s *NetworkManager_Device_Bond_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Bond
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Bond_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Bond_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Bond_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Bond_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Bond_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Bond_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Bridgeer is org.freedesktop.NetworkManager.Device.Bridge interface.
-type Org_Freedesktop_NetworkManager_Device_Bridgeer interface {
+// NewNetworkManager_Device_Bridge creates and allocates org.freedesktop.NetworkManager.Device.Bridge.
+func NewNetworkManager_Device_Bridge(object dbus.BusObject) *NetworkManager_Device_Bridge {
+	return &NetworkManager_Device_Bridge{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Bridge exports the given object that implements org.freedesktop.NetworkManager.Device.Bridge on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Bridge(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Bridgeer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Bridge)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Bridge unexports org.freedesktop.NetworkManager.Device.Bridge interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Bridge(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Bridge)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Bridge can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Bridge struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Bridge) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Bridge
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Bridge creates and allocates org.freedesktop.NetworkManager.Device.Bridge.
-func NewOrg_Freedesktop_NetworkManager_Device_Bridge(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Bridge {
-	return &Org_Freedesktop_NetworkManager_Device_Bridge{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Bridge implements org.freedesktop.NetworkManager.Device.Bridge D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Bridge struct {
+// NetworkManager_Device_Bridge implements org.freedesktop.NetworkManager.Device.Bridge D-Bus interface.
+type NetworkManager_Device_Bridge struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Bridge.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Bridge) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Bridge, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Bridge) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Bridge, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetCarrier gets org.freedesktop.NetworkManager.Device.Bridge.Carrier property.
-func (o *Org_Freedesktop_NetworkManager_Device_Bridge) GetCarrier(ctx context.Context) (carrier bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Bridge, "Carrier").Store(&carrier)
+func (o *NetworkManager_Device_Bridge) GetCarrier(ctx context.Context) (carrier bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Bridge, "Carrier").Store(&carrier)
 	return
 }
 
 // GetSlaves gets org.freedesktop.NetworkManager.Device.Bridge.Slaves property.
-func (o *Org_Freedesktop_NetworkManager_Device_Bridge) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Bridge, "Slaves").Store(&slaves)
+func (o *NetworkManager_Device_Bridge) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Bridge, "Slaves").Store(&slaves)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Bridge.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignal struct {
+// NetworkManager_Device_Bridge_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Bridge.PropertiesChanged signal.
+type NetworkManager_Device_Bridge_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Bridge_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Bridge_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Bridge
+func (s *NetworkManager_Device_Bridge_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Bridge
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Bridge_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Bridge_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Bridge_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Bridge_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Bridge_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Bridge_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Dummyer is org.freedesktop.NetworkManager.Device.Dummy interface.
-type Org_Freedesktop_NetworkManager_Device_Dummyer interface {
+// NewNetworkManager_Device_Dummy creates and allocates org.freedesktop.NetworkManager.Device.Dummy.
+func NewNetworkManager_Device_Dummy(object dbus.BusObject) *NetworkManager_Device_Dummy {
+	return &NetworkManager_Device_Dummy{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Dummy exports the given object that implements org.freedesktop.NetworkManager.Device.Dummy on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Dummy(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Dummyer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Dummy)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Dummy unexports org.freedesktop.NetworkManager.Device.Dummy interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Dummy(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Dummy)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Dummy can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Dummy struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Dummy) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Dummy
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Dummy creates and allocates org.freedesktop.NetworkManager.Device.Dummy.
-func NewOrg_Freedesktop_NetworkManager_Device_Dummy(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Dummy {
-	return &Org_Freedesktop_NetworkManager_Device_Dummy{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Dummy implements org.freedesktop.NetworkManager.Device.Dummy D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Dummy struct {
+// NetworkManager_Device_Dummy implements org.freedesktop.NetworkManager.Device.Dummy D-Bus interface.
+type NetworkManager_Device_Dummy struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Dummy.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Dummy) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Dummy, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Dummy) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Dummy, "HwAddress").Store(&hwAddress)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Dummy.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignal struct {
+// NetworkManager_Device_Dummy_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Dummy.PropertiesChanged signal.
+type NetworkManager_Device_Dummy_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Dummy_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Dummy_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Dummy
+func (s *NetworkManager_Device_Dummy_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Dummy
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Dummy_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Dummy_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Dummy_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Dummy_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Dummy_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Dummy_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Genericer is org.freedesktop.NetworkManager.Device.Generic interface.
-type Org_Freedesktop_NetworkManager_Device_Genericer interface {
+// NewNetworkManager_Device_Generic creates and allocates org.freedesktop.NetworkManager.Device.Generic.
+func NewNetworkManager_Device_Generic(object dbus.BusObject) *NetworkManager_Device_Generic {
+	return &NetworkManager_Device_Generic{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Generic exports the given object that implements org.freedesktop.NetworkManager.Device.Generic on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Generic(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Genericer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Generic)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Generic unexports org.freedesktop.NetworkManager.Device.Generic interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Generic(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Generic)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Generic can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Generic struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Generic) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Generic
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Generic creates and allocates org.freedesktop.NetworkManager.Device.Generic.
-func NewOrg_Freedesktop_NetworkManager_Device_Generic(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Generic {
-	return &Org_Freedesktop_NetworkManager_Device_Generic{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Generic implements org.freedesktop.NetworkManager.Device.Generic D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Generic struct {
+// NetworkManager_Device_Generic implements org.freedesktop.NetworkManager.Device.Generic D-Bus interface.
+type NetworkManager_Device_Generic struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Generic.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Generic) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Generic, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Generic) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Generic, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetTypeDescription gets org.freedesktop.NetworkManager.Device.Generic.TypeDescription property.
-func (o *Org_Freedesktop_NetworkManager_Device_Generic) GetTypeDescription(ctx context.Context) (typeDescription string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Generic, "TypeDescription").Store(&typeDescription)
+func (o *NetworkManager_Device_Generic) GetTypeDescription(ctx context.Context) (typeDescription string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Generic, "TypeDescription").Store(&typeDescription)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Generic.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignal struct {
+// NetworkManager_Device_Generic_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Generic.PropertiesChanged signal.
+type NetworkManager_Device_Generic_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Generic_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Generic_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Generic
+func (s *NetworkManager_Device_Generic_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Generic
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Generic_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Generic_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Generic_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Generic_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Generic_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Generic_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Infinibander is org.freedesktop.NetworkManager.Device.Infiniband interface.
-type Org_Freedesktop_NetworkManager_Device_Infinibander interface {
+// NewNetworkManager_Device_Infiniband creates and allocates org.freedesktop.NetworkManager.Device.Infiniband.
+func NewNetworkManager_Device_Infiniband(object dbus.BusObject) *NetworkManager_Device_Infiniband {
+	return &NetworkManager_Device_Infiniband{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Infiniband exports the given object that implements org.freedesktop.NetworkManager.Device.Infiniband on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Infiniband(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Infinibander) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Infiniband)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Infiniband unexports org.freedesktop.NetworkManager.Device.Infiniband interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Infiniband(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Infiniband)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Infiniband can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Infiniband struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Infiniband) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Infiniband
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Infiniband creates and allocates org.freedesktop.NetworkManager.Device.Infiniband.
-func NewOrg_Freedesktop_NetworkManager_Device_Infiniband(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Infiniband {
-	return &Org_Freedesktop_NetworkManager_Device_Infiniband{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Infiniband implements org.freedesktop.NetworkManager.Device.Infiniband D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Infiniband struct {
+// NetworkManager_Device_Infiniband implements org.freedesktop.NetworkManager.Device.Infiniband D-Bus interface.
+type NetworkManager_Device_Infiniband struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Infiniband.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Infiniband) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Infiniband, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Infiniband) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Infiniband, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetCarrier gets org.freedesktop.NetworkManager.Device.Infiniband.Carrier property.
-func (o *Org_Freedesktop_NetworkManager_Device_Infiniband) GetCarrier(ctx context.Context) (carrier bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Infiniband, "Carrier").Store(&carrier)
+func (o *NetworkManager_Device_Infiniband) GetCarrier(ctx context.Context) (carrier bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Infiniband, "Carrier").Store(&carrier)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Infiniband.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignal struct {
+// NetworkManager_Device_Infiniband_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Infiniband.PropertiesChanged signal.
+type NetworkManager_Device_Infiniband_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Infiniband_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Infiniband_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Infiniband
+func (s *NetworkManager_Device_Infiniband_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Infiniband
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Infiniband_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Infiniband_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Infiniband_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Infiniband_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Infiniband_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Infiniband_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_IPTunneler is org.freedesktop.NetworkManager.Device.IPTunnel interface.
-type Org_Freedesktop_NetworkManager_Device_IPTunneler interface {
+// NewNetworkManager_Device_IPTunnel creates and allocates org.freedesktop.NetworkManager.Device.IPTunnel.
+func NewNetworkManager_Device_IPTunnel(object dbus.BusObject) *NetworkManager_Device_IPTunnel {
+	return &NetworkManager_Device_IPTunnel{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_IPTunnel exports the given object that implements org.freedesktop.NetworkManager.Device.IPTunnel on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_IPTunnel(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_IPTunneler) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_IPTunnel unexports org.freedesktop.NetworkManager.Device.IPTunnel interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_IPTunnel(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_IPTunnel can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_IPTunnel struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_IPTunnel) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_IPTunnel creates and allocates org.freedesktop.NetworkManager.Device.IPTunnel.
-func NewOrg_Freedesktop_NetworkManager_Device_IPTunnel(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_IPTunnel {
-	return &Org_Freedesktop_NetworkManager_Device_IPTunnel{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_IPTunnel implements org.freedesktop.NetworkManager.Device.IPTunnel D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_IPTunnel struct {
+// NetworkManager_Device_IPTunnel implements org.freedesktop.NetworkManager.Device.IPTunnel D-Bus interface.
+type NetworkManager_Device_IPTunnel struct {
 	object dbus.BusObject
 }
 
 // GetMode gets org.freedesktop.NetworkManager.Device.IPTunnel.Mode property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetMode(ctx context.Context) (mode uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "Mode").Store(&mode)
+func (o *NetworkManager_Device_IPTunnel) GetMode(ctx context.Context) (mode uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "Mode").Store(&mode)
 	return
 }
 
 // GetParent gets org.freedesktop.NetworkManager.Device.IPTunnel.Parent property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "Parent").Store(&parent)
+func (o *NetworkManager_Device_IPTunnel) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "Parent").Store(&parent)
 	return
 }
 
 // GetLocal gets org.freedesktop.NetworkManager.Device.IPTunnel.Local property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetLocal(ctx context.Context) (local string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "Local").Store(&local)
+func (o *NetworkManager_Device_IPTunnel) GetLocal(ctx context.Context) (local string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "Local").Store(&local)
 	return
 }
 
 // GetRemote gets org.freedesktop.NetworkManager.Device.IPTunnel.Remote property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetRemote(ctx context.Context) (remote string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "Remote").Store(&remote)
+func (o *NetworkManager_Device_IPTunnel) GetRemote(ctx context.Context) (remote string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "Remote").Store(&remote)
 	return
 }
 
 // GetTtl gets org.freedesktop.NetworkManager.Device.IPTunnel.Ttl property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetTtl(ctx context.Context) (ttl byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "Ttl").Store(&ttl)
+func (o *NetworkManager_Device_IPTunnel) GetTtl(ctx context.Context) (ttl byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "Ttl").Store(&ttl)
 	return
 }
 
 // GetTos gets org.freedesktop.NetworkManager.Device.IPTunnel.Tos property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetTos(ctx context.Context) (tos byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "Tos").Store(&tos)
+func (o *NetworkManager_Device_IPTunnel) GetTos(ctx context.Context) (tos byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "Tos").Store(&tos)
 	return
 }
 
 // GetPathMtuDiscovery gets org.freedesktop.NetworkManager.Device.IPTunnel.PathMtuDiscovery property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetPathMtuDiscovery(ctx context.Context) (pathMtuDiscovery bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "PathMtuDiscovery").Store(&pathMtuDiscovery)
+func (o *NetworkManager_Device_IPTunnel) GetPathMtuDiscovery(ctx context.Context) (pathMtuDiscovery bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "PathMtuDiscovery").Store(&pathMtuDiscovery)
 	return
 }
 
 // GetInputKey gets org.freedesktop.NetworkManager.Device.IPTunnel.InputKey property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetInputKey(ctx context.Context) (inputKey string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "InputKey").Store(&inputKey)
+func (o *NetworkManager_Device_IPTunnel) GetInputKey(ctx context.Context) (inputKey string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "InputKey").Store(&inputKey)
 	return
 }
 
 // GetOutputKey gets org.freedesktop.NetworkManager.Device.IPTunnel.OutputKey property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetOutputKey(ctx context.Context) (outputKey string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "OutputKey").Store(&outputKey)
+func (o *NetworkManager_Device_IPTunnel) GetOutputKey(ctx context.Context) (outputKey string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "OutputKey").Store(&outputKey)
 	return
 }
 
 // GetEncapsulationLimit gets org.freedesktop.NetworkManager.Device.IPTunnel.EncapsulationLimit property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetEncapsulationLimit(ctx context.Context) (encapsulationLimit byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "EncapsulationLimit").Store(&encapsulationLimit)
+func (o *NetworkManager_Device_IPTunnel) GetEncapsulationLimit(ctx context.Context) (encapsulationLimit byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "EncapsulationLimit").Store(&encapsulationLimit)
 	return
 }
 
 // GetFlowLabel gets org.freedesktop.NetworkManager.Device.IPTunnel.FlowLabel property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetFlowLabel(ctx context.Context) (flowLabel uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "FlowLabel").Store(&flowLabel)
+func (o *NetworkManager_Device_IPTunnel) GetFlowLabel(ctx context.Context) (flowLabel uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "FlowLabel").Store(&flowLabel)
 	return
 }
 
 // GetFlags gets org.freedesktop.NetworkManager.Device.IPTunnel.Flags property.
-func (o *Org_Freedesktop_NetworkManager_Device_IPTunnel) GetFlags(ctx context.Context) (flags uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel, "Flags").Store(&flags)
+func (o *NetworkManager_Device_IPTunnel) GetFlags(ctx context.Context) (flags uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_IPTunnel, "Flags").Store(&flags)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.IPTunnel.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignal struct {
+// NetworkManager_Device_IPTunnel_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.IPTunnel.PropertiesChanged signal.
+type NetworkManager_Device_IPTunnel_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_IPTunnel_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_IPTunnel_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_IPTunnel
+func (s *NetworkManager_Device_IPTunnel_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_IPTunnel
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_IPTunnel_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_IPTunnel_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_IPTunnel_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_IPTunnel_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_IPTunnel_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_IPTunnel_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Lowpaner is org.freedesktop.NetworkManager.Device.Lowpan interface.
-type Org_Freedesktop_NetworkManager_Device_Lowpaner interface {
+// NewNetworkManager_Device_Lowpan creates and allocates org.freedesktop.NetworkManager.Device.Lowpan.
+func NewNetworkManager_Device_Lowpan(object dbus.BusObject) *NetworkManager_Device_Lowpan {
+	return &NetworkManager_Device_Lowpan{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Lowpan exports the given object that implements org.freedesktop.NetworkManager.Device.Lowpan on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Lowpan(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Lowpaner) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Lowpan)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Lowpan unexports org.freedesktop.NetworkManager.Device.Lowpan interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Lowpan(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Lowpan)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Lowpan can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Lowpan struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Lowpan) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Lowpan
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Lowpan creates and allocates org.freedesktop.NetworkManager.Device.Lowpan.
-func NewOrg_Freedesktop_NetworkManager_Device_Lowpan(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Lowpan {
-	return &Org_Freedesktop_NetworkManager_Device_Lowpan{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Lowpan implements org.freedesktop.NetworkManager.Device.Lowpan D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Lowpan struct {
+// NetworkManager_Device_Lowpan implements org.freedesktop.NetworkManager.Device.Lowpan D-Bus interface.
+type NetworkManager_Device_Lowpan struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Lowpan.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Lowpan) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Lowpan, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Lowpan) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Lowpan, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetParent gets org.freedesktop.NetworkManager.Device.Lowpan.Parent property.
-func (o *Org_Freedesktop_NetworkManager_Device_Lowpan) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Lowpan, "Parent").Store(&parent)
+func (o *NetworkManager_Device_Lowpan) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Lowpan, "Parent").Store(&parent)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Macsecer is org.freedesktop.NetworkManager.Device.Macsec interface.
-type Org_Freedesktop_NetworkManager_Device_Macsecer interface {
+// NewNetworkManager_Device_Macsec creates and allocates org.freedesktop.NetworkManager.Device.Macsec.
+func NewNetworkManager_Device_Macsec(object dbus.BusObject) *NetworkManager_Device_Macsec {
+	return &NetworkManager_Device_Macsec{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Macsec exports the given object that implements org.freedesktop.NetworkManager.Device.Macsec on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Macsec(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Macsecer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Macsec unexports org.freedesktop.NetworkManager.Device.Macsec interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Macsec(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Macsec can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Macsec struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Macsec) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Macsec creates and allocates org.freedesktop.NetworkManager.Device.Macsec.
-func NewOrg_Freedesktop_NetworkManager_Device_Macsec(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Macsec {
-	return &Org_Freedesktop_NetworkManager_Device_Macsec{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Macsec implements org.freedesktop.NetworkManager.Device.Macsec D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Macsec struct {
+// NetworkManager_Device_Macsec implements org.freedesktop.NetworkManager.Device.Macsec D-Bus interface.
+type NetworkManager_Device_Macsec struct {
 	object dbus.BusObject
 }
 
 // GetParent gets org.freedesktop.NetworkManager.Device.Macsec.Parent property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "Parent").Store(&parent)
+func (o *NetworkManager_Device_Macsec) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "Parent").Store(&parent)
 	return
 }
 
 // GetSci gets org.freedesktop.NetworkManager.Device.Macsec.Sci property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetSci(ctx context.Context) (sci uint64, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "Sci").Store(&sci)
+func (o *NetworkManager_Device_Macsec) GetSci(ctx context.Context) (sci uint64, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "Sci").Store(&sci)
 	return
 }
 
 // GetIcvLength gets org.freedesktop.NetworkManager.Device.Macsec.IcvLength property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetIcvLength(ctx context.Context) (icvLength byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "IcvLength").Store(&icvLength)
+func (o *NetworkManager_Device_Macsec) GetIcvLength(ctx context.Context) (icvLength byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "IcvLength").Store(&icvLength)
 	return
 }
 
 // GetCipherSuite gets org.freedesktop.NetworkManager.Device.Macsec.CipherSuite property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetCipherSuite(ctx context.Context) (cipherSuite uint64, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "CipherSuite").Store(&cipherSuite)
+func (o *NetworkManager_Device_Macsec) GetCipherSuite(ctx context.Context) (cipherSuite uint64, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "CipherSuite").Store(&cipherSuite)
 	return
 }
 
 // GetWindow gets org.freedesktop.NetworkManager.Device.Macsec.Window property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetWindow(ctx context.Context) (window uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "Window").Store(&window)
+func (o *NetworkManager_Device_Macsec) GetWindow(ctx context.Context) (window uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "Window").Store(&window)
 	return
 }
 
 // GetEncodingSa gets org.freedesktop.NetworkManager.Device.Macsec.EncodingSa property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetEncodingSa(ctx context.Context) (encodingSa byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "EncodingSa").Store(&encodingSa)
+func (o *NetworkManager_Device_Macsec) GetEncodingSa(ctx context.Context) (encodingSa byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "EncodingSa").Store(&encodingSa)
 	return
 }
 
 // GetValidation gets org.freedesktop.NetworkManager.Device.Macsec.Validation property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetValidation(ctx context.Context) (validation string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "Validation").Store(&validation)
+func (o *NetworkManager_Device_Macsec) GetValidation(ctx context.Context) (validation string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "Validation").Store(&validation)
 	return
 }
 
 // GetEncrypt gets org.freedesktop.NetworkManager.Device.Macsec.Encrypt property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetEncrypt(ctx context.Context) (encrypt bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "Encrypt").Store(&encrypt)
+func (o *NetworkManager_Device_Macsec) GetEncrypt(ctx context.Context) (encrypt bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "Encrypt").Store(&encrypt)
 	return
 }
 
 // GetProtect gets org.freedesktop.NetworkManager.Device.Macsec.Protect property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetProtect(ctx context.Context) (protect bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "Protect").Store(&protect)
+func (o *NetworkManager_Device_Macsec) GetProtect(ctx context.Context) (protect bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "Protect").Store(&protect)
 	return
 }
 
 // GetIncludeSci gets org.freedesktop.NetworkManager.Device.Macsec.IncludeSci property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetIncludeSci(ctx context.Context) (includeSci bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "IncludeSci").Store(&includeSci)
+func (o *NetworkManager_Device_Macsec) GetIncludeSci(ctx context.Context) (includeSci bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "IncludeSci").Store(&includeSci)
 	return
 }
 
 // GetEs gets org.freedesktop.NetworkManager.Device.Macsec.Es property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetEs(ctx context.Context) (es bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "Es").Store(&es)
+func (o *NetworkManager_Device_Macsec) GetEs(ctx context.Context) (es bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "Es").Store(&es)
 	return
 }
 
 // GetScb gets org.freedesktop.NetworkManager.Device.Macsec.Scb property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetScb(ctx context.Context) (scb bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "Scb").Store(&scb)
+func (o *NetworkManager_Device_Macsec) GetScb(ctx context.Context) (scb bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "Scb").Store(&scb)
 	return
 }
 
 // GetReplayProtect gets org.freedesktop.NetworkManager.Device.Macsec.ReplayProtect property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macsec) GetReplayProtect(ctx context.Context) (replayProtect bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec, "ReplayProtect").Store(&replayProtect)
+func (o *NetworkManager_Device_Macsec) GetReplayProtect(ctx context.Context) (replayProtect bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macsec, "ReplayProtect").Store(&replayProtect)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Macsec.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignal struct {
+// NetworkManager_Device_Macsec_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Macsec.PropertiesChanged signal.
+type NetworkManager_Device_Macsec_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Macsec_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Macsec_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Macsec
+func (s *NetworkManager_Device_Macsec_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Macsec
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Macsec_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Macsec_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Macsec_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Macsec_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Macsec_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Macsec_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Macvlaner is org.freedesktop.NetworkManager.Device.Macvlan interface.
-type Org_Freedesktop_NetworkManager_Device_Macvlaner interface {
+// NewNetworkManager_Device_Macvlan creates and allocates org.freedesktop.NetworkManager.Device.Macvlan.
+func NewNetworkManager_Device_Macvlan(object dbus.BusObject) *NetworkManager_Device_Macvlan {
+	return &NetworkManager_Device_Macvlan{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Macvlan exports the given object that implements org.freedesktop.NetworkManager.Device.Macvlan on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Macvlan(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Macvlaner) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Macvlan unexports org.freedesktop.NetworkManager.Device.Macvlan interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Macvlan(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Macvlan can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Macvlan struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Macvlan) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Macvlan creates and allocates org.freedesktop.NetworkManager.Device.Macvlan.
-func NewOrg_Freedesktop_NetworkManager_Device_Macvlan(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Macvlan {
-	return &Org_Freedesktop_NetworkManager_Device_Macvlan{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Macvlan implements org.freedesktop.NetworkManager.Device.Macvlan D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Macvlan struct {
+// NetworkManager_Device_Macvlan implements org.freedesktop.NetworkManager.Device.Macvlan D-Bus interface.
+type NetworkManager_Device_Macvlan struct {
 	object dbus.BusObject
 }
 
 // GetParent gets org.freedesktop.NetworkManager.Device.Macvlan.Parent property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macvlan) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan, "Parent").Store(&parent)
+func (o *NetworkManager_Device_Macvlan) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macvlan, "Parent").Store(&parent)
 	return
 }
 
 // GetMode gets org.freedesktop.NetworkManager.Device.Macvlan.Mode property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macvlan) GetMode(ctx context.Context) (mode string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan, "Mode").Store(&mode)
+func (o *NetworkManager_Device_Macvlan) GetMode(ctx context.Context) (mode string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macvlan, "Mode").Store(&mode)
 	return
 }
 
 // GetNoPromisc gets org.freedesktop.NetworkManager.Device.Macvlan.NoPromisc property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macvlan) GetNoPromisc(ctx context.Context) (noPromisc bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan, "NoPromisc").Store(&noPromisc)
+func (o *NetworkManager_Device_Macvlan) GetNoPromisc(ctx context.Context) (noPromisc bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macvlan, "NoPromisc").Store(&noPromisc)
 	return
 }
 
 // GetTap gets org.freedesktop.NetworkManager.Device.Macvlan.Tap property.
-func (o *Org_Freedesktop_NetworkManager_Device_Macvlan) GetTap(ctx context.Context) (tap bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan, "Tap").Store(&tap)
+func (o *NetworkManager_Device_Macvlan) GetTap(ctx context.Context) (tap bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Macvlan, "Tap").Store(&tap)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Macvlan.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignal struct {
+// NetworkManager_Device_Macvlan_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Macvlan.PropertiesChanged signal.
+type NetworkManager_Device_Macvlan_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Macvlan_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Macvlan_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Macvlan
+func (s *NetworkManager_Device_Macvlan_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Macvlan
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Macvlan_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Macvlan_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Macvlan_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Macvlan_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Macvlan_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Macvlan_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Modemer is org.freedesktop.NetworkManager.Device.Modem interface.
-type Org_Freedesktop_NetworkManager_Device_Modemer interface {
+// NewNetworkManager_Device_Modem creates and allocates org.freedesktop.NetworkManager.Device.Modem.
+func NewNetworkManager_Device_Modem(object dbus.BusObject) *NetworkManager_Device_Modem {
+	return &NetworkManager_Device_Modem{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Modem exports the given object that implements org.freedesktop.NetworkManager.Device.Modem on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Modem(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Modemer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Modem)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Modem unexports org.freedesktop.NetworkManager.Device.Modem interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Modem(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Modem)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Modem can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Modem struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Modem) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Modem
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Modem creates and allocates org.freedesktop.NetworkManager.Device.Modem.
-func NewOrg_Freedesktop_NetworkManager_Device_Modem(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Modem {
-	return &Org_Freedesktop_NetworkManager_Device_Modem{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Modem implements org.freedesktop.NetworkManager.Device.Modem D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Modem struct {
+// NetworkManager_Device_Modem implements org.freedesktop.NetworkManager.Device.Modem D-Bus interface.
+type NetworkManager_Device_Modem struct {
 	object dbus.BusObject
 }
 
 // GetModemCapabilities gets org.freedesktop.NetworkManager.Device.Modem.ModemCapabilities property.
-func (o *Org_Freedesktop_NetworkManager_Device_Modem) GetModemCapabilities(ctx context.Context) (modemCapabilities uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Modem, "ModemCapabilities").Store(&modemCapabilities)
+func (o *NetworkManager_Device_Modem) GetModemCapabilities(ctx context.Context) (modemCapabilities uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Modem, "ModemCapabilities").Store(&modemCapabilities)
 	return
 }
 
 // GetCurrentCapabilities gets org.freedesktop.NetworkManager.Device.Modem.CurrentCapabilities property.
-func (o *Org_Freedesktop_NetworkManager_Device_Modem) GetCurrentCapabilities(ctx context.Context) (currentCapabilities uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Modem, "CurrentCapabilities").Store(&currentCapabilities)
+func (o *NetworkManager_Device_Modem) GetCurrentCapabilities(ctx context.Context) (currentCapabilities uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Modem, "CurrentCapabilities").Store(&currentCapabilities)
 	return
 }
 
 // GetDeviceId gets org.freedesktop.NetworkManager.Device.Modem.DeviceId property.
-func (o *Org_Freedesktop_NetworkManager_Device_Modem) GetDeviceId(ctx context.Context) (deviceId string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Modem, "DeviceId").Store(&deviceId)
+func (o *NetworkManager_Device_Modem) GetDeviceId(ctx context.Context) (deviceId string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Modem, "DeviceId").Store(&deviceId)
 	return
 }
 
 // GetOperatorCode gets org.freedesktop.NetworkManager.Device.Modem.OperatorCode property.
-func (o *Org_Freedesktop_NetworkManager_Device_Modem) GetOperatorCode(ctx context.Context) (operatorCode string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Modem, "OperatorCode").Store(&operatorCode)
+func (o *NetworkManager_Device_Modem) GetOperatorCode(ctx context.Context) (operatorCode string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Modem, "OperatorCode").Store(&operatorCode)
 	return
 }
 
 // GetApn gets org.freedesktop.NetworkManager.Device.Modem.Apn property.
-func (o *Org_Freedesktop_NetworkManager_Device_Modem) GetApn(ctx context.Context) (apn string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Modem, "Apn").Store(&apn)
+func (o *NetworkManager_Device_Modem) GetApn(ctx context.Context) (apn string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Modem, "Apn").Store(&apn)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Modem.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignal struct {
+// NetworkManager_Device_Modem_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Modem.PropertiesChanged signal.
+type NetworkManager_Device_Modem_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Modem_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Modem_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Modem
+func (s *NetworkManager_Device_Modem_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Modem
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Modem_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Modem_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Modem_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Modem_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Modem_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Modem_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_OlpcMesher is org.freedesktop.NetworkManager.Device.OlpcMesh interface.
-type Org_Freedesktop_NetworkManager_Device_OlpcMesher interface {
+// NewNetworkManager_Device_OlpcMesh creates and allocates org.freedesktop.NetworkManager.Device.OlpcMesh.
+func NewNetworkManager_Device_OlpcMesh(object dbus.BusObject) *NetworkManager_Device_OlpcMesh {
+	return &NetworkManager_Device_OlpcMesh{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_OlpcMesh exports the given object that implements org.freedesktop.NetworkManager.Device.OlpcMesh on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_OlpcMesh(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_OlpcMesher) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_OlpcMesh)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_OlpcMesh unexports org.freedesktop.NetworkManager.Device.OlpcMesh interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_OlpcMesh(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_OlpcMesh)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_OlpcMesh can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_OlpcMesh struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_OlpcMesh) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_OlpcMesh
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_OlpcMesh creates and allocates org.freedesktop.NetworkManager.Device.OlpcMesh.
-func NewOrg_Freedesktop_NetworkManager_Device_OlpcMesh(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_OlpcMesh {
-	return &Org_Freedesktop_NetworkManager_Device_OlpcMesh{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_OlpcMesh implements org.freedesktop.NetworkManager.Device.OlpcMesh D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_OlpcMesh struct {
+// NetworkManager_Device_OlpcMesh implements org.freedesktop.NetworkManager.Device.OlpcMesh D-Bus interface.
+type NetworkManager_Device_OlpcMesh struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.OlpcMesh.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_OlpcMesh) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_OlpcMesh, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_OlpcMesh) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_OlpcMesh, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetCompanion gets org.freedesktop.NetworkManager.Device.OlpcMesh.Companion property.
-func (o *Org_Freedesktop_NetworkManager_Device_OlpcMesh) GetCompanion(ctx context.Context) (companion dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_OlpcMesh, "Companion").Store(&companion)
+func (o *NetworkManager_Device_OlpcMesh) GetCompanion(ctx context.Context) (companion dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_OlpcMesh, "Companion").Store(&companion)
 	return
 }
 
 // GetActiveChannel gets org.freedesktop.NetworkManager.Device.OlpcMesh.ActiveChannel property.
-func (o *Org_Freedesktop_NetworkManager_Device_OlpcMesh) GetActiveChannel(ctx context.Context) (activeChannel uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_OlpcMesh, "ActiveChannel").Store(&activeChannel)
+func (o *NetworkManager_Device_OlpcMesh) GetActiveChannel(ctx context.Context) (activeChannel uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_OlpcMesh, "ActiveChannel").Store(&activeChannel)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.OlpcMesh.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignal struct {
+// NetworkManager_Device_OlpcMesh_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.OlpcMesh.PropertiesChanged signal.
+type NetworkManager_Device_OlpcMesh_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_OlpcMesh_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_OlpcMesh
+func (s *NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_OlpcMesh
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_OlpcMesh_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_OlpcMesh_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_OlpcMesh_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_OlpcMesh_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_OvsBridgeer is org.freedesktop.NetworkManager.Device.OvsBridge interface.
-type Org_Freedesktop_NetworkManager_Device_OvsBridgeer interface {
+// NewNetworkManager_Device_OvsBridge creates and allocates org.freedesktop.NetworkManager.Device.OvsBridge.
+func NewNetworkManager_Device_OvsBridge(object dbus.BusObject) *NetworkManager_Device_OvsBridge {
+	return &NetworkManager_Device_OvsBridge{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_OvsBridge exports the given object that implements org.freedesktop.NetworkManager.Device.OvsBridge on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_OvsBridge(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_OvsBridgeer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_OvsBridge)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_OvsBridge unexports org.freedesktop.NetworkManager.Device.OvsBridge interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_OvsBridge(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_OvsBridge)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_OvsBridge can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_OvsBridge struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_OvsBridge) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_OvsBridge
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_OvsBridge creates and allocates org.freedesktop.NetworkManager.Device.OvsBridge.
-func NewOrg_Freedesktop_NetworkManager_Device_OvsBridge(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_OvsBridge {
-	return &Org_Freedesktop_NetworkManager_Device_OvsBridge{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_OvsBridge implements org.freedesktop.NetworkManager.Device.OvsBridge D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_OvsBridge struct {
+// NetworkManager_Device_OvsBridge implements org.freedesktop.NetworkManager.Device.OvsBridge D-Bus interface.
+type NetworkManager_Device_OvsBridge struct {
 	object dbus.BusObject
 }
 
 // GetSlaves gets org.freedesktop.NetworkManager.Device.OvsBridge.Slaves property.
-func (o *Org_Freedesktop_NetworkManager_Device_OvsBridge) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_OvsBridge, "Slaves").Store(&slaves)
+func (o *NetworkManager_Device_OvsBridge) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_OvsBridge, "Slaves").Store(&slaves)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.OvsBridge.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignal struct {
+// NetworkManager_Device_OvsBridge_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.OvsBridge.PropertiesChanged signal.
+type NetworkManager_Device_OvsBridge_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_OvsBridge_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_OvsBridge_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_OvsBridge
+func (s *NetworkManager_Device_OvsBridge_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_OvsBridge
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_OvsBridge_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_OvsBridge_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_OvsBridge_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_OvsBridge_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_OvsBridge_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_OvsBridge_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_OvsInterfaceer is org.freedesktop.NetworkManager.Device.OvsInterface interface.
-type Org_Freedesktop_NetworkManager_Device_OvsInterfaceer interface {
+// NewNetworkManager_Device_OvsInterface creates and allocates org.freedesktop.NetworkManager.Device.OvsInterface.
+func NewNetworkManager_Device_OvsInterface(object dbus.BusObject) *NetworkManager_Device_OvsInterface {
+	return &NetworkManager_Device_OvsInterface{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_OvsInterface exports the given object that implements org.freedesktop.NetworkManager.Device.OvsInterface on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_OvsInterface(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_OvsInterfaceer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_OvsInterface)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_OvsInterface unexports org.freedesktop.NetworkManager.Device.OvsInterface interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_OvsInterface(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_OvsInterface)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_OvsInterface can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_OvsInterface struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_OvsInterface) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_OvsInterface
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_OvsInterface creates and allocates org.freedesktop.NetworkManager.Device.OvsInterface.
-func NewOrg_Freedesktop_NetworkManager_Device_OvsInterface(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_OvsInterface {
-	return &Org_Freedesktop_NetworkManager_Device_OvsInterface{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_OvsInterface implements org.freedesktop.NetworkManager.Device.OvsInterface D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_OvsInterface struct {
+// NetworkManager_Device_OvsInterface implements org.freedesktop.NetworkManager.Device.OvsInterface D-Bus interface.
+type NetworkManager_Device_OvsInterface struct {
 	object dbus.BusObject
 }
 
-// Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.OvsInterface.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignal struct {
+// NetworkManager_Device_OvsInterface_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.OvsInterface.PropertiesChanged signal.
+type NetworkManager_Device_OvsInterface_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_OvsInterface_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_OvsInterface_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_OvsInterface
+func (s *NetworkManager_Device_OvsInterface_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_OvsInterface
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_OvsInterface_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_OvsInterface_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_OvsInterface_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_OvsInterface_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_OvsInterface_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_OvsInterface_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_OvsPorter is org.freedesktop.NetworkManager.Device.OvsPort interface.
-type Org_Freedesktop_NetworkManager_Device_OvsPorter interface {
+// NewNetworkManager_Device_OvsPort creates and allocates org.freedesktop.NetworkManager.Device.OvsPort.
+func NewNetworkManager_Device_OvsPort(object dbus.BusObject) *NetworkManager_Device_OvsPort {
+	return &NetworkManager_Device_OvsPort{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_OvsPort exports the given object that implements org.freedesktop.NetworkManager.Device.OvsPort on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_OvsPort(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_OvsPorter) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_OvsPort)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_OvsPort unexports org.freedesktop.NetworkManager.Device.OvsPort interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_OvsPort(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_OvsPort)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_OvsPort can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_OvsPort struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_OvsPort) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_OvsPort
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_OvsPort creates and allocates org.freedesktop.NetworkManager.Device.OvsPort.
-func NewOrg_Freedesktop_NetworkManager_Device_OvsPort(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_OvsPort {
-	return &Org_Freedesktop_NetworkManager_Device_OvsPort{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_OvsPort implements org.freedesktop.NetworkManager.Device.OvsPort D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_OvsPort struct {
+// NetworkManager_Device_OvsPort implements org.freedesktop.NetworkManager.Device.OvsPort D-Bus interface.
+type NetworkManager_Device_OvsPort struct {
 	object dbus.BusObject
 }
 
 // GetSlaves gets org.freedesktop.NetworkManager.Device.OvsPort.Slaves property.
-func (o *Org_Freedesktop_NetworkManager_Device_OvsPort) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_OvsPort, "Slaves").Store(&slaves)
+func (o *NetworkManager_Device_OvsPort) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_OvsPort, "Slaves").Store(&slaves)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.OvsPort.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignal struct {
+// NetworkManager_Device_OvsPort_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.OvsPort.PropertiesChanged signal.
+type NetworkManager_Device_OvsPort_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_OvsPort_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_OvsPort_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_OvsPort
+func (s *NetworkManager_Device_OvsPort_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_OvsPort
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_OvsPort_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_OvsPort_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_OvsPort_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_OvsPort_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_OvsPort_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_OvsPort_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Ppper is org.freedesktop.NetworkManager.Device.Ppp interface.
-type Org_Freedesktop_NetworkManager_Device_Ppper interface {
+// NewNetworkManager_Device_Ppp creates and allocates org.freedesktop.NetworkManager.Device.Ppp.
+func NewNetworkManager_Device_Ppp(object dbus.BusObject) *NetworkManager_Device_Ppp {
+	return &NetworkManager_Device_Ppp{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Ppp exports the given object that implements org.freedesktop.NetworkManager.Device.Ppp on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Ppp(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Ppper) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Ppp)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Ppp unexports org.freedesktop.NetworkManager.Device.Ppp interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Ppp(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Ppp)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Ppp can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Ppp struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Ppp) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Ppp
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Ppp creates and allocates org.freedesktop.NetworkManager.Device.Ppp.
-func NewOrg_Freedesktop_NetworkManager_Device_Ppp(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Ppp {
-	return &Org_Freedesktop_NetworkManager_Device_Ppp{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Ppp implements org.freedesktop.NetworkManager.Device.Ppp D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Ppp struct {
+// NetworkManager_Device_Ppp implements org.freedesktop.NetworkManager.Device.Ppp D-Bus interface.
+type NetworkManager_Device_Ppp struct {
 	object dbus.BusObject
 }
 
-// Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Ppp.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignal struct {
+// NetworkManager_Device_Ppp_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Ppp.PropertiesChanged signal.
+type NetworkManager_Device_Ppp_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Ppp_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Ppp_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Ppp
+func (s *NetworkManager_Device_Ppp_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Ppp
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Ppp_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Ppp_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Ppp_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Ppp_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Ppp_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Ppp_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Statisticser is org.freedesktop.NetworkManager.Device.Statistics interface.
-type Org_Freedesktop_NetworkManager_Device_Statisticser interface {
+// NewNetworkManager_Device_Statistics creates and allocates org.freedesktop.NetworkManager.Device.Statistics.
+func NewNetworkManager_Device_Statistics(object dbus.BusObject) *NetworkManager_Device_Statistics {
+	return &NetworkManager_Device_Statistics{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Statistics exports the given object that implements org.freedesktop.NetworkManager.Device.Statistics on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Statistics(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Statisticser) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Statistics unexports org.freedesktop.NetworkManager.Device.Statistics interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Statistics(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Statistics can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Statistics struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Statistics) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Statistics creates and allocates org.freedesktop.NetworkManager.Device.Statistics.
-func NewOrg_Freedesktop_NetworkManager_Device_Statistics(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Statistics {
-	return &Org_Freedesktop_NetworkManager_Device_Statistics{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Statistics implements org.freedesktop.NetworkManager.Device.Statistics D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Statistics struct {
+// NetworkManager_Device_Statistics implements org.freedesktop.NetworkManager.Device.Statistics D-Bus interface.
+type NetworkManager_Device_Statistics struct {
 	object dbus.BusObject
 }
 
 // GetRefreshRateMs gets org.freedesktop.NetworkManager.Device.Statistics.RefreshRateMs property.
-func (o *Org_Freedesktop_NetworkManager_Device_Statistics) GetRefreshRateMs(ctx context.Context) (refreshRateMs uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics, "RefreshRateMs").Store(&refreshRateMs)
+func (o *NetworkManager_Device_Statistics) GetRefreshRateMs(ctx context.Context) (refreshRateMs uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Statistics, "RefreshRateMs").Store(&refreshRateMs)
 	return
 }
 
 // SetRefreshRateMs sets org.freedesktop.NetworkManager.Device.Statistics.RefreshRateMs property.
-func (o *Org_Freedesktop_NetworkManager_Device_Statistics) SetRefreshRateMs(ctx context.Context, refreshRateMs uint32) error {
-	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics, "RefreshRateMs", dbus.MakeVariant(refreshRateMs)).Store()
+func (o *NetworkManager_Device_Statistics) SetRefreshRateMs(ctx context.Context, refreshRateMs uint32) error {
+	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceNetworkManager_Device_Statistics, "RefreshRateMs", dbus.MakeVariant(refreshRateMs)).Store()
 }
 
 // GetTxBytes gets org.freedesktop.NetworkManager.Device.Statistics.TxBytes property.
-func (o *Org_Freedesktop_NetworkManager_Device_Statistics) GetTxBytes(ctx context.Context) (txBytes uint64, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics, "TxBytes").Store(&txBytes)
+func (o *NetworkManager_Device_Statistics) GetTxBytes(ctx context.Context) (txBytes uint64, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Statistics, "TxBytes").Store(&txBytes)
 	return
 }
 
 // GetRxBytes gets org.freedesktop.NetworkManager.Device.Statistics.RxBytes property.
-func (o *Org_Freedesktop_NetworkManager_Device_Statistics) GetRxBytes(ctx context.Context) (rxBytes uint64, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics, "RxBytes").Store(&rxBytes)
+func (o *NetworkManager_Device_Statistics) GetRxBytes(ctx context.Context) (rxBytes uint64, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Statistics, "RxBytes").Store(&rxBytes)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Statistics.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignal struct {
+// NetworkManager_Device_Statistics_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Statistics.PropertiesChanged signal.
+type NetworkManager_Device_Statistics_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Statistics_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Statistics_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Statistics
+func (s *NetworkManager_Device_Statistics_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Statistics
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Statistics_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Statistics_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Statistics_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Statistics_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Statistics_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Statistics_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Teamer is org.freedesktop.NetworkManager.Device.Team interface.
-type Org_Freedesktop_NetworkManager_Device_Teamer interface {
+// NewNetworkManager_Device_Team creates and allocates org.freedesktop.NetworkManager.Device.Team.
+func NewNetworkManager_Device_Team(object dbus.BusObject) *NetworkManager_Device_Team {
+	return &NetworkManager_Device_Team{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Team exports the given object that implements org.freedesktop.NetworkManager.Device.Team on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Team(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Teamer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Team)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Team unexports org.freedesktop.NetworkManager.Device.Team interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Team(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Team)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Team can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Team struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Team) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Team
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Team creates and allocates org.freedesktop.NetworkManager.Device.Team.
-func NewOrg_Freedesktop_NetworkManager_Device_Team(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Team {
-	return &Org_Freedesktop_NetworkManager_Device_Team{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Team implements org.freedesktop.NetworkManager.Device.Team D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Team struct {
+// NetworkManager_Device_Team implements org.freedesktop.NetworkManager.Device.Team D-Bus interface.
+type NetworkManager_Device_Team struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Team.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Team) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Team, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Team) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Team, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetCarrier gets org.freedesktop.NetworkManager.Device.Team.Carrier property.
-func (o *Org_Freedesktop_NetworkManager_Device_Team) GetCarrier(ctx context.Context) (carrier bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Team, "Carrier").Store(&carrier)
+func (o *NetworkManager_Device_Team) GetCarrier(ctx context.Context) (carrier bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Team, "Carrier").Store(&carrier)
 	return
 }
 
 // GetSlaves gets org.freedesktop.NetworkManager.Device.Team.Slaves property.
-func (o *Org_Freedesktop_NetworkManager_Device_Team) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Team, "Slaves").Store(&slaves)
+func (o *NetworkManager_Device_Team) GetSlaves(ctx context.Context) (slaves []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Team, "Slaves").Store(&slaves)
 	return
 }
 
 // GetConfig gets org.freedesktop.NetworkManager.Device.Team.Config property.
-func (o *Org_Freedesktop_NetworkManager_Device_Team) GetConfig(ctx context.Context) (config string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Team, "Config").Store(&config)
+func (o *NetworkManager_Device_Team) GetConfig(ctx context.Context) (config string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Team, "Config").Store(&config)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Team.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignal struct {
+// NetworkManager_Device_Team_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Team.PropertiesChanged signal.
+type NetworkManager_Device_Team_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Team_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Team_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Team
+func (s *NetworkManager_Device_Team_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Team
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Team_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Team_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Team_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Team_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Team_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Team_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Tuner is org.freedesktop.NetworkManager.Device.Tun interface.
-type Org_Freedesktop_NetworkManager_Device_Tuner interface {
+// NewNetworkManager_Device_Tun creates and allocates org.freedesktop.NetworkManager.Device.Tun.
+func NewNetworkManager_Device_Tun(object dbus.BusObject) *NetworkManager_Device_Tun {
+	return &NetworkManager_Device_Tun{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Tun exports the given object that implements org.freedesktop.NetworkManager.Device.Tun on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Tun(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Tuner) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Tun)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Tun unexports org.freedesktop.NetworkManager.Device.Tun interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Tun(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Tun)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Tun can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Tun struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Tun) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Tun
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Tun creates and allocates org.freedesktop.NetworkManager.Device.Tun.
-func NewOrg_Freedesktop_NetworkManager_Device_Tun(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Tun {
-	return &Org_Freedesktop_NetworkManager_Device_Tun{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Tun implements org.freedesktop.NetworkManager.Device.Tun D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Tun struct {
+// NetworkManager_Device_Tun implements org.freedesktop.NetworkManager.Device.Tun D-Bus interface.
+type NetworkManager_Device_Tun struct {
 	object dbus.BusObject
 }
 
 // GetOwner gets org.freedesktop.NetworkManager.Device.Tun.Owner property.
-func (o *Org_Freedesktop_NetworkManager_Device_Tun) GetOwner(ctx context.Context) (owner int64, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Tun, "Owner").Store(&owner)
+func (o *NetworkManager_Device_Tun) GetOwner(ctx context.Context) (owner int64, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Tun, "Owner").Store(&owner)
 	return
 }
 
 // GetGroup gets org.freedesktop.NetworkManager.Device.Tun.Group property.
-func (o *Org_Freedesktop_NetworkManager_Device_Tun) GetGroup(ctx context.Context) (group int64, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Tun, "Group").Store(&group)
+func (o *NetworkManager_Device_Tun) GetGroup(ctx context.Context) (group int64, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Tun, "Group").Store(&group)
 	return
 }
 
 // GetMode gets org.freedesktop.NetworkManager.Device.Tun.Mode property.
-func (o *Org_Freedesktop_NetworkManager_Device_Tun) GetMode(ctx context.Context) (mode string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Tun, "Mode").Store(&mode)
+func (o *NetworkManager_Device_Tun) GetMode(ctx context.Context) (mode string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Tun, "Mode").Store(&mode)
 	return
 }
 
 // GetNoPi gets org.freedesktop.NetworkManager.Device.Tun.NoPi property.
-func (o *Org_Freedesktop_NetworkManager_Device_Tun) GetNoPi(ctx context.Context) (noPi bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Tun, "NoPi").Store(&noPi)
+func (o *NetworkManager_Device_Tun) GetNoPi(ctx context.Context) (noPi bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Tun, "NoPi").Store(&noPi)
 	return
 }
 
 // GetVnetHdr gets org.freedesktop.NetworkManager.Device.Tun.VnetHdr property.
-func (o *Org_Freedesktop_NetworkManager_Device_Tun) GetVnetHdr(ctx context.Context) (vnetHdr bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Tun, "VnetHdr").Store(&vnetHdr)
+func (o *NetworkManager_Device_Tun) GetVnetHdr(ctx context.Context) (vnetHdr bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Tun, "VnetHdr").Store(&vnetHdr)
 	return
 }
 
 // GetMultiQueue gets org.freedesktop.NetworkManager.Device.Tun.MultiQueue property.
-func (o *Org_Freedesktop_NetworkManager_Device_Tun) GetMultiQueue(ctx context.Context) (multiQueue bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Tun, "MultiQueue").Store(&multiQueue)
+func (o *NetworkManager_Device_Tun) GetMultiQueue(ctx context.Context) (multiQueue bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Tun, "MultiQueue").Store(&multiQueue)
 	return
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Tun.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Tun) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Tun, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Tun) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Tun, "HwAddress").Store(&hwAddress)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Tun.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignal struct {
+// NetworkManager_Device_Tun_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Tun.PropertiesChanged signal.
+type NetworkManager_Device_Tun_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Tun_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Tun_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Tun
+func (s *NetworkManager_Device_Tun_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Tun
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Tun_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Tun_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Tun_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Tun_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Tun_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Tun_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Vether is org.freedesktop.NetworkManager.Device.Veth interface.
-type Org_Freedesktop_NetworkManager_Device_Vether interface {
+// NewNetworkManager_Device_Veth creates and allocates org.freedesktop.NetworkManager.Device.Veth.
+func NewNetworkManager_Device_Veth(object dbus.BusObject) *NetworkManager_Device_Veth {
+	return &NetworkManager_Device_Veth{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Veth exports the given object that implements org.freedesktop.NetworkManager.Device.Veth on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Veth(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Vether) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Veth)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Veth unexports org.freedesktop.NetworkManager.Device.Veth interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Veth(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Veth)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Veth can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Veth struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Veth) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Veth
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Veth creates and allocates org.freedesktop.NetworkManager.Device.Veth.
-func NewOrg_Freedesktop_NetworkManager_Device_Veth(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Veth {
-	return &Org_Freedesktop_NetworkManager_Device_Veth{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Veth implements org.freedesktop.NetworkManager.Device.Veth D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Veth struct {
+// NetworkManager_Device_Veth implements org.freedesktop.NetworkManager.Device.Veth D-Bus interface.
+type NetworkManager_Device_Veth struct {
 	object dbus.BusObject
 }
 
 // GetPeer gets org.freedesktop.NetworkManager.Device.Veth.Peer property.
-func (o *Org_Freedesktop_NetworkManager_Device_Veth) GetPeer(ctx context.Context) (peer dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Veth, "Peer").Store(&peer)
+func (o *NetworkManager_Device_Veth) GetPeer(ctx context.Context) (peer dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Veth, "Peer").Store(&peer)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Veth.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignal struct {
+// NetworkManager_Device_Veth_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Veth.PropertiesChanged signal.
+type NetworkManager_Device_Veth_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Veth_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Veth_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Veth
+func (s *NetworkManager_Device_Veth_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Veth
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Veth_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Veth_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Veth_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Veth_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Veth_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Veth_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Vlaner is org.freedesktop.NetworkManager.Device.Vlan interface.
-type Org_Freedesktop_NetworkManager_Device_Vlaner interface {
+// NewNetworkManager_Device_Vlan creates and allocates org.freedesktop.NetworkManager.Device.Vlan.
+func NewNetworkManager_Device_Vlan(object dbus.BusObject) *NetworkManager_Device_Vlan {
+	return &NetworkManager_Device_Vlan{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Vlan exports the given object that implements org.freedesktop.NetworkManager.Device.Vlan on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Vlan(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Vlaner) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Vlan unexports org.freedesktop.NetworkManager.Device.Vlan interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Vlan(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Vlan can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Vlan struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Vlan) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Vlan creates and allocates org.freedesktop.NetworkManager.Device.Vlan.
-func NewOrg_Freedesktop_NetworkManager_Device_Vlan(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Vlan {
-	return &Org_Freedesktop_NetworkManager_Device_Vlan{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Vlan implements org.freedesktop.NetworkManager.Device.Vlan D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Vlan struct {
+// NetworkManager_Device_Vlan implements org.freedesktop.NetworkManager.Device.Vlan D-Bus interface.
+type NetworkManager_Device_Vlan struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Vlan.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vlan) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Vlan) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vlan, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetCarrier gets org.freedesktop.NetworkManager.Device.Vlan.Carrier property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vlan) GetCarrier(ctx context.Context) (carrier bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan, "Carrier").Store(&carrier)
+func (o *NetworkManager_Device_Vlan) GetCarrier(ctx context.Context) (carrier bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vlan, "Carrier").Store(&carrier)
 	return
 }
 
 // GetParent gets org.freedesktop.NetworkManager.Device.Vlan.Parent property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vlan) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan, "Parent").Store(&parent)
+func (o *NetworkManager_Device_Vlan) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vlan, "Parent").Store(&parent)
 	return
 }
 
 // GetVlanId gets org.freedesktop.NetworkManager.Device.Vlan.VlanId property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vlan) GetVlanId(ctx context.Context) (vlanId uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan, "VlanId").Store(&vlanId)
+func (o *NetworkManager_Device_Vlan) GetVlanId(ctx context.Context) (vlanId uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vlan, "VlanId").Store(&vlanId)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Vlan.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignal struct {
+// NetworkManager_Device_Vlan_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Vlan.PropertiesChanged signal.
+type NetworkManager_Device_Vlan_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Vlan_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Vlan_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Vlan
+func (s *NetworkManager_Device_Vlan_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Vlan
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Vlan_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Vlan_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Vlan_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Vlan_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Vlan_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Vlan_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Vxlaner is org.freedesktop.NetworkManager.Device.Vxlan interface.
-type Org_Freedesktop_NetworkManager_Device_Vxlaner interface {
+// NewNetworkManager_Device_Vxlan creates and allocates org.freedesktop.NetworkManager.Device.Vxlan.
+func NewNetworkManager_Device_Vxlan(object dbus.BusObject) *NetworkManager_Device_Vxlan {
+	return &NetworkManager_Device_Vxlan{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Vxlan exports the given object that implements org.freedesktop.NetworkManager.Device.Vxlan on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Vxlan(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Vxlaner) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Vxlan unexports org.freedesktop.NetworkManager.Device.Vxlan interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Vxlan(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Vxlan can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Vxlan struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Vxlan) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Vxlan creates and allocates org.freedesktop.NetworkManager.Device.Vxlan.
-func NewOrg_Freedesktop_NetworkManager_Device_Vxlan(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Vxlan {
-	return &Org_Freedesktop_NetworkManager_Device_Vxlan{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Vxlan implements org.freedesktop.NetworkManager.Device.Vxlan D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Vxlan struct {
+// NetworkManager_Device_Vxlan implements org.freedesktop.NetworkManager.Device.Vxlan D-Bus interface.
+type NetworkManager_Device_Vxlan struct {
 	object dbus.BusObject
 }
 
 // GetParent gets org.freedesktop.NetworkManager.Device.Vxlan.Parent property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Parent").Store(&parent)
+func (o *NetworkManager_Device_Vxlan) GetParent(ctx context.Context) (parent dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Parent").Store(&parent)
 	return
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Vxlan.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Vxlan) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetId gets org.freedesktop.NetworkManager.Device.Vxlan.Id property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetId(ctx context.Context) (id uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Id").Store(&id)
+func (o *NetworkManager_Device_Vxlan) GetId(ctx context.Context) (id uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Id").Store(&id)
 	return
 }
 
 // GetGroup gets org.freedesktop.NetworkManager.Device.Vxlan.Group property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetGroup(ctx context.Context) (group string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Group").Store(&group)
+func (o *NetworkManager_Device_Vxlan) GetGroup(ctx context.Context) (group string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Group").Store(&group)
 	return
 }
 
 // GetLocal gets org.freedesktop.NetworkManager.Device.Vxlan.Local property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetLocal(ctx context.Context) (local string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Local").Store(&local)
+func (o *NetworkManager_Device_Vxlan) GetLocal(ctx context.Context) (local string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Local").Store(&local)
 	return
 }
 
 // GetTos gets org.freedesktop.NetworkManager.Device.Vxlan.Tos property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetTos(ctx context.Context) (tos byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Tos").Store(&tos)
+func (o *NetworkManager_Device_Vxlan) GetTos(ctx context.Context) (tos byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Tos").Store(&tos)
 	return
 }
 
 // GetTtl gets org.freedesktop.NetworkManager.Device.Vxlan.Ttl property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetTtl(ctx context.Context) (ttl byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Ttl").Store(&ttl)
+func (o *NetworkManager_Device_Vxlan) GetTtl(ctx context.Context) (ttl byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Ttl").Store(&ttl)
 	return
 }
 
 // GetLearning gets org.freedesktop.NetworkManager.Device.Vxlan.Learning property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetLearning(ctx context.Context) (learning bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Learning").Store(&learning)
+func (o *NetworkManager_Device_Vxlan) GetLearning(ctx context.Context) (learning bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Learning").Store(&learning)
 	return
 }
 
 // GetAgeing gets org.freedesktop.NetworkManager.Device.Vxlan.Ageing property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetAgeing(ctx context.Context) (ageing uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Ageing").Store(&ageing)
+func (o *NetworkManager_Device_Vxlan) GetAgeing(ctx context.Context) (ageing uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Ageing").Store(&ageing)
 	return
 }
 
 // GetLimit gets org.freedesktop.NetworkManager.Device.Vxlan.Limit property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetLimit(ctx context.Context) (limit uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Limit").Store(&limit)
+func (o *NetworkManager_Device_Vxlan) GetLimit(ctx context.Context) (limit uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Limit").Store(&limit)
 	return
 }
 
 // GetDstPort gets org.freedesktop.NetworkManager.Device.Vxlan.DstPort property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetDstPort(ctx context.Context) (dstPort uint16, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "DstPort").Store(&dstPort)
+func (o *NetworkManager_Device_Vxlan) GetDstPort(ctx context.Context) (dstPort uint16, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "DstPort").Store(&dstPort)
 	return
 }
 
 // GetSrcPortMin gets org.freedesktop.NetworkManager.Device.Vxlan.SrcPortMin property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetSrcPortMin(ctx context.Context) (srcPortMin uint16, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "SrcPortMin").Store(&srcPortMin)
+func (o *NetworkManager_Device_Vxlan) GetSrcPortMin(ctx context.Context) (srcPortMin uint16, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "SrcPortMin").Store(&srcPortMin)
 	return
 }
 
 // GetSrcPortMax gets org.freedesktop.NetworkManager.Device.Vxlan.SrcPortMax property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetSrcPortMax(ctx context.Context) (srcPortMax uint16, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "SrcPortMax").Store(&srcPortMax)
+func (o *NetworkManager_Device_Vxlan) GetSrcPortMax(ctx context.Context) (srcPortMax uint16, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "SrcPortMax").Store(&srcPortMax)
 	return
 }
 
 // GetProxy gets org.freedesktop.NetworkManager.Device.Vxlan.Proxy property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetProxy(ctx context.Context) (proxy bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Proxy").Store(&proxy)
+func (o *NetworkManager_Device_Vxlan) GetProxy(ctx context.Context) (proxy bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Proxy").Store(&proxy)
 	return
 }
 
 // GetRsc gets org.freedesktop.NetworkManager.Device.Vxlan.Rsc property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetRsc(ctx context.Context) (rsc bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "Rsc").Store(&rsc)
+func (o *NetworkManager_Device_Vxlan) GetRsc(ctx context.Context) (rsc bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "Rsc").Store(&rsc)
 	return
 }
 
 // GetL2miss gets org.freedesktop.NetworkManager.Device.Vxlan.L2miss property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetL2miss(ctx context.Context) (l2miss bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "L2miss").Store(&l2miss)
+func (o *NetworkManager_Device_Vxlan) GetL2miss(ctx context.Context) (l2miss bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "L2miss").Store(&l2miss)
 	return
 }
 
 // GetL3miss gets org.freedesktop.NetworkManager.Device.Vxlan.L3miss property.
-func (o *Org_Freedesktop_NetworkManager_Device_Vxlan) GetL3miss(ctx context.Context) (l3miss bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan, "L3miss").Store(&l3miss)
+func (o *NetworkManager_Device_Vxlan) GetL3miss(ctx context.Context) (l3miss bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Vxlan, "L3miss").Store(&l3miss)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Vxlan.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignal struct {
+// NetworkManager_Device_Vxlan_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Vxlan.PropertiesChanged signal.
+type NetworkManager_Device_Vxlan_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Vxlan_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Vxlan_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Vxlan
+func (s *NetworkManager_Device_Vxlan_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Vxlan
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Vxlan_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Vxlan_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Vxlan_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Vxlan_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Vxlan_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Vxlan_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_WifiP2Per is org.freedesktop.NetworkManager.Device.WifiP2P interface.
-type Org_Freedesktop_NetworkManager_Device_WifiP2Per interface {
-	// StartFind is org.freedesktop.NetworkManager.Device.WifiP2P.StartFind method.
-	StartFind(options map[string]dbus.Variant) (err *dbus.Error)
-	// StopFind is org.freedesktop.NetworkManager.Device.WifiP2P.StopFind method.
-	StopFind() (err *dbus.Error)
+// NewNetworkManager_Device_WifiP2P creates and allocates org.freedesktop.NetworkManager.Device.WifiP2P.
+func NewNetworkManager_Device_WifiP2P(object dbus.BusObject) *NetworkManager_Device_WifiP2P {
+	return &NetworkManager_Device_WifiP2P{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_WifiP2P exports the given object that implements org.freedesktop.NetworkManager.Device.WifiP2P on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_WifiP2P(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_WifiP2Per) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"StartFind": v.StartFind,
-		"StopFind":  v.StopFind,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_WifiP2P unexports org.freedesktop.NetworkManager.Device.WifiP2P interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_WifiP2P(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_WifiP2P can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_WifiP2P struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_WifiP2P) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_WifiP2P) StartFind(options map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_WifiP2P) StopFind() (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_WifiP2P creates and allocates org.freedesktop.NetworkManager.Device.WifiP2P.
-func NewOrg_Freedesktop_NetworkManager_Device_WifiP2P(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_WifiP2P {
-	return &Org_Freedesktop_NetworkManager_Device_WifiP2P{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_WifiP2P implements org.freedesktop.NetworkManager.Device.WifiP2P D-Bus interface.
+// NetworkManager_Device_WifiP2P implements org.freedesktop.NetworkManager.Device.WifiP2P D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = Device_Wifi_P2P
-type Org_Freedesktop_NetworkManager_Device_WifiP2P struct {
+type NetworkManager_Device_WifiP2P struct {
 	object dbus.BusObject
 }
 
 // StartFind calls org.freedesktop.NetworkManager.Device.WifiP2P.StartFind method.
-func (o *Org_Freedesktop_NetworkManager_Device_WifiP2P) StartFind(ctx context.Context, options map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P+".StartFind", 0, options).Store()
+func (o *NetworkManager_Device_WifiP2P) StartFind(ctx context.Context, options map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device_WifiP2P+".StartFind", 0, options).Store()
 	return
 }
 
 // StopFind calls org.freedesktop.NetworkManager.Device.WifiP2P.StopFind method.
-func (o *Org_Freedesktop_NetworkManager_Device_WifiP2P) StopFind(ctx context.Context) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P+".StopFind", 0).Store()
+func (o *NetworkManager_Device_WifiP2P) StopFind(ctx context.Context) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device_WifiP2P+".StopFind", 0).Store()
 	return
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.WifiP2P.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_WifiP2P) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_WifiP2P) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WifiP2P, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetPeers gets org.freedesktop.NetworkManager.Device.WifiP2P.Peers property.
-func (o *Org_Freedesktop_NetworkManager_Device_WifiP2P) GetPeers(ctx context.Context) (peers []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P, "Peers").Store(&peers)
+func (o *NetworkManager_Device_WifiP2P) GetPeers(ctx context.Context) (peers []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WifiP2P, "Peers").Store(&peers)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignal represents org.freedesktop.NetworkManager.Device.WifiP2P.PeerAdded signal.
-type Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignal struct {
+// NetworkManager_Device_WifiP2P_PeerAddedSignal represents org.freedesktop.NetworkManager.Device.WifiP2P.PeerAdded signal.
+type NetworkManager_Device_WifiP2P_PeerAddedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignalBody
+	Body   *NetworkManager_Device_WifiP2P_PeerAddedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignal) Name() string {
+func (s *NetworkManager_Device_WifiP2P_PeerAddedSignal) Name() string {
 	return "PeerAdded"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P
+func (s *NetworkManager_Device_WifiP2P_PeerAddedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_WifiP2P
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignal) Sender() string {
+func (s *NetworkManager_Device_WifiP2P_PeerAddedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_WifiP2P_PeerAddedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignal) values() []interface{} {
+func (s *NetworkManager_Device_WifiP2P_PeerAddedSignal) values() []interface{} {
 	return []interface{}{s.Body.Peer}
 }
 
-// Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerAddedSignalBody struct {
+// NetworkManager_Device_WifiP2P_PeerAddedSignalBody is body container.
+type NetworkManager_Device_WifiP2P_PeerAddedSignalBody struct {
 	Peer dbus.ObjectPath
 }
 
-// Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignal represents org.freedesktop.NetworkManager.Device.WifiP2P.PeerRemoved signal.
-type Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignal struct {
+// NetworkManager_Device_WifiP2P_PeerRemovedSignal represents org.freedesktop.NetworkManager.Device.WifiP2P.PeerRemoved signal.
+type NetworkManager_Device_WifiP2P_PeerRemovedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignalBody
+	Body   *NetworkManager_Device_WifiP2P_PeerRemovedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignal) Name() string {
+func (s *NetworkManager_Device_WifiP2P_PeerRemovedSignal) Name() string {
 	return "PeerRemoved"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_WifiP2P
+func (s *NetworkManager_Device_WifiP2P_PeerRemovedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_WifiP2P
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignal) Sender() string {
+func (s *NetworkManager_Device_WifiP2P_PeerRemovedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_WifiP2P_PeerRemovedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignal) values() []interface{} {
+func (s *NetworkManager_Device_WifiP2P_PeerRemovedSignal) values() []interface{} {
 	return []interface{}{s.Body.Peer}
 }
 
-// Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_WifiP2P_PeerRemovedSignalBody struct {
+// NetworkManager_Device_WifiP2P_PeerRemovedSignalBody is body container.
+type NetworkManager_Device_WifiP2P_PeerRemovedSignalBody struct {
 	Peer dbus.ObjectPath
 }
 
-// Org_Freedesktop_NetworkManager_Device_WiMaxer is org.freedesktop.NetworkManager.Device.WiMax interface.
-type Org_Freedesktop_NetworkManager_Device_WiMaxer interface {
-	// GetNspList is org.freedesktop.NetworkManager.Device.WiMax.GetNspList method.
-	GetNspList() (nsps []dbus.ObjectPath, err *dbus.Error)
+// NewNetworkManager_Device_WiMax creates and allocates org.freedesktop.NetworkManager.Device.WiMax.
+func NewNetworkManager_Device_WiMax(object dbus.BusObject) *NetworkManager_Device_WiMax {
+	return &NetworkManager_Device_WiMax{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_WiMax exports the given object that implements org.freedesktop.NetworkManager.Device.WiMax on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_WiMax(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_WiMaxer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"GetNspList": v.GetNspList,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_WiMax unexports org.freedesktop.NetworkManager.Device.WiMax interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_WiMax(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_WiMax can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_WiMax struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_WiMax) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_WiMax) GetNspList() (nsps []dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_WiMax creates and allocates org.freedesktop.NetworkManager.Device.WiMax.
-func NewOrg_Freedesktop_NetworkManager_Device_WiMax(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_WiMax {
-	return &Org_Freedesktop_NetworkManager_Device_WiMax{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_WiMax implements org.freedesktop.NetworkManager.Device.WiMax D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_WiMax struct {
+// NetworkManager_Device_WiMax implements org.freedesktop.NetworkManager.Device.WiMax D-Bus interface.
+type NetworkManager_Device_WiMax struct {
 	object dbus.BusObject
 }
 
 // GetNspList calls org.freedesktop.NetworkManager.Device.WiMax.GetNspList method.
-func (o *Org_Freedesktop_NetworkManager_Device_WiMax) GetNspList(ctx context.Context) (nsps []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax+".GetNspList", 0).Store(&nsps)
+func (o *NetworkManager_Device_WiMax) GetNspList(ctx context.Context) (nsps []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device_WiMax+".GetNspList", 0).Store(&nsps)
 	return
 }
 
 // GetNsps gets org.freedesktop.NetworkManager.Device.WiMax.Nsps property.
-func (o *Org_Freedesktop_NetworkManager_Device_WiMax) GetNsps(ctx context.Context) (nsps []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax, "Nsps").Store(&nsps)
+func (o *NetworkManager_Device_WiMax) GetNsps(ctx context.Context) (nsps []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WiMax, "Nsps").Store(&nsps)
 	return
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.WiMax.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_WiMax) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_WiMax) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WiMax, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetCenterFrequency gets org.freedesktop.NetworkManager.Device.WiMax.CenterFrequency property.
-func (o *Org_Freedesktop_NetworkManager_Device_WiMax) GetCenterFrequency(ctx context.Context) (centerFrequency uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax, "CenterFrequency").Store(&centerFrequency)
+func (o *NetworkManager_Device_WiMax) GetCenterFrequency(ctx context.Context) (centerFrequency uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WiMax, "CenterFrequency").Store(&centerFrequency)
 	return
 }
 
 // GetRssi gets org.freedesktop.NetworkManager.Device.WiMax.Rssi property.
-func (o *Org_Freedesktop_NetworkManager_Device_WiMax) GetRssi(ctx context.Context) (rssi int32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax, "Rssi").Store(&rssi)
+func (o *NetworkManager_Device_WiMax) GetRssi(ctx context.Context) (rssi int32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WiMax, "Rssi").Store(&rssi)
 	return
 }
 
 // GetCinr gets org.freedesktop.NetworkManager.Device.WiMax.Cinr property.
-func (o *Org_Freedesktop_NetworkManager_Device_WiMax) GetCinr(ctx context.Context) (cinr int32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax, "Cinr").Store(&cinr)
+func (o *NetworkManager_Device_WiMax) GetCinr(ctx context.Context) (cinr int32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WiMax, "Cinr").Store(&cinr)
 	return
 }
 
 // GetTxPower gets org.freedesktop.NetworkManager.Device.WiMax.TxPower property.
-func (o *Org_Freedesktop_NetworkManager_Device_WiMax) GetTxPower(ctx context.Context) (txPower int32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax, "TxPower").Store(&txPower)
+func (o *NetworkManager_Device_WiMax) GetTxPower(ctx context.Context) (txPower int32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WiMax, "TxPower").Store(&txPower)
 	return
 }
 
 // GetBsid gets org.freedesktop.NetworkManager.Device.WiMax.Bsid property.
-func (o *Org_Freedesktop_NetworkManager_Device_WiMax) GetBsid(ctx context.Context) (bsid string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax, "Bsid").Store(&bsid)
+func (o *NetworkManager_Device_WiMax) GetBsid(ctx context.Context) (bsid string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WiMax, "Bsid").Store(&bsid)
 	return
 }
 
 // GetActiveNsp gets org.freedesktop.NetworkManager.Device.WiMax.ActiveNsp property.
-func (o *Org_Freedesktop_NetworkManager_Device_WiMax) GetActiveNsp(ctx context.Context) (activeNsp dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax, "ActiveNsp").Store(&activeNsp)
+func (o *NetworkManager_Device_WiMax) GetActiveNsp(ctx context.Context) (activeNsp dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WiMax, "ActiveNsp").Store(&activeNsp)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.WiMax.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignal struct {
+// NetworkManager_Device_WiMax_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.WiMax.PropertiesChanged signal.
+type NetworkManager_Device_WiMax_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_WiMax_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_WiMax_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax
+func (s *NetworkManager_Device_WiMax_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_WiMax
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_WiMax_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_WiMax_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_WiMax_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_WiMax_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_WiMax_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_WiMax_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignal represents org.freedesktop.NetworkManager.Device.WiMax.NspAdded signal.
-type Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignal struct {
+// NetworkManager_Device_WiMax_NspAddedSignal represents org.freedesktop.NetworkManager.Device.WiMax.NspAdded signal.
+type NetworkManager_Device_WiMax_NspAddedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignalBody
+	Body   *NetworkManager_Device_WiMax_NspAddedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignal) Name() string {
+func (s *NetworkManager_Device_WiMax_NspAddedSignal) Name() string {
 	return "NspAdded"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax
+func (s *NetworkManager_Device_WiMax_NspAddedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_WiMax
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignal) Sender() string {
+func (s *NetworkManager_Device_WiMax_NspAddedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_WiMax_NspAddedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignal) values() []interface{} {
+func (s *NetworkManager_Device_WiMax_NspAddedSignal) values() []interface{} {
 	return []interface{}{s.Body.Nsp}
 }
 
-// Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_WiMax_NspAddedSignalBody struct {
+// NetworkManager_Device_WiMax_NspAddedSignalBody is body container.
+type NetworkManager_Device_WiMax_NspAddedSignalBody struct {
 	Nsp dbus.ObjectPath
 }
 
-// Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignal represents org.freedesktop.NetworkManager.Device.WiMax.NspRemoved signal.
-type Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignal struct {
+// NetworkManager_Device_WiMax_NspRemovedSignal represents org.freedesktop.NetworkManager.Device.WiMax.NspRemoved signal.
+type NetworkManager_Device_WiMax_NspRemovedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignalBody
+	Body   *NetworkManager_Device_WiMax_NspRemovedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignal) Name() string {
+func (s *NetworkManager_Device_WiMax_NspRemovedSignal) Name() string {
 	return "NspRemoved"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_WiMax
+func (s *NetworkManager_Device_WiMax_NspRemovedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_WiMax
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignal) Sender() string {
+func (s *NetworkManager_Device_WiMax_NspRemovedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_WiMax_NspRemovedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignal) values() []interface{} {
+func (s *NetworkManager_Device_WiMax_NspRemovedSignal) values() []interface{} {
 	return []interface{}{s.Body.Nsp}
 }
 
-// Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_WiMax_NspRemovedSignalBody struct {
+// NetworkManager_Device_WiMax_NspRemovedSignalBody is body container.
+type NetworkManager_Device_WiMax_NspRemovedSignalBody struct {
 	Nsp dbus.ObjectPath
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wireder is org.freedesktop.NetworkManager.Device.Wired interface.
-type Org_Freedesktop_NetworkManager_Device_Wireder interface {
+// NewNetworkManager_Device_Wired creates and allocates org.freedesktop.NetworkManager.Device.Wired.
+func NewNetworkManager_Device_Wired(object dbus.BusObject) *NetworkManager_Device_Wired {
+	return &NetworkManager_Device_Wired{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Wired exports the given object that implements org.freedesktop.NetworkManager.Device.Wired on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Wired(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Wireder) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Wired)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Wired unexports org.freedesktop.NetworkManager.Device.Wired interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Wired(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Wired)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Wired can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Wired struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Wired) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Wired
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Wired creates and allocates org.freedesktop.NetworkManager.Device.Wired.
-func NewOrg_Freedesktop_NetworkManager_Device_Wired(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Wired {
-	return &Org_Freedesktop_NetworkManager_Device_Wired{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Wired implements org.freedesktop.NetworkManager.Device.Wired D-Bus interface.
+// NetworkManager_Device_Wired implements org.freedesktop.NetworkManager.Device.Wired D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = DeviceEthernet
-type Org_Freedesktop_NetworkManager_Device_Wired struct {
+type NetworkManager_Device_Wired struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Wired.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wired) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wired, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Wired) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wired, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetPermHwAddress gets org.freedesktop.NetworkManager.Device.Wired.PermHwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wired) GetPermHwAddress(ctx context.Context) (permHwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wired, "PermHwAddress").Store(&permHwAddress)
+func (o *NetworkManager_Device_Wired) GetPermHwAddress(ctx context.Context) (permHwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wired, "PermHwAddress").Store(&permHwAddress)
 	return
 }
 
 // GetSpeed gets org.freedesktop.NetworkManager.Device.Wired.Speed property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wired) GetSpeed(ctx context.Context) (speed uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wired, "Speed").Store(&speed)
+func (o *NetworkManager_Device_Wired) GetSpeed(ctx context.Context) (speed uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wired, "Speed").Store(&speed)
 	return
 }
 
 // GetS390Subchannels gets org.freedesktop.NetworkManager.Device.Wired.S390Subchannels property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wired) GetS390Subchannels(ctx context.Context) (s390Subchannels []string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wired, "S390Subchannels").Store(&s390Subchannels)
+func (o *NetworkManager_Device_Wired) GetS390Subchannels(ctx context.Context) (s390Subchannels []string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wired, "S390Subchannels").Store(&s390Subchannels)
 	return
 }
 
 // GetCarrier gets org.freedesktop.NetworkManager.Device.Wired.Carrier property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wired) GetCarrier(ctx context.Context) (carrier bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wired, "Carrier").Store(&carrier)
+func (o *NetworkManager_Device_Wired) GetCarrier(ctx context.Context) (carrier bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wired, "Carrier").Store(&carrier)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Wired.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignal struct {
+// NetworkManager_Device_Wired_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Wired.PropertiesChanged signal.
+type NetworkManager_Device_Wired_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Wired_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Wired_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Wired
+func (s *NetworkManager_Device_Wired_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Wired
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Wired_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Wired_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Wired_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Wired_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Wired_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Wired_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_WireGuarder is org.freedesktop.NetworkManager.Device.WireGuard interface.
-type Org_Freedesktop_NetworkManager_Device_WireGuarder interface {
+// NewNetworkManager_Device_WireGuard creates and allocates org.freedesktop.NetworkManager.Device.WireGuard.
+func NewNetworkManager_Device_WireGuard(object dbus.BusObject) *NetworkManager_Device_WireGuard {
+	return &NetworkManager_Device_WireGuard{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_WireGuard exports the given object that implements org.freedesktop.NetworkManager.Device.WireGuard on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_WireGuard(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_WireGuarder) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_WireGuard)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_WireGuard unexports org.freedesktop.NetworkManager.Device.WireGuard interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_WireGuard(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_WireGuard)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_WireGuard can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_WireGuard struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_WireGuard) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_WireGuard
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_WireGuard creates and allocates org.freedesktop.NetworkManager.Device.WireGuard.
-func NewOrg_Freedesktop_NetworkManager_Device_WireGuard(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_WireGuard {
-	return &Org_Freedesktop_NetworkManager_Device_WireGuard{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_WireGuard implements org.freedesktop.NetworkManager.Device.WireGuard D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_WireGuard struct {
+// NetworkManager_Device_WireGuard implements org.freedesktop.NetworkManager.Device.WireGuard D-Bus interface.
+type NetworkManager_Device_WireGuard struct {
 	object dbus.BusObject
 }
 
@@ -3710,1006 +3024,780 @@ type Org_Freedesktop_NetworkManager_Device_WireGuard struct {
 //
 // Annotations:
 //   @org.gtk.GDBus.C.ForceGVariant = 1
-func (o *Org_Freedesktop_NetworkManager_Device_WireGuard) GetPublicKey(ctx context.Context) (publicKey []byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WireGuard, "PublicKey").Store(&publicKey)
+func (o *NetworkManager_Device_WireGuard) GetPublicKey(ctx context.Context) (publicKey []byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WireGuard, "PublicKey").Store(&publicKey)
 	return
 }
 
 // GetListenPort gets org.freedesktop.NetworkManager.Device.WireGuard.ListenPort property.
-func (o *Org_Freedesktop_NetworkManager_Device_WireGuard) GetListenPort(ctx context.Context) (listenPort uint16, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WireGuard, "ListenPort").Store(&listenPort)
+func (o *NetworkManager_Device_WireGuard) GetListenPort(ctx context.Context) (listenPort uint16, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WireGuard, "ListenPort").Store(&listenPort)
 	return
 }
 
 // GetFwMark gets org.freedesktop.NetworkManager.Device.WireGuard.FwMark property.
-func (o *Org_Freedesktop_NetworkManager_Device_WireGuard) GetFwMark(ctx context.Context) (fwMark uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_WireGuard, "FwMark").Store(&fwMark)
+func (o *NetworkManager_Device_WireGuard) GetFwMark(ctx context.Context) (fwMark uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_WireGuard, "FwMark").Store(&fwMark)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wirelesser is org.freedesktop.NetworkManager.Device.Wireless interface.
-type Org_Freedesktop_NetworkManager_Device_Wirelesser interface {
-	// GetAccessPoints is org.freedesktop.NetworkManager.Device.Wireless.GetAccessPoints method.
-	GetAccessPoints() (accessPoints []dbus.ObjectPath, err *dbus.Error)
-	// GetAllAccessPoints is org.freedesktop.NetworkManager.Device.Wireless.GetAllAccessPoints method.
-	GetAllAccessPoints() (accessPoints []dbus.ObjectPath, err *dbus.Error)
-	// RequestScan is org.freedesktop.NetworkManager.Device.Wireless.RequestScan method.
-	RequestScan(options map[string]dbus.Variant) (err *dbus.Error)
+// NewNetworkManager_Device_Wireless creates and allocates org.freedesktop.NetworkManager.Device.Wireless.
+func NewNetworkManager_Device_Wireless(object dbus.BusObject) *NetworkManager_Device_Wireless {
+	return &NetworkManager_Device_Wireless{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Wireless exports the given object that implements org.freedesktop.NetworkManager.Device.Wireless on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Wireless(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Wirelesser) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"GetAccessPoints":    v.GetAccessPoints,
-		"GetAllAccessPoints": v.GetAllAccessPoints,
-		"RequestScan":        v.RequestScan,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Wireless unexports org.freedesktop.NetworkManager.Device.Wireless interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Wireless(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Wireless can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Wireless struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Wireless) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Wireless) GetAccessPoints() (accessPoints []dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Wireless) GetAllAccessPoints() (accessPoints []dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Wireless) RequestScan(options map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Wireless creates and allocates org.freedesktop.NetworkManager.Device.Wireless.
-func NewOrg_Freedesktop_NetworkManager_Device_Wireless(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Wireless {
-	return &Org_Freedesktop_NetworkManager_Device_Wireless{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Wireless implements org.freedesktop.NetworkManager.Device.Wireless D-Bus interface.
+// NetworkManager_Device_Wireless implements org.freedesktop.NetworkManager.Device.Wireless D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = DeviceWifi
-type Org_Freedesktop_NetworkManager_Device_Wireless struct {
+type NetworkManager_Device_Wireless struct {
 	object dbus.BusObject
 }
 
 // GetAccessPoints calls org.freedesktop.NetworkManager.Device.Wireless.GetAccessPoints method.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) GetAccessPoints(ctx context.Context) (accessPoints []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless+".GetAccessPoints", 0).Store(&accessPoints)
+func (o *NetworkManager_Device_Wireless) GetAccessPoints(ctx context.Context) (accessPoints []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device_Wireless+".GetAccessPoints", 0).Store(&accessPoints)
 	return
 }
 
 // GetAllAccessPoints calls org.freedesktop.NetworkManager.Device.Wireless.GetAllAccessPoints method.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) GetAllAccessPoints(ctx context.Context) (accessPoints []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless+".GetAllAccessPoints", 0).Store(&accessPoints)
+func (o *NetworkManager_Device_Wireless) GetAllAccessPoints(ctx context.Context) (accessPoints []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device_Wireless+".GetAllAccessPoints", 0).Store(&accessPoints)
 	return
 }
 
 // RequestScan calls org.freedesktop.NetworkManager.Device.Wireless.RequestScan method.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) RequestScan(ctx context.Context, options map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless+".RequestScan", 0, options).Store()
+func (o *NetworkManager_Device_Wireless) RequestScan(ctx context.Context, options map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device_Wireless+".RequestScan", 0, options).Store()
 	return
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Wireless.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Wireless) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wireless, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetPermHwAddress gets org.freedesktop.NetworkManager.Device.Wireless.PermHwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) GetPermHwAddress(ctx context.Context) (permHwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless, "PermHwAddress").Store(&permHwAddress)
+func (o *NetworkManager_Device_Wireless) GetPermHwAddress(ctx context.Context) (permHwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wireless, "PermHwAddress").Store(&permHwAddress)
 	return
 }
 
 // GetMode gets org.freedesktop.NetworkManager.Device.Wireless.Mode property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) GetMode(ctx context.Context) (mode uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless, "Mode").Store(&mode)
+func (o *NetworkManager_Device_Wireless) GetMode(ctx context.Context) (mode uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wireless, "Mode").Store(&mode)
 	return
 }
 
 // GetBitrate gets org.freedesktop.NetworkManager.Device.Wireless.Bitrate property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) GetBitrate(ctx context.Context) (bitrate uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless, "Bitrate").Store(&bitrate)
+func (o *NetworkManager_Device_Wireless) GetBitrate(ctx context.Context) (bitrate uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wireless, "Bitrate").Store(&bitrate)
 	return
 }
 
 // GetActiveAccessPoint gets org.freedesktop.NetworkManager.Device.Wireless.ActiveAccessPoint property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) GetActiveAccessPoint(ctx context.Context) (activeAccessPoint dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless, "ActiveAccessPoint").Store(&activeAccessPoint)
+func (o *NetworkManager_Device_Wireless) GetActiveAccessPoint(ctx context.Context) (activeAccessPoint dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wireless, "ActiveAccessPoint").Store(&activeAccessPoint)
 	return
 }
 
 // GetWirelessCapabilities gets org.freedesktop.NetworkManager.Device.Wireless.WirelessCapabilities property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) GetWirelessCapabilities(ctx context.Context) (wirelessCapabilities uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless, "WirelessCapabilities").Store(&wirelessCapabilities)
+func (o *NetworkManager_Device_Wireless) GetWirelessCapabilities(ctx context.Context) (wirelessCapabilities uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wireless, "WirelessCapabilities").Store(&wirelessCapabilities)
 	return
 }
 
 // GetLastScan gets org.freedesktop.NetworkManager.Device.Wireless.LastScan property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wireless) GetLastScan(ctx context.Context) (lastScan int64, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless, "LastScan").Store(&lastScan)
+func (o *NetworkManager_Device_Wireless) GetLastScan(ctx context.Context) (lastScan int64, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wireless, "LastScan").Store(&lastScan)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Wireless.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignal struct {
+// NetworkManager_Device_Wireless_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Device.Wireless.PropertiesChanged signal.
+type NetworkManager_Device_Wireless_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignalBody
+	Body   *NetworkManager_Device_Wireless_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Device_Wireless_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless
+func (s *NetworkManager_Device_Wireless_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Wireless
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Device_Wireless_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Wireless_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Wireless_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Wireless_PropertiesChangedSignalBody struct {
+// NetworkManager_Device_Wireless_PropertiesChangedSignalBody is body container.
+type NetworkManager_Device_Wireless_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignal represents org.freedesktop.NetworkManager.Device.Wireless.AccessPointAdded signal.
-type Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignal struct {
+// NetworkManager_Device_Wireless_AccessPointAddedSignal represents org.freedesktop.NetworkManager.Device.Wireless.AccessPointAdded signal.
+type NetworkManager_Device_Wireless_AccessPointAddedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignalBody
+	Body   *NetworkManager_Device_Wireless_AccessPointAddedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignal) Name() string {
+func (s *NetworkManager_Device_Wireless_AccessPointAddedSignal) Name() string {
 	return "AccessPointAdded"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless
+func (s *NetworkManager_Device_Wireless_AccessPointAddedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Wireless
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignal) Sender() string {
+func (s *NetworkManager_Device_Wireless_AccessPointAddedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Wireless_AccessPointAddedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Wireless_AccessPointAddedSignal) values() []interface{} {
 	return []interface{}{s.Body.AccessPoint}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointAddedSignalBody struct {
+// NetworkManager_Device_Wireless_AccessPointAddedSignalBody is body container.
+type NetworkManager_Device_Wireless_AccessPointAddedSignalBody struct {
 	AccessPoint dbus.ObjectPath
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignal represents org.freedesktop.NetworkManager.Device.Wireless.AccessPointRemoved signal.
-type Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignal struct {
+// NetworkManager_Device_Wireless_AccessPointRemovedSignal represents org.freedesktop.NetworkManager.Device.Wireless.AccessPointRemoved signal.
+type NetworkManager_Device_Wireless_AccessPointRemovedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignalBody
+	Body   *NetworkManager_Device_Wireless_AccessPointRemovedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignal) Name() string {
+func (s *NetworkManager_Device_Wireless_AccessPointRemovedSignal) Name() string {
 	return "AccessPointRemoved"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Wireless
+func (s *NetworkManager_Device_Wireless_AccessPointRemovedSignal) Interface() string {
+	return InterfaceNetworkManager_Device_Wireless
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignal) Sender() string {
+func (s *NetworkManager_Device_Wireless_AccessPointRemovedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_Wireless_AccessPointRemovedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignal) values() []interface{} {
+func (s *NetworkManager_Device_Wireless_AccessPointRemovedSignal) values() []interface{} {
 	return []interface{}{s.Body.AccessPoint}
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_Wireless_AccessPointRemovedSignalBody struct {
+// NetworkManager_Device_Wireless_AccessPointRemovedSignalBody is body container.
+type NetworkManager_Device_Wireless_AccessPointRemovedSignalBody struct {
 	AccessPoint dbus.ObjectPath
 }
 
-// Org_Freedesktop_NetworkManager_Device_Wpaner is org.freedesktop.NetworkManager.Device.Wpan interface.
-type Org_Freedesktop_NetworkManager_Device_Wpaner interface {
+// NewNetworkManager_Device_Wpan creates and allocates org.freedesktop.NetworkManager.Device.Wpan.
+func NewNetworkManager_Device_Wpan(object dbus.BusObject) *NetworkManager_Device_Wpan {
+	return &NetworkManager_Device_Wpan{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device_Wpan exports the given object that implements org.freedesktop.NetworkManager.Device.Wpan on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device_Wpan(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Device_Wpaner) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Wpan)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device_Wpan unexports org.freedesktop.NetworkManager.Device.Wpan interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device_Wpan(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device_Wpan)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device_Wpan can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device_Wpan struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device_Wpan) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device_Wpan
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device_Wpan creates and allocates org.freedesktop.NetworkManager.Device.Wpan.
-func NewOrg_Freedesktop_NetworkManager_Device_Wpan(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device_Wpan {
-	return &Org_Freedesktop_NetworkManager_Device_Wpan{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device_Wpan implements org.freedesktop.NetworkManager.Device.Wpan D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device_Wpan struct {
+// NetworkManager_Device_Wpan implements org.freedesktop.NetworkManager.Device.Wpan D-Bus interface.
+type NetworkManager_Device_Wpan struct {
 	object dbus.BusObject
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.Device.Wpan.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_Device_Wpan) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device_Wpan, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_Device_Wpan) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device_Wpan, "HwAddress").Store(&hwAddress)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Deviceer is org.freedesktop.NetworkManager.Device interface.
-type Org_Freedesktop_NetworkManager_Deviceer interface {
-	// Reapply is org.freedesktop.NetworkManager.Device.Reapply method.
-	Reapply(connection map[string]map[string]dbus.Variant, versionId uint64, flags uint32) (err *dbus.Error)
-	// GetAppliedConnection is org.freedesktop.NetworkManager.Device.GetAppliedConnection method.
-	GetAppliedConnection(flags uint32) (connection map[string]map[string]dbus.Variant, versionId uint64, err *dbus.Error)
-	// Disconnect is org.freedesktop.NetworkManager.Device.Disconnect method.
-	Disconnect() (err *dbus.Error)
-	// Delete is org.freedesktop.NetworkManager.Device.Delete method.
-	Delete() (err *dbus.Error)
+// NewNetworkManager_Device creates and allocates org.freedesktop.NetworkManager.Device.
+func NewNetworkManager_Device(object dbus.BusObject) *NetworkManager_Device {
+	return &NetworkManager_Device{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Device exports the given object that implements org.freedesktop.NetworkManager.Device on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Device(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Deviceer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"Reapply":              v.Reapply,
-		"GetAppliedConnection": v.GetAppliedConnection,
-		"Disconnect":           v.Disconnect,
-		"Delete":               v.Delete,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_Device)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Device unexports org.freedesktop.NetworkManager.Device interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Device(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Device)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Device can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Device struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device) Reapply(connection map[string]map[string]dbus.Variant, versionId uint64, flags uint32) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device) GetAppliedConnection(flags uint32) (connection map[string]map[string]dbus.Variant, versionId uint64, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device) Disconnect() (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Device) Delete() (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_Device creates and allocates org.freedesktop.NetworkManager.Device.
-func NewOrg_Freedesktop_NetworkManager_Device(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Device {
-	return &Org_Freedesktop_NetworkManager_Device{object}
-}
-
-// Org_Freedesktop_NetworkManager_Device implements org.freedesktop.NetworkManager.Device D-Bus interface.
-type Org_Freedesktop_NetworkManager_Device struct {
+// NetworkManager_Device implements org.freedesktop.NetworkManager.Device D-Bus interface.
+type NetworkManager_Device struct {
 	object dbus.BusObject
 }
 
 // Reapply calls org.freedesktop.NetworkManager.Device.Reapply method.
-func (o *Org_Freedesktop_NetworkManager_Device) Reapply(ctx context.Context, connection map[string]map[string]dbus.Variant, versionId uint64, flags uint32) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device+".Reapply", 0, connection, versionId, flags).Store()
+func (o *NetworkManager_Device) Reapply(ctx context.Context, connection map[string]map[string]dbus.Variant, versionId uint64, flags uint32) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device+".Reapply", 0, connection, versionId, flags).Store()
 	return
 }
 
 // GetAppliedConnection calls org.freedesktop.NetworkManager.Device.GetAppliedConnection method.
-func (o *Org_Freedesktop_NetworkManager_Device) GetAppliedConnection(ctx context.Context, flags uint32) (connection map[string]map[string]dbus.Variant, versionId uint64, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device+".GetAppliedConnection", 0, flags).Store(&connection, &versionId)
+func (o *NetworkManager_Device) GetAppliedConnection(ctx context.Context, flags uint32) (connection map[string]map[string]dbus.Variant, versionId uint64, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device+".GetAppliedConnection", 0, flags).Store(&connection, &versionId)
 	return
 }
 
 // Disconnect calls org.freedesktop.NetworkManager.Device.Disconnect method.
-func (o *Org_Freedesktop_NetworkManager_Device) Disconnect(ctx context.Context) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device+".Disconnect", 0).Store()
+func (o *NetworkManager_Device) Disconnect(ctx context.Context) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device+".Disconnect", 0).Store()
 	return
 }
 
 // Delete calls org.freedesktop.NetworkManager.Device.Delete method.
-func (o *Org_Freedesktop_NetworkManager_Device) Delete(ctx context.Context) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Device+".Delete", 0).Store()
+func (o *NetworkManager_Device) Delete(ctx context.Context) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Device+".Delete", 0).Store()
 	return
 }
 
 // GetUdi gets org.freedesktop.NetworkManager.Device.Udi property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetUdi(ctx context.Context) (udi string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Udi").Store(&udi)
+func (o *NetworkManager_Device) GetUdi(ctx context.Context) (udi string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Udi").Store(&udi)
 	return
 }
 
 // GetInterface gets org.freedesktop.NetworkManager.Device.Interface property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetInterface(ctx context.Context) (vInterface string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Interface").Store(&vInterface)
+func (o *NetworkManager_Device) GetInterface(ctx context.Context) (vInterface string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Interface").Store(&vInterface)
 	return
 }
 
 // GetIpInterface gets org.freedesktop.NetworkManager.Device.IpInterface property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetIpInterface(ctx context.Context) (ipInterface string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "IpInterface").Store(&ipInterface)
+func (o *NetworkManager_Device) GetIpInterface(ctx context.Context) (ipInterface string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "IpInterface").Store(&ipInterface)
 	return
 }
 
 // GetDriver gets org.freedesktop.NetworkManager.Device.Driver property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetDriver(ctx context.Context) (driver string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Driver").Store(&driver)
+func (o *NetworkManager_Device) GetDriver(ctx context.Context) (driver string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Driver").Store(&driver)
 	return
 }
 
 // GetDriverVersion gets org.freedesktop.NetworkManager.Device.DriverVersion property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetDriverVersion(ctx context.Context) (driverVersion string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "DriverVersion").Store(&driverVersion)
+func (o *NetworkManager_Device) GetDriverVersion(ctx context.Context) (driverVersion string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "DriverVersion").Store(&driverVersion)
 	return
 }
 
 // GetFirmwareVersion gets org.freedesktop.NetworkManager.Device.FirmwareVersion property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetFirmwareVersion(ctx context.Context) (firmwareVersion string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "FirmwareVersion").Store(&firmwareVersion)
+func (o *NetworkManager_Device) GetFirmwareVersion(ctx context.Context) (firmwareVersion string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "FirmwareVersion").Store(&firmwareVersion)
 	return
 }
 
 // GetCapabilities gets org.freedesktop.NetworkManager.Device.Capabilities property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetCapabilities(ctx context.Context) (capabilities uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Capabilities").Store(&capabilities)
+func (o *NetworkManager_Device) GetCapabilities(ctx context.Context) (capabilities uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Capabilities").Store(&capabilities)
 	return
 }
 
 // GetIp4Address gets org.freedesktop.NetworkManager.Device.Ip4Address property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetIp4Address(ctx context.Context) (ip4Address uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Ip4Address").Store(&ip4Address)
+func (o *NetworkManager_Device) GetIp4Address(ctx context.Context) (ip4Address uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Ip4Address").Store(&ip4Address)
 	return
 }
 
 // GetState gets org.freedesktop.NetworkManager.Device.State property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetState(ctx context.Context) (state uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "State").Store(&state)
+func (o *NetworkManager_Device) GetState(ctx context.Context) (state uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "State").Store(&state)
 	return
 }
 
 // GetStateReason gets org.freedesktop.NetworkManager.Device.StateReason property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetStateReason(ctx context.Context) (stateReason struct {
+func (o *NetworkManager_Device) GetStateReason(ctx context.Context) (stateReason struct {
 	V0 uint32
 	V1 uint32
 }, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "StateReason").Store(&stateReason)
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "StateReason").Store(&stateReason)
 	return
 }
 
 // GetActiveConnection gets org.freedesktop.NetworkManager.Device.ActiveConnection property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetActiveConnection(ctx context.Context) (activeConnection dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "ActiveConnection").Store(&activeConnection)
+func (o *NetworkManager_Device) GetActiveConnection(ctx context.Context) (activeConnection dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "ActiveConnection").Store(&activeConnection)
 	return
 }
 
 // GetIp4Config gets org.freedesktop.NetworkManager.Device.Ip4Config property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetIp4Config(ctx context.Context) (ip4Config dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Ip4Config").Store(&ip4Config)
+func (o *NetworkManager_Device) GetIp4Config(ctx context.Context) (ip4Config dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Ip4Config").Store(&ip4Config)
 	return
 }
 
 // GetDhcp4Config gets org.freedesktop.NetworkManager.Device.Dhcp4Config property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetDhcp4Config(ctx context.Context) (dhcp4Config dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Dhcp4Config").Store(&dhcp4Config)
+func (o *NetworkManager_Device) GetDhcp4Config(ctx context.Context) (dhcp4Config dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Dhcp4Config").Store(&dhcp4Config)
 	return
 }
 
 // GetIp6Config gets org.freedesktop.NetworkManager.Device.Ip6Config property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetIp6Config(ctx context.Context) (ip6Config dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Ip6Config").Store(&ip6Config)
+func (o *NetworkManager_Device) GetIp6Config(ctx context.Context) (ip6Config dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Ip6Config").Store(&ip6Config)
 	return
 }
 
 // GetDhcp6Config gets org.freedesktop.NetworkManager.Device.Dhcp6Config property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetDhcp6Config(ctx context.Context) (dhcp6Config dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Dhcp6Config").Store(&dhcp6Config)
+func (o *NetworkManager_Device) GetDhcp6Config(ctx context.Context) (dhcp6Config dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Dhcp6Config").Store(&dhcp6Config)
 	return
 }
 
 // GetManaged gets org.freedesktop.NetworkManager.Device.Managed property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetManaged(ctx context.Context) (managed bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Managed").Store(&managed)
+func (o *NetworkManager_Device) GetManaged(ctx context.Context) (managed bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Managed").Store(&managed)
 	return
 }
 
 // SetManaged sets org.freedesktop.NetworkManager.Device.Managed property.
-func (o *Org_Freedesktop_NetworkManager_Device) SetManaged(ctx context.Context, managed bool) error {
-	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Managed", dbus.MakeVariant(managed)).Store()
+func (o *NetworkManager_Device) SetManaged(ctx context.Context, managed bool) error {
+	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceNetworkManager_Device, "Managed", dbus.MakeVariant(managed)).Store()
 }
 
 // GetAutoconnect gets org.freedesktop.NetworkManager.Device.Autoconnect property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetAutoconnect(ctx context.Context) (autoconnect bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Autoconnect").Store(&autoconnect)
+func (o *NetworkManager_Device) GetAutoconnect(ctx context.Context) (autoconnect bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Autoconnect").Store(&autoconnect)
 	return
 }
 
 // SetAutoconnect sets org.freedesktop.NetworkManager.Device.Autoconnect property.
-func (o *Org_Freedesktop_NetworkManager_Device) SetAutoconnect(ctx context.Context, autoconnect bool) error {
-	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Autoconnect", dbus.MakeVariant(autoconnect)).Store()
+func (o *NetworkManager_Device) SetAutoconnect(ctx context.Context, autoconnect bool) error {
+	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceNetworkManager_Device, "Autoconnect", dbus.MakeVariant(autoconnect)).Store()
 }
 
 // GetFirmwareMissing gets org.freedesktop.NetworkManager.Device.FirmwareMissing property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetFirmwareMissing(ctx context.Context) (firmwareMissing bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "FirmwareMissing").Store(&firmwareMissing)
+func (o *NetworkManager_Device) GetFirmwareMissing(ctx context.Context) (firmwareMissing bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "FirmwareMissing").Store(&firmwareMissing)
 	return
 }
 
 // GetNmPluginMissing gets org.freedesktop.NetworkManager.Device.NmPluginMissing property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetNmPluginMissing(ctx context.Context) (nmPluginMissing bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "NmPluginMissing").Store(&nmPluginMissing)
+func (o *NetworkManager_Device) GetNmPluginMissing(ctx context.Context) (nmPluginMissing bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "NmPluginMissing").Store(&nmPluginMissing)
 	return
 }
 
 // GetDeviceType gets org.freedesktop.NetworkManager.Device.DeviceType property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetDeviceType(ctx context.Context) (deviceType uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "DeviceType").Store(&deviceType)
+func (o *NetworkManager_Device) GetDeviceType(ctx context.Context) (deviceType uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "DeviceType").Store(&deviceType)
 	return
 }
 
 // GetAvailableConnections gets org.freedesktop.NetworkManager.Device.AvailableConnections property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetAvailableConnections(ctx context.Context) (availableConnections []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "AvailableConnections").Store(&availableConnections)
+func (o *NetworkManager_Device) GetAvailableConnections(ctx context.Context) (availableConnections []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "AvailableConnections").Store(&availableConnections)
 	return
 }
 
 // GetPhysicalPortId gets org.freedesktop.NetworkManager.Device.PhysicalPortId property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetPhysicalPortId(ctx context.Context) (physicalPortId string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "PhysicalPortId").Store(&physicalPortId)
+func (o *NetworkManager_Device) GetPhysicalPortId(ctx context.Context) (physicalPortId string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "PhysicalPortId").Store(&physicalPortId)
 	return
 }
 
 // GetMtu gets org.freedesktop.NetworkManager.Device.Mtu property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetMtu(ctx context.Context) (mtu uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Mtu").Store(&mtu)
+func (o *NetworkManager_Device) GetMtu(ctx context.Context) (mtu uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Mtu").Store(&mtu)
 	return
 }
 
 // GetMetered gets org.freedesktop.NetworkManager.Device.Metered property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetMetered(ctx context.Context) (metered uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Metered").Store(&metered)
+func (o *NetworkManager_Device) GetMetered(ctx context.Context) (metered uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Metered").Store(&metered)
 	return
 }
 
 // GetLldpNeighbors gets org.freedesktop.NetworkManager.Device.LldpNeighbors property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetLldpNeighbors(ctx context.Context) (lldpNeighbors []map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "LldpNeighbors").Store(&lldpNeighbors)
+func (o *NetworkManager_Device) GetLldpNeighbors(ctx context.Context) (lldpNeighbors []map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "LldpNeighbors").Store(&lldpNeighbors)
 	return
 }
 
 // GetReal gets org.freedesktop.NetworkManager.Device.Real property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetReal(ctx context.Context) (real bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Real").Store(&real)
+func (o *NetworkManager_Device) GetReal(ctx context.Context) (real bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Real").Store(&real)
 	return
 }
 
 // GetIp4Connectivity gets org.freedesktop.NetworkManager.Device.Ip4Connectivity property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetIp4Connectivity(ctx context.Context) (ip4Connectivity uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Ip4Connectivity").Store(&ip4Connectivity)
+func (o *NetworkManager_Device) GetIp4Connectivity(ctx context.Context) (ip4Connectivity uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Ip4Connectivity").Store(&ip4Connectivity)
 	return
 }
 
 // GetIp6Connectivity gets org.freedesktop.NetworkManager.Device.Ip6Connectivity property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetIp6Connectivity(ctx context.Context) (ip6Connectivity uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "Ip6Connectivity").Store(&ip6Connectivity)
+func (o *NetworkManager_Device) GetIp6Connectivity(ctx context.Context) (ip6Connectivity uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "Ip6Connectivity").Store(&ip6Connectivity)
 	return
 }
 
 // GetInterfaceFlags gets org.freedesktop.NetworkManager.Device.InterfaceFlags property.
-func (o *Org_Freedesktop_NetworkManager_Device) GetInterfaceFlags(ctx context.Context) (interfaceFlags uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Device, "InterfaceFlags").Store(&interfaceFlags)
+func (o *NetworkManager_Device) GetInterfaceFlags(ctx context.Context) (interfaceFlags uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Device, "InterfaceFlags").Store(&interfaceFlags)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Device_StateChangedSignal represents org.freedesktop.NetworkManager.Device.StateChanged signal.
-type Org_Freedesktop_NetworkManager_Device_StateChangedSignal struct {
+// NetworkManager_Device_StateChangedSignal represents org.freedesktop.NetworkManager.Device.StateChanged signal.
+type NetworkManager_Device_StateChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Device_StateChangedSignalBody
+	Body   *NetworkManager_Device_StateChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Device_StateChangedSignal) Name() string {
+func (s *NetworkManager_Device_StateChangedSignal) Name() string {
 	return "StateChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Device_StateChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Device
+func (s *NetworkManager_Device_StateChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Device
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Device_StateChangedSignal) Sender() string {
+func (s *NetworkManager_Device_StateChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_StateChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Device_StateChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Device_StateChangedSignal) values() []interface{} {
+func (s *NetworkManager_Device_StateChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.NewState, s.Body.OldState, s.Body.Reason}
 }
 
-// Org_Freedesktop_NetworkManager_Device_StateChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Device_StateChangedSignalBody struct {
+// NetworkManager_Device_StateChangedSignalBody is body container.
+type NetworkManager_Device_StateChangedSignalBody struct {
 	NewState uint32
 	OldState uint32
 	Reason   uint32
 }
 
-// Org_Freedesktop_NetworkManager_DHCP4Configer is org.freedesktop.NetworkManager.DHCP4Config interface.
-type Org_Freedesktop_NetworkManager_DHCP4Configer interface {
+// NewNetworkManager_DHCP4Config creates and allocates org.freedesktop.NetworkManager.DHCP4Config.
+func NewNetworkManager_DHCP4Config(object dbus.BusObject) *NetworkManager_DHCP4Config {
+	return &NetworkManager_DHCP4Config{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_DHCP4Config exports the given object that implements org.freedesktop.NetworkManager.DHCP4Config on the bus.
-func ExportOrg_Freedesktop_NetworkManager_DHCP4Config(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_DHCP4Configer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_DHCP4Config)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_DHCP4Config unexports org.freedesktop.NetworkManager.DHCP4Config interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_DHCP4Config(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_DHCP4Config)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_DHCP4Config can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_DHCP4Config struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_DHCP4Config) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_DHCP4Config
-}
-
-// NewOrg_Freedesktop_NetworkManager_DHCP4Config creates and allocates org.freedesktop.NetworkManager.DHCP4Config.
-func NewOrg_Freedesktop_NetworkManager_DHCP4Config(object dbus.BusObject) *Org_Freedesktop_NetworkManager_DHCP4Config {
-	return &Org_Freedesktop_NetworkManager_DHCP4Config{object}
-}
-
-// Org_Freedesktop_NetworkManager_DHCP4Config implements org.freedesktop.NetworkManager.DHCP4Config D-Bus interface.
+// NetworkManager_DHCP4Config implements org.freedesktop.NetworkManager.DHCP4Config D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = Dhcp4Config
-type Org_Freedesktop_NetworkManager_DHCP4Config struct {
+type NetworkManager_DHCP4Config struct {
 	object dbus.BusObject
 }
 
 // GetOptions gets org.freedesktop.NetworkManager.DHCP4Config.Options property.
-func (o *Org_Freedesktop_NetworkManager_DHCP4Config) GetOptions(ctx context.Context) (options map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_DHCP4Config, "Options").Store(&options)
+func (o *NetworkManager_DHCP4Config) GetOptions(ctx context.Context) (options map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_DHCP4Config, "Options").Store(&options)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignal represents org.freedesktop.NetworkManager.DHCP4Config.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignal struct {
+// NetworkManager_DHCP4Config_PropertiesChangedSignal represents org.freedesktop.NetworkManager.DHCP4Config.PropertiesChanged signal.
+type NetworkManager_DHCP4Config_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignalBody
+	Body   *NetworkManager_DHCP4Config_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_DHCP4Config_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_DHCP4Config
+func (s *NetworkManager_DHCP4Config_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_DHCP4Config
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_DHCP4Config_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_DHCP4Config_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_DHCP4Config_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_DHCP4Config_PropertiesChangedSignalBody struct {
+// NetworkManager_DHCP4Config_PropertiesChangedSignalBody is body container.
+type NetworkManager_DHCP4Config_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_DHCP6Configer is org.freedesktop.NetworkManager.DHCP6Config interface.
-type Org_Freedesktop_NetworkManager_DHCP6Configer interface {
+// NewNetworkManager_DHCP6Config creates and allocates org.freedesktop.NetworkManager.DHCP6Config.
+func NewNetworkManager_DHCP6Config(object dbus.BusObject) *NetworkManager_DHCP6Config {
+	return &NetworkManager_DHCP6Config{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_DHCP6Config exports the given object that implements org.freedesktop.NetworkManager.DHCP6Config on the bus.
-func ExportOrg_Freedesktop_NetworkManager_DHCP6Config(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_DHCP6Configer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_DHCP6Config)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_DHCP6Config unexports org.freedesktop.NetworkManager.DHCP6Config interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_DHCP6Config(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_DHCP6Config)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_DHCP6Config can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_DHCP6Config struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_DHCP6Config) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_DHCP6Config
-}
-
-// NewOrg_Freedesktop_NetworkManager_DHCP6Config creates and allocates org.freedesktop.NetworkManager.DHCP6Config.
-func NewOrg_Freedesktop_NetworkManager_DHCP6Config(object dbus.BusObject) *Org_Freedesktop_NetworkManager_DHCP6Config {
-	return &Org_Freedesktop_NetworkManager_DHCP6Config{object}
-}
-
-// Org_Freedesktop_NetworkManager_DHCP6Config implements org.freedesktop.NetworkManager.DHCP6Config D-Bus interface.
+// NetworkManager_DHCP6Config implements org.freedesktop.NetworkManager.DHCP6Config D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = Dhcp6Config
-type Org_Freedesktop_NetworkManager_DHCP6Config struct {
+type NetworkManager_DHCP6Config struct {
 	object dbus.BusObject
 }
 
 // GetOptions gets org.freedesktop.NetworkManager.DHCP6Config.Options property.
-func (o *Org_Freedesktop_NetworkManager_DHCP6Config) GetOptions(ctx context.Context) (options map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_DHCP6Config, "Options").Store(&options)
+func (o *NetworkManager_DHCP6Config) GetOptions(ctx context.Context) (options map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_DHCP6Config, "Options").Store(&options)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignal represents org.freedesktop.NetworkManager.DHCP6Config.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignal struct {
+// NetworkManager_DHCP6Config_PropertiesChangedSignal represents org.freedesktop.NetworkManager.DHCP6Config.PropertiesChanged signal.
+type NetworkManager_DHCP6Config_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignalBody
+	Body   *NetworkManager_DHCP6Config_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_DHCP6Config_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_DHCP6Config
+func (s *NetworkManager_DHCP6Config_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_DHCP6Config
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_DHCP6Config_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_DHCP6Config_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_DHCP6Config_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_DHCP6Config_PropertiesChangedSignalBody struct {
+// NetworkManager_DHCP6Config_PropertiesChangedSignalBody is body container.
+type NetworkManager_DHCP6Config_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_DnsManagerer is org.freedesktop.NetworkManager.DnsManager interface.
-type Org_Freedesktop_NetworkManager_DnsManagerer interface {
+// NewNetworkManager_DnsManager creates and allocates org.freedesktop.NetworkManager.DnsManager.
+func NewNetworkManager_DnsManager(object dbus.BusObject) *NetworkManager_DnsManager {
+	return &NetworkManager_DnsManager{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_DnsManager exports the given object that implements org.freedesktop.NetworkManager.DnsManager on the bus.
-func ExportOrg_Freedesktop_NetworkManager_DnsManager(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_DnsManagerer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_DnsManager)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_DnsManager unexports org.freedesktop.NetworkManager.DnsManager interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_DnsManager(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_DnsManager)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_DnsManager can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_DnsManager struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_DnsManager) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_DnsManager
-}
-
-// NewOrg_Freedesktop_NetworkManager_DnsManager creates and allocates org.freedesktop.NetworkManager.DnsManager.
-func NewOrg_Freedesktop_NetworkManager_DnsManager(object dbus.BusObject) *Org_Freedesktop_NetworkManager_DnsManager {
-	return &Org_Freedesktop_NetworkManager_DnsManager{object}
-}
-
-// Org_Freedesktop_NetworkManager_DnsManager implements org.freedesktop.NetworkManager.DnsManager D-Bus interface.
-type Org_Freedesktop_NetworkManager_DnsManager struct {
+// NetworkManager_DnsManager implements org.freedesktop.NetworkManager.DnsManager D-Bus interface.
+type NetworkManager_DnsManager struct {
 	object dbus.BusObject
 }
 
 // GetMode gets org.freedesktop.NetworkManager.DnsManager.Mode property.
-func (o *Org_Freedesktop_NetworkManager_DnsManager) GetMode(ctx context.Context) (mode string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_DnsManager, "Mode").Store(&mode)
+func (o *NetworkManager_DnsManager) GetMode(ctx context.Context) (mode string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_DnsManager, "Mode").Store(&mode)
 	return
 }
 
 // GetRcManager gets org.freedesktop.NetworkManager.DnsManager.RcManager property.
-func (o *Org_Freedesktop_NetworkManager_DnsManager) GetRcManager(ctx context.Context) (rcManager string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_DnsManager, "RcManager").Store(&rcManager)
+func (o *NetworkManager_DnsManager) GetRcManager(ctx context.Context) (rcManager string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_DnsManager, "RcManager").Store(&rcManager)
 	return
 }
 
 // GetConfiguration gets org.freedesktop.NetworkManager.DnsManager.Configuration property.
-func (o *Org_Freedesktop_NetworkManager_DnsManager) GetConfiguration(ctx context.Context) (configuration []map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_DnsManager, "Configuration").Store(&configuration)
+func (o *NetworkManager_DnsManager) GetConfiguration(ctx context.Context) (configuration []map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_DnsManager, "Configuration").Store(&configuration)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_IP4Configer is org.freedesktop.NetworkManager.IP4Config interface.
-type Org_Freedesktop_NetworkManager_IP4Configer interface {
+// NewNetworkManager_IP4Config creates and allocates org.freedesktop.NetworkManager.IP4Config.
+func NewNetworkManager_IP4Config(object dbus.BusObject) *NetworkManager_IP4Config {
+	return &NetworkManager_IP4Config{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_IP4Config exports the given object that implements org.freedesktop.NetworkManager.IP4Config on the bus.
-func ExportOrg_Freedesktop_NetworkManager_IP4Config(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_IP4Configer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_IP4Config)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_IP4Config unexports org.freedesktop.NetworkManager.IP4Config interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_IP4Config(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_IP4Config)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_IP4Config can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_IP4Config struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_IP4Config) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_IP4Config
-}
-
-// NewOrg_Freedesktop_NetworkManager_IP4Config creates and allocates org.freedesktop.NetworkManager.IP4Config.
-func NewOrg_Freedesktop_NetworkManager_IP4Config(object dbus.BusObject) *Org_Freedesktop_NetworkManager_IP4Config {
-	return &Org_Freedesktop_NetworkManager_IP4Config{object}
-}
-
-// Org_Freedesktop_NetworkManager_IP4Config implements org.freedesktop.NetworkManager.IP4Config D-Bus interface.
-type Org_Freedesktop_NetworkManager_IP4Config struct {
+// NetworkManager_IP4Config implements org.freedesktop.NetworkManager.IP4Config D-Bus interface.
+type NetworkManager_IP4Config struct {
 	object dbus.BusObject
 }
 
 // GetAddresses gets org.freedesktop.NetworkManager.IP4Config.Addresses property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetAddresses(ctx context.Context) (addresses [][]uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "Addresses").Store(&addresses)
+func (o *NetworkManager_IP4Config) GetAddresses(ctx context.Context) (addresses [][]uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "Addresses").Store(&addresses)
 	return
 }
 
 // GetAddressData gets org.freedesktop.NetworkManager.IP4Config.AddressData property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetAddressData(ctx context.Context) (addressData []map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "AddressData").Store(&addressData)
+func (o *NetworkManager_IP4Config) GetAddressData(ctx context.Context) (addressData []map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "AddressData").Store(&addressData)
 	return
 }
 
 // GetGateway gets org.freedesktop.NetworkManager.IP4Config.Gateway property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetGateway(ctx context.Context) (gateway string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "Gateway").Store(&gateway)
+func (o *NetworkManager_IP4Config) GetGateway(ctx context.Context) (gateway string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "Gateway").Store(&gateway)
 	return
 }
 
 // GetRoutes gets org.freedesktop.NetworkManager.IP4Config.Routes property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetRoutes(ctx context.Context) (routes [][]uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "Routes").Store(&routes)
+func (o *NetworkManager_IP4Config) GetRoutes(ctx context.Context) (routes [][]uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "Routes").Store(&routes)
 	return
 }
 
 // GetRouteData gets org.freedesktop.NetworkManager.IP4Config.RouteData property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetRouteData(ctx context.Context) (routeData []map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "RouteData").Store(&routeData)
+func (o *NetworkManager_IP4Config) GetRouteData(ctx context.Context) (routeData []map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "RouteData").Store(&routeData)
 	return
 }
 
 // GetNameservers gets org.freedesktop.NetworkManager.IP4Config.Nameservers property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetNameservers(ctx context.Context) (nameservers []uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "Nameservers").Store(&nameservers)
+func (o *NetworkManager_IP4Config) GetNameservers(ctx context.Context) (nameservers []uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "Nameservers").Store(&nameservers)
 	return
 }
 
 // GetNameserverData gets org.freedesktop.NetworkManager.IP4Config.NameserverData property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetNameserverData(ctx context.Context) (nameserverData []map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "NameserverData").Store(&nameserverData)
+func (o *NetworkManager_IP4Config) GetNameserverData(ctx context.Context) (nameserverData []map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "NameserverData").Store(&nameserverData)
 	return
 }
 
 // GetDomains gets org.freedesktop.NetworkManager.IP4Config.Domains property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetDomains(ctx context.Context) (domains []string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "Domains").Store(&domains)
+func (o *NetworkManager_IP4Config) GetDomains(ctx context.Context) (domains []string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "Domains").Store(&domains)
 	return
 }
 
 // GetSearches gets org.freedesktop.NetworkManager.IP4Config.Searches property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetSearches(ctx context.Context) (searches []string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "Searches").Store(&searches)
+func (o *NetworkManager_IP4Config) GetSearches(ctx context.Context) (searches []string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "Searches").Store(&searches)
 	return
 }
 
 // GetDnsOptions gets org.freedesktop.NetworkManager.IP4Config.DnsOptions property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetDnsOptions(ctx context.Context) (dnsOptions []string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "DnsOptions").Store(&dnsOptions)
+func (o *NetworkManager_IP4Config) GetDnsOptions(ctx context.Context) (dnsOptions []string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "DnsOptions").Store(&dnsOptions)
 	return
 }
 
 // GetDnsPriority gets org.freedesktop.NetworkManager.IP4Config.DnsPriority property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetDnsPriority(ctx context.Context) (dnsPriority int32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "DnsPriority").Store(&dnsPriority)
+func (o *NetworkManager_IP4Config) GetDnsPriority(ctx context.Context) (dnsPriority int32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "DnsPriority").Store(&dnsPriority)
 	return
 }
 
 // GetWinsServers gets org.freedesktop.NetworkManager.IP4Config.WinsServers property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetWinsServers(ctx context.Context) (winsServers []uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "WinsServers").Store(&winsServers)
+func (o *NetworkManager_IP4Config) GetWinsServers(ctx context.Context) (winsServers []uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "WinsServers").Store(&winsServers)
 	return
 }
 
 // GetWinsServerData gets org.freedesktop.NetworkManager.IP4Config.WinsServerData property.
-func (o *Org_Freedesktop_NetworkManager_IP4Config) GetWinsServerData(ctx context.Context) (winsServerData []string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP4Config, "WinsServerData").Store(&winsServerData)
+func (o *NetworkManager_IP4Config) GetWinsServerData(ctx context.Context) (winsServerData []string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP4Config, "WinsServerData").Store(&winsServerData)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignal represents org.freedesktop.NetworkManager.IP4Config.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignal struct {
+// NetworkManager_IP4Config_PropertiesChangedSignal represents org.freedesktop.NetworkManager.IP4Config.PropertiesChanged signal.
+type NetworkManager_IP4Config_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignalBody
+	Body   *NetworkManager_IP4Config_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_IP4Config_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_IP4Config
+func (s *NetworkManager_IP4Config_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_IP4Config
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_IP4Config_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_IP4Config_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_IP4Config_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_IP4Config_PropertiesChangedSignalBody struct {
+// NetworkManager_IP4Config_PropertiesChangedSignalBody is body container.
+type NetworkManager_IP4Config_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_IP6Configer is org.freedesktop.NetworkManager.IP6Config interface.
-type Org_Freedesktop_NetworkManager_IP6Configer interface {
+// NewNetworkManager_IP6Config creates and allocates org.freedesktop.NetworkManager.IP6Config.
+func NewNetworkManager_IP6Config(object dbus.BusObject) *NetworkManager_IP6Config {
+	return &NetworkManager_IP6Config{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_IP6Config exports the given object that implements org.freedesktop.NetworkManager.IP6Config on the bus.
-func ExportOrg_Freedesktop_NetworkManager_IP6Config(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_IP6Configer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_IP6Config)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_IP6Config unexports org.freedesktop.NetworkManager.IP6Config interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_IP6Config(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_IP6Config)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_IP6Config can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_IP6Config struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_IP6Config) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_IP6Config
-}
-
-// NewOrg_Freedesktop_NetworkManager_IP6Config creates and allocates org.freedesktop.NetworkManager.IP6Config.
-func NewOrg_Freedesktop_NetworkManager_IP6Config(object dbus.BusObject) *Org_Freedesktop_NetworkManager_IP6Config {
-	return &Org_Freedesktop_NetworkManager_IP6Config{object}
-}
-
-// Org_Freedesktop_NetworkManager_IP6Config implements org.freedesktop.NetworkManager.IP6Config D-Bus interface.
-type Org_Freedesktop_NetworkManager_IP6Config struct {
+// NetworkManager_IP6Config implements org.freedesktop.NetworkManager.IP6Config D-Bus interface.
+type NetworkManager_IP6Config struct {
 	object dbus.BusObject
 }
 
 // GetAddresses gets org.freedesktop.NetworkManager.IP6Config.Addresses property.
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetAddresses(ctx context.Context) (addresses []struct {
+func (o *NetworkManager_IP6Config) GetAddresses(ctx context.Context) (addresses []struct {
 	V0 []byte
 	V1 uint32
 	V2 []byte
 }, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "Addresses").Store(&addresses)
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "Addresses").Store(&addresses)
 	return
 }
 
 // GetAddressData gets org.freedesktop.NetworkManager.IP6Config.AddressData property.
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetAddressData(ctx context.Context) (addressData []map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "AddressData").Store(&addressData)
+func (o *NetworkManager_IP6Config) GetAddressData(ctx context.Context) (addressData []map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "AddressData").Store(&addressData)
 	return
 }
 
 // GetGateway gets org.freedesktop.NetworkManager.IP6Config.Gateway property.
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetGateway(ctx context.Context) (gateway string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "Gateway").Store(&gateway)
+func (o *NetworkManager_IP6Config) GetGateway(ctx context.Context) (gateway string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "Gateway").Store(&gateway)
 	return
 }
 
 // GetRoutes gets org.freedesktop.NetworkManager.IP6Config.Routes property.
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetRoutes(ctx context.Context) (routes []struct {
+func (o *NetworkManager_IP6Config) GetRoutes(ctx context.Context) (routes []struct {
 	V0 []byte
 	V1 uint32
 	V2 []byte
 	V3 uint32
 }, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "Routes").Store(&routes)
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "Routes").Store(&routes)
 	return
 }
 
 // GetRouteData gets org.freedesktop.NetworkManager.IP6Config.RouteData property.
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetRouteData(ctx context.Context) (routeData []map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "RouteData").Store(&routeData)
+func (o *NetworkManager_IP6Config) GetRouteData(ctx context.Context) (routeData []map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "RouteData").Store(&routeData)
 	return
 }
 
@@ -4717,236 +3805,120 @@ func (o *Org_Freedesktop_NetworkManager_IP6Config) GetRouteData(ctx context.Cont
 //
 // Annotations:
 //   @org.gtk.GDBus.C.ForceGVariant = 1
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetNameservers(ctx context.Context) (nameservers [][]byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "Nameservers").Store(&nameservers)
+func (o *NetworkManager_IP6Config) GetNameservers(ctx context.Context) (nameservers [][]byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "Nameservers").Store(&nameservers)
 	return
 }
 
 // GetDomains gets org.freedesktop.NetworkManager.IP6Config.Domains property.
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetDomains(ctx context.Context) (domains []string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "Domains").Store(&domains)
+func (o *NetworkManager_IP6Config) GetDomains(ctx context.Context) (domains []string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "Domains").Store(&domains)
 	return
 }
 
 // GetSearches gets org.freedesktop.NetworkManager.IP6Config.Searches property.
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetSearches(ctx context.Context) (searches []string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "Searches").Store(&searches)
+func (o *NetworkManager_IP6Config) GetSearches(ctx context.Context) (searches []string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "Searches").Store(&searches)
 	return
 }
 
 // GetDnsOptions gets org.freedesktop.NetworkManager.IP6Config.DnsOptions property.
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetDnsOptions(ctx context.Context) (dnsOptions []string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "DnsOptions").Store(&dnsOptions)
+func (o *NetworkManager_IP6Config) GetDnsOptions(ctx context.Context) (dnsOptions []string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "DnsOptions").Store(&dnsOptions)
 	return
 }
 
 // GetDnsPriority gets org.freedesktop.NetworkManager.IP6Config.DnsPriority property.
-func (o *Org_Freedesktop_NetworkManager_IP6Config) GetDnsPriority(ctx context.Context) (dnsPriority int32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_IP6Config, "DnsPriority").Store(&dnsPriority)
+func (o *NetworkManager_IP6Config) GetDnsPriority(ctx context.Context) (dnsPriority int32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_IP6Config, "DnsPriority").Store(&dnsPriority)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignal represents org.freedesktop.NetworkManager.IP6Config.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignal struct {
+// NetworkManager_IP6Config_PropertiesChangedSignal represents org.freedesktop.NetworkManager.IP6Config.PropertiesChanged signal.
+type NetworkManager_IP6Config_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignalBody
+	Body   *NetworkManager_IP6Config_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_IP6Config_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_IP6Config
+func (s *NetworkManager_IP6Config_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_IP6Config
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_IP6Config_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_IP6Config_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_IP6Config_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_IP6Config_PropertiesChangedSignalBody struct {
+// NetworkManager_IP6Config_PropertiesChangedSignalBody is body container.
+type NetworkManager_IP6Config_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_PPPer is org.freedesktop.NetworkManager.PPP interface.
-type Org_Freedesktop_NetworkManager_PPPer interface {
-	// NeedSecrets is org.freedesktop.NetworkManager.PPP.NeedSecrets method.
-	NeedSecrets() (username string, password string, err *dbus.Error)
-	// SetIp4Config is org.freedesktop.NetworkManager.PPP.SetIp4Config method.
-	SetIp4Config(config map[string]dbus.Variant) (err *dbus.Error)
-	// SetIp6Config is org.freedesktop.NetworkManager.PPP.SetIp6Config method.
-	SetIp6Config(config map[string]dbus.Variant) (err *dbus.Error)
-	// SetState is org.freedesktop.NetworkManager.PPP.SetState method.
-	SetState(state uint32) (err *dbus.Error)
-	// SetIfindex is org.freedesktop.NetworkManager.PPP.SetIfindex method.
-	SetIfindex(ifindex int32) (err *dbus.Error)
+// NewNetworkManager_PPP creates and allocates org.freedesktop.NetworkManager.PPP.
+func NewNetworkManager_PPP(object dbus.BusObject) *NetworkManager_PPP {
+	return &NetworkManager_PPP{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_PPP exports the given object that implements org.freedesktop.NetworkManager.PPP on the bus.
-func ExportOrg_Freedesktop_NetworkManager_PPP(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_PPPer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"NeedSecrets":  v.NeedSecrets,
-		"SetIp4Config": v.SetIp4Config,
-		"SetIp6Config": v.SetIp6Config,
-		"SetState":     v.SetState,
-		"SetIfindex":   v.SetIfindex,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_PPP)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_PPP unexports org.freedesktop.NetworkManager.PPP interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_PPP(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_PPP)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_PPP can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_PPP struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_PPP) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_PPP
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_PPP) NeedSecrets() (username string, password string, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_PPP) SetIp4Config(config map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_PPP) SetIp6Config(config map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_PPP) SetState(state uint32) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_PPP) SetIfindex(ifindex int32) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_PPP creates and allocates org.freedesktop.NetworkManager.PPP.
-func NewOrg_Freedesktop_NetworkManager_PPP(object dbus.BusObject) *Org_Freedesktop_NetworkManager_PPP {
-	return &Org_Freedesktop_NetworkManager_PPP{object}
-}
-
-// Org_Freedesktop_NetworkManager_PPP implements org.freedesktop.NetworkManager.PPP D-Bus interface.
+// NetworkManager_PPP implements org.freedesktop.NetworkManager.PPP D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = PPP_Manager
-type Org_Freedesktop_NetworkManager_PPP struct {
+type NetworkManager_PPP struct {
 	object dbus.BusObject
 }
 
 // NeedSecrets calls org.freedesktop.NetworkManager.PPP.NeedSecrets method.
-func (o *Org_Freedesktop_NetworkManager_PPP) NeedSecrets(ctx context.Context) (username string, password string, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_PPP+".NeedSecrets", 0).Store(&username, &password)
+func (o *NetworkManager_PPP) NeedSecrets(ctx context.Context) (username string, password string, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_PPP+".NeedSecrets", 0).Store(&username, &password)
 	return
 }
 
 // SetIp4Config calls org.freedesktop.NetworkManager.PPP.SetIp4Config method.
-func (o *Org_Freedesktop_NetworkManager_PPP) SetIp4Config(ctx context.Context, config map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_PPP+".SetIp4Config", 0, config).Store()
+func (o *NetworkManager_PPP) SetIp4Config(ctx context.Context, config map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_PPP+".SetIp4Config", 0, config).Store()
 	return
 }
 
 // SetIp6Config calls org.freedesktop.NetworkManager.PPP.SetIp6Config method.
-func (o *Org_Freedesktop_NetworkManager_PPP) SetIp6Config(ctx context.Context, config map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_PPP+".SetIp6Config", 0, config).Store()
+func (o *NetworkManager_PPP) SetIp6Config(ctx context.Context, config map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_PPP+".SetIp6Config", 0, config).Store()
 	return
 }
 
 // SetState calls org.freedesktop.NetworkManager.PPP.SetState method.
-func (o *Org_Freedesktop_NetworkManager_PPP) SetState(ctx context.Context, state uint32) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_PPP+".SetState", 0, state).Store()
+func (o *NetworkManager_PPP) SetState(ctx context.Context, state uint32) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_PPP+".SetState", 0, state).Store()
 	return
 }
 
 // SetIfindex calls org.freedesktop.NetworkManager.PPP.SetIfindex method.
-func (o *Org_Freedesktop_NetworkManager_PPP) SetIfindex(ctx context.Context, ifindex int32) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_PPP+".SetIfindex", 0, ifindex).Store()
+func (o *NetworkManager_PPP) SetIfindex(ctx context.Context, ifindex int32) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_PPP+".SetIfindex", 0, ifindex).Store()
 	return
 }
 
-// Org_Freedesktop_NetworkManager_SecretAgenter is org.freedesktop.NetworkManager.SecretAgent interface.
-type Org_Freedesktop_NetworkManager_SecretAgenter interface {
-	// GetSecrets is org.freedesktop.NetworkManager.SecretAgent.GetSecrets method.
-	GetSecrets(connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath, settingName string, hints []string, flags uint32) (secrets map[string]map[string]dbus.Variant, err *dbus.Error)
-	// CancelGetSecrets is org.freedesktop.NetworkManager.SecretAgent.CancelGetSecrets method.
-	CancelGetSecrets(connectionPath dbus.ObjectPath, settingName string) (err *dbus.Error)
-	// SaveSecrets is org.freedesktop.NetworkManager.SecretAgent.SaveSecrets method.
-	SaveSecrets(connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath) (err *dbus.Error)
-	// DeleteSecrets is org.freedesktop.NetworkManager.SecretAgent.DeleteSecrets method.
-	DeleteSecrets(connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath) (err *dbus.Error)
+// NewNetworkManager_SecretAgent creates and allocates org.freedesktop.NetworkManager.SecretAgent.
+func NewNetworkManager_SecretAgent(object dbus.BusObject) *NetworkManager_SecretAgent {
+	return &NetworkManager_SecretAgent{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_SecretAgent exports the given object that implements org.freedesktop.NetworkManager.SecretAgent on the bus.
-func ExportOrg_Freedesktop_NetworkManager_SecretAgent(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_SecretAgenter) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"GetSecrets":       v.GetSecrets,
-		"CancelGetSecrets": v.CancelGetSecrets,
-		"SaveSecrets":      v.SaveSecrets,
-		"DeleteSecrets":    v.DeleteSecrets,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_SecretAgent)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_SecretAgent unexports org.freedesktop.NetworkManager.SecretAgent interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_SecretAgent(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_SecretAgent)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_SecretAgent can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_SecretAgent struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_SecretAgent) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_SecretAgent
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_SecretAgent) GetSecrets(connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath, settingName string, hints []string, flags uint32) (secrets map[string]map[string]dbus.Variant, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_SecretAgent) CancelGetSecrets(connectionPath dbus.ObjectPath, settingName string) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_SecretAgent) SaveSecrets(connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_SecretAgent) DeleteSecrets(connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_SecretAgent creates and allocates org.freedesktop.NetworkManager.SecretAgent.
-func NewOrg_Freedesktop_NetworkManager_SecretAgent(object dbus.BusObject) *Org_Freedesktop_NetworkManager_SecretAgent {
-	return &Org_Freedesktop_NetworkManager_SecretAgent{object}
-}
-
-// Org_Freedesktop_NetworkManager_SecretAgent implements org.freedesktop.NetworkManager.SecretAgent D-Bus interface.
-type Org_Freedesktop_NetworkManager_SecretAgent struct {
+// NetworkManager_SecretAgent implements org.freedesktop.NetworkManager.SecretAgent D-Bus interface.
+type NetworkManager_SecretAgent struct {
 	object dbus.BusObject
 }
 
@@ -4955,8 +3927,8 @@ type Org_Freedesktop_NetworkManager_SecretAgent struct {
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_secret_agent_get_secrets
 //   @org.freedesktop.DBus.GLib.Async =
-func (o *Org_Freedesktop_NetworkManager_SecretAgent) GetSecrets(ctx context.Context, connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath, settingName string, hints []string, flags uint32) (secrets map[string]map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_SecretAgent+".GetSecrets", 0, connection, connectionPath, settingName, hints, flags).Store(&secrets)
+func (o *NetworkManager_SecretAgent) GetSecrets(ctx context.Context, connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath, settingName string, hints []string, flags uint32) (secrets map[string]map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_SecretAgent+".GetSecrets", 0, connection, connectionPath, settingName, hints, flags).Store(&secrets)
 	return
 }
 
@@ -4965,8 +3937,8 @@ func (o *Org_Freedesktop_NetworkManager_SecretAgent) GetSecrets(ctx context.Cont
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_secret_agent_cancel_get_secrets
 //   @org.freedesktop.DBus.GLib.Async =
-func (o *Org_Freedesktop_NetworkManager_SecretAgent) CancelGetSecrets(ctx context.Context, connectionPath dbus.ObjectPath, settingName string) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_SecretAgent+".CancelGetSecrets", 0, connectionPath, settingName).Store()
+func (o *NetworkManager_SecretAgent) CancelGetSecrets(ctx context.Context, connectionPath dbus.ObjectPath, settingName string) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_SecretAgent+".CancelGetSecrets", 0, connectionPath, settingName).Store()
 	return
 }
 
@@ -4975,8 +3947,8 @@ func (o *Org_Freedesktop_NetworkManager_SecretAgent) CancelGetSecrets(ctx contex
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_secret_agent_save_secrets
 //   @org.freedesktop.DBus.GLib.Async =
-func (o *Org_Freedesktop_NetworkManager_SecretAgent) SaveSecrets(ctx context.Context, connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_SecretAgent+".SaveSecrets", 0, connection, connectionPath).Store()
+func (o *NetworkManager_SecretAgent) SaveSecrets(ctx context.Context, connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_SecretAgent+".SaveSecrets", 0, connection, connectionPath).Store()
 	return
 }
 
@@ -4985,764 +3957,477 @@ func (o *Org_Freedesktop_NetworkManager_SecretAgent) SaveSecrets(ctx context.Con
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_secret_agent_delete_secrets
 //   @org.freedesktop.DBus.GLib.Async =
-func (o *Org_Freedesktop_NetworkManager_SecretAgent) DeleteSecrets(ctx context.Context, connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_SecretAgent+".DeleteSecrets", 0, connection, connectionPath).Store()
+func (o *NetworkManager_SecretAgent) DeleteSecrets(ctx context.Context, connection map[string]map[string]dbus.Variant, connectionPath dbus.ObjectPath) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_SecretAgent+".DeleteSecrets", 0, connection, connectionPath).Store()
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Settings_Connectioner is org.freedesktop.NetworkManager.Settings.Connection interface.
-type Org_Freedesktop_NetworkManager_Settings_Connectioner interface {
-	// Update is org.freedesktop.NetworkManager.Settings.Connection.Update method.
-	Update(properties map[string]map[string]dbus.Variant) (err *dbus.Error)
-	// UpdateUnsaved is org.freedesktop.NetworkManager.Settings.Connection.UpdateUnsaved method.
-	UpdateUnsaved(properties map[string]map[string]dbus.Variant) (err *dbus.Error)
-	// Delete is org.freedesktop.NetworkManager.Settings.Connection.Delete method.
-	Delete() (err *dbus.Error)
-	// GetSettings is org.freedesktop.NetworkManager.Settings.Connection.GetSettings method.
-	GetSettings() (settings map[string]map[string]dbus.Variant, err *dbus.Error)
-	// GetSecrets is org.freedesktop.NetworkManager.Settings.Connection.GetSecrets method.
-	GetSecrets(settingName string) (secrets map[string]map[string]dbus.Variant, err *dbus.Error)
-	// ClearSecrets is org.freedesktop.NetworkManager.Settings.Connection.ClearSecrets method.
-	ClearSecrets() (err *dbus.Error)
-	// Save is org.freedesktop.NetworkManager.Settings.Connection.Save method.
-	Save() (err *dbus.Error)
-	// Update2 is org.freedesktop.NetworkManager.Settings.Connection.Update2 method.
-	Update2(settings map[string]map[string]dbus.Variant, flags uint32, args map[string]dbus.Variant) (result map[string]dbus.Variant, err *dbus.Error)
+// NewNetworkManager_Settings_Connection creates and allocates org.freedesktop.NetworkManager.Settings.Connection.
+func NewNetworkManager_Settings_Connection(object dbus.BusObject) *NetworkManager_Settings_Connection {
+	return &NetworkManager_Settings_Connection{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Settings_Connection exports the given object that implements org.freedesktop.NetworkManager.Settings.Connection on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Settings_Connection(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Settings_Connectioner) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"Update":        v.Update,
-		"UpdateUnsaved": v.UpdateUnsaved,
-		"Delete":        v.Delete,
-		"GetSettings":   v.GetSettings,
-		"GetSecrets":    v.GetSecrets,
-		"ClearSecrets":  v.ClearSecrets,
-		"Save":          v.Save,
-		"Update2":       v.Update2,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Settings_Connection unexports org.freedesktop.NetworkManager.Settings.Connection interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Settings_Connection(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection) Update(properties map[string]map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection) UpdateUnsaved(properties map[string]map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection) Delete() (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection) GetSettings() (settings map[string]map[string]dbus.Variant, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection) GetSecrets(settingName string) (secrets map[string]map[string]dbus.Variant, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection) ClearSecrets() (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection) Save() (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings_Connection) Update2(settings map[string]map[string]dbus.Variant, flags uint32, args map[string]dbus.Variant) (result map[string]dbus.Variant, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_Settings_Connection creates and allocates org.freedesktop.NetworkManager.Settings.Connection.
-func NewOrg_Freedesktop_NetworkManager_Settings_Connection(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Settings_Connection {
-	return &Org_Freedesktop_NetworkManager_Settings_Connection{object}
-}
-
-// Org_Freedesktop_NetworkManager_Settings_Connection implements org.freedesktop.NetworkManager.Settings.Connection D-Bus interface.
-type Org_Freedesktop_NetworkManager_Settings_Connection struct {
+// NetworkManager_Settings_Connection implements org.freedesktop.NetworkManager.Settings.Connection D-Bus interface.
+type NetworkManager_Settings_Connection struct {
 	object dbus.BusObject
 }
 
 // Update calls org.freedesktop.NetworkManager.Settings.Connection.Update method.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) Update(ctx context.Context, properties map[string]map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection+".Update", 0, properties).Store()
+func (o *NetworkManager_Settings_Connection) Update(ctx context.Context, properties map[string]map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings_Connection+".Update", 0, properties).Store()
 	return
 }
 
 // UpdateUnsaved calls org.freedesktop.NetworkManager.Settings.Connection.UpdateUnsaved method.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) UpdateUnsaved(ctx context.Context, properties map[string]map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection+".UpdateUnsaved", 0, properties).Store()
+func (o *NetworkManager_Settings_Connection) UpdateUnsaved(ctx context.Context, properties map[string]map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings_Connection+".UpdateUnsaved", 0, properties).Store()
 	return
 }
 
 // Delete calls org.freedesktop.NetworkManager.Settings.Connection.Delete method.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) Delete(ctx context.Context) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection+".Delete", 0).Store()
+func (o *NetworkManager_Settings_Connection) Delete(ctx context.Context) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings_Connection+".Delete", 0).Store()
 	return
 }
 
 // GetSettings calls org.freedesktop.NetworkManager.Settings.Connection.GetSettings method.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) GetSettings(ctx context.Context) (settings map[string]map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection+".GetSettings", 0).Store(&settings)
+func (o *NetworkManager_Settings_Connection) GetSettings(ctx context.Context) (settings map[string]map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings_Connection+".GetSettings", 0).Store(&settings)
 	return
 }
 
 // GetSecrets calls org.freedesktop.NetworkManager.Settings.Connection.GetSecrets method.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) GetSecrets(ctx context.Context, settingName string) (secrets map[string]map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection+".GetSecrets", 0, settingName).Store(&secrets)
+func (o *NetworkManager_Settings_Connection) GetSecrets(ctx context.Context, settingName string) (secrets map[string]map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings_Connection+".GetSecrets", 0, settingName).Store(&secrets)
 	return
 }
 
 // ClearSecrets calls org.freedesktop.NetworkManager.Settings.Connection.ClearSecrets method.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) ClearSecrets(ctx context.Context) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection+".ClearSecrets", 0).Store()
+func (o *NetworkManager_Settings_Connection) ClearSecrets(ctx context.Context) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings_Connection+".ClearSecrets", 0).Store()
 	return
 }
 
 // Save calls org.freedesktop.NetworkManager.Settings.Connection.Save method.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) Save(ctx context.Context) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection+".Save", 0).Store()
+func (o *NetworkManager_Settings_Connection) Save(ctx context.Context) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings_Connection+".Save", 0).Store()
 	return
 }
 
 // Update2 calls org.freedesktop.NetworkManager.Settings.Connection.Update2 method.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) Update2(ctx context.Context, settings map[string]map[string]dbus.Variant, flags uint32, args map[string]dbus.Variant) (result map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection+".Update2", 0, settings, flags, args).Store(&result)
+func (o *NetworkManager_Settings_Connection) Update2(ctx context.Context, settings map[string]map[string]dbus.Variant, flags uint32, args map[string]dbus.Variant) (result map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings_Connection+".Update2", 0, settings, flags, args).Store(&result)
 	return
 }
 
 // GetUnsaved gets org.freedesktop.NetworkManager.Settings.Connection.Unsaved property.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) GetUnsaved(ctx context.Context) (unsaved bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection, "Unsaved").Store(&unsaved)
+func (o *NetworkManager_Settings_Connection) GetUnsaved(ctx context.Context) (unsaved bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Settings_Connection, "Unsaved").Store(&unsaved)
 	return
 }
 
 // GetFlags gets org.freedesktop.NetworkManager.Settings.Connection.Flags property.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) GetFlags(ctx context.Context) (flags uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection, "Flags").Store(&flags)
+func (o *NetworkManager_Settings_Connection) GetFlags(ctx context.Context) (flags uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Settings_Connection, "Flags").Store(&flags)
 	return
 }
 
 // GetFilename gets org.freedesktop.NetworkManager.Settings.Connection.Filename property.
-func (o *Org_Freedesktop_NetworkManager_Settings_Connection) GetFilename(ctx context.Context) (filename string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection, "Filename").Store(&filename)
+func (o *NetworkManager_Settings_Connection) GetFilename(ctx context.Context) (filename string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Settings_Connection, "Filename").Store(&filename)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignal represents org.freedesktop.NetworkManager.Settings.Connection.Updated signal.
-type Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignal struct {
+// NetworkManager_Settings_Connection_UpdatedSignal represents org.freedesktop.NetworkManager.Settings.Connection.Updated signal.
+type NetworkManager_Settings_Connection_UpdatedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignalBody
+	Body   *NetworkManager_Settings_Connection_UpdatedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignal) Name() string {
+func (s *NetworkManager_Settings_Connection_UpdatedSignal) Name() string {
 	return "Updated"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection
+func (s *NetworkManager_Settings_Connection_UpdatedSignal) Interface() string {
+	return InterfaceNetworkManager_Settings_Connection
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignal) Sender() string {
+func (s *NetworkManager_Settings_Connection_UpdatedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Settings_Connection_UpdatedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignal) values() []interface{} {
+func (s *NetworkManager_Settings_Connection_UpdatedSignal) values() []interface{} {
 	return []interface{}{}
 }
 
-// Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Settings_Connection_UpdatedSignalBody struct {
+// NetworkManager_Settings_Connection_UpdatedSignalBody is body container.
+type NetworkManager_Settings_Connection_UpdatedSignalBody struct {
 }
 
-// Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignal represents org.freedesktop.NetworkManager.Settings.Connection.Removed signal.
-type Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignal struct {
+// NetworkManager_Settings_Connection_RemovedSignal represents org.freedesktop.NetworkManager.Settings.Connection.Removed signal.
+type NetworkManager_Settings_Connection_RemovedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignalBody
+	Body   *NetworkManager_Settings_Connection_RemovedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignal) Name() string {
+func (s *NetworkManager_Settings_Connection_RemovedSignal) Name() string {
 	return "Removed"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection
+func (s *NetworkManager_Settings_Connection_RemovedSignal) Interface() string {
+	return InterfaceNetworkManager_Settings_Connection
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignal) Sender() string {
+func (s *NetworkManager_Settings_Connection_RemovedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Settings_Connection_RemovedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignal) values() []interface{} {
+func (s *NetworkManager_Settings_Connection_RemovedSignal) values() []interface{} {
 	return []interface{}{}
 }
 
-// Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Settings_Connection_RemovedSignalBody struct {
+// NetworkManager_Settings_Connection_RemovedSignalBody is body container.
+type NetworkManager_Settings_Connection_RemovedSignalBody struct {
 }
 
-// Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Settings.Connection.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignal struct {
+// NetworkManager_Settings_Connection_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Settings.Connection.PropertiesChanged signal.
+type NetworkManager_Settings_Connection_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignalBody
+	Body   *NetworkManager_Settings_Connection_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Settings_Connection_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Settings_Connection
+func (s *NetworkManager_Settings_Connection_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Settings_Connection
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Settings_Connection_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Settings_Connection_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Settings_Connection_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Settings_Connection_PropertiesChangedSignalBody struct {
+// NetworkManager_Settings_Connection_PropertiesChangedSignalBody is body container.
+type NetworkManager_Settings_Connection_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Settingser is org.freedesktop.NetworkManager.Settings interface.
-type Org_Freedesktop_NetworkManager_Settingser interface {
-	// ListConnections is org.freedesktop.NetworkManager.Settings.ListConnections method.
-	ListConnections() (connections []dbus.ObjectPath, err *dbus.Error)
-	// GetConnectionByUuid is org.freedesktop.NetworkManager.Settings.GetConnectionByUuid method.
-	GetConnectionByUuid(uuid string) (connection dbus.ObjectPath, err *dbus.Error)
-	// AddConnection is org.freedesktop.NetworkManager.Settings.AddConnection method.
-	AddConnection(connection map[string]map[string]dbus.Variant) (path dbus.ObjectPath, err *dbus.Error)
-	// AddConnectionUnsaved is org.freedesktop.NetworkManager.Settings.AddConnectionUnsaved method.
-	AddConnectionUnsaved(connection map[string]map[string]dbus.Variant) (path dbus.ObjectPath, err *dbus.Error)
-	// AddConnection2 is org.freedesktop.NetworkManager.Settings.AddConnection2 method.
-	AddConnection2(settings map[string]map[string]dbus.Variant, flags uint32, args map[string]dbus.Variant) (path dbus.ObjectPath, result map[string]dbus.Variant, err *dbus.Error)
-	// LoadConnections is org.freedesktop.NetworkManager.Settings.LoadConnections method.
-	LoadConnections(filenames []string) (status bool, failures []string, err *dbus.Error)
-	// ReloadConnections is org.freedesktop.NetworkManager.Settings.ReloadConnections method.
-	ReloadConnections() (status bool, err *dbus.Error)
-	// SaveHostname is org.freedesktop.NetworkManager.Settings.SaveHostname method.
-	SaveHostname(hostname string) (err *dbus.Error)
+// NewNetworkManager_Settings creates and allocates org.freedesktop.NetworkManager.Settings.
+func NewNetworkManager_Settings(object dbus.BusObject) *NetworkManager_Settings {
+	return &NetworkManager_Settings{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_Settings exports the given object that implements org.freedesktop.NetworkManager.Settings on the bus.
-func ExportOrg_Freedesktop_NetworkManager_Settings(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_Settingser) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"ListConnections":      v.ListConnections,
-		"GetConnectionByUuid":  v.GetConnectionByUuid,
-		"AddConnection":        v.AddConnection,
-		"AddConnectionUnsaved": v.AddConnectionUnsaved,
-		"AddConnection2":       v.AddConnection2,
-		"LoadConnections":      v.LoadConnections,
-		"ReloadConnections":    v.ReloadConnections,
-		"SaveHostname":         v.SaveHostname,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_Settings)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_Settings unexports org.freedesktop.NetworkManager.Settings interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_Settings(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_Settings)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_Settings can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_Settings struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Settings
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings) ListConnections() (connections []dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings) GetConnectionByUuid(uuid string) (connection dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings) AddConnection(connection map[string]map[string]dbus.Variant) (path dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings) AddConnectionUnsaved(connection map[string]map[string]dbus.Variant) (path dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings) AddConnection2(settings map[string]map[string]dbus.Variant, flags uint32, args map[string]dbus.Variant) (path dbus.ObjectPath, result map[string]dbus.Variant, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings) LoadConnections(filenames []string) (status bool, failures []string, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings) ReloadConnections() (status bool, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_Settings) SaveHostname(hostname string) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_Settings creates and allocates org.freedesktop.NetworkManager.Settings.
-func NewOrg_Freedesktop_NetworkManager_Settings(object dbus.BusObject) *Org_Freedesktop_NetworkManager_Settings {
-	return &Org_Freedesktop_NetworkManager_Settings{object}
-}
-
-// Org_Freedesktop_NetworkManager_Settings implements org.freedesktop.NetworkManager.Settings D-Bus interface.
-type Org_Freedesktop_NetworkManager_Settings struct {
+// NetworkManager_Settings implements org.freedesktop.NetworkManager.Settings D-Bus interface.
+type NetworkManager_Settings struct {
 	object dbus.BusObject
 }
 
 // ListConnections calls org.freedesktop.NetworkManager.Settings.ListConnections method.
-func (o *Org_Freedesktop_NetworkManager_Settings) ListConnections(ctx context.Context) (connections []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings+".ListConnections", 0).Store(&connections)
+func (o *NetworkManager_Settings) ListConnections(ctx context.Context) (connections []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings+".ListConnections", 0).Store(&connections)
 	return
 }
 
 // GetConnectionByUuid calls org.freedesktop.NetworkManager.Settings.GetConnectionByUuid method.
-func (o *Org_Freedesktop_NetworkManager_Settings) GetConnectionByUuid(ctx context.Context, uuid string) (connection dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings+".GetConnectionByUuid", 0, uuid).Store(&connection)
+func (o *NetworkManager_Settings) GetConnectionByUuid(ctx context.Context, uuid string) (connection dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings+".GetConnectionByUuid", 0, uuid).Store(&connection)
 	return
 }
 
 // AddConnection calls org.freedesktop.NetworkManager.Settings.AddConnection method.
-func (o *Org_Freedesktop_NetworkManager_Settings) AddConnection(ctx context.Context, connection map[string]map[string]dbus.Variant) (path dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings+".AddConnection", 0, connection).Store(&path)
+func (o *NetworkManager_Settings) AddConnection(ctx context.Context, connection map[string]map[string]dbus.Variant) (path dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings+".AddConnection", 0, connection).Store(&path)
 	return
 }
 
 // AddConnectionUnsaved calls org.freedesktop.NetworkManager.Settings.AddConnectionUnsaved method.
-func (o *Org_Freedesktop_NetworkManager_Settings) AddConnectionUnsaved(ctx context.Context, connection map[string]map[string]dbus.Variant) (path dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings+".AddConnectionUnsaved", 0, connection).Store(&path)
+func (o *NetworkManager_Settings) AddConnectionUnsaved(ctx context.Context, connection map[string]map[string]dbus.Variant) (path dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings+".AddConnectionUnsaved", 0, connection).Store(&path)
 	return
 }
 
 // AddConnection2 calls org.freedesktop.NetworkManager.Settings.AddConnection2 method.
-func (o *Org_Freedesktop_NetworkManager_Settings) AddConnection2(ctx context.Context, settings map[string]map[string]dbus.Variant, flags uint32, args map[string]dbus.Variant) (path dbus.ObjectPath, result map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings+".AddConnection2", 0, settings, flags, args).Store(&path, &result)
+func (o *NetworkManager_Settings) AddConnection2(ctx context.Context, settings map[string]map[string]dbus.Variant, flags uint32, args map[string]dbus.Variant) (path dbus.ObjectPath, result map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings+".AddConnection2", 0, settings, flags, args).Store(&path, &result)
 	return
 }
 
 // LoadConnections calls org.freedesktop.NetworkManager.Settings.LoadConnections method.
-func (o *Org_Freedesktop_NetworkManager_Settings) LoadConnections(ctx context.Context, filenames []string) (status bool, failures []string, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings+".LoadConnections", 0, filenames).Store(&status, &failures)
+func (o *NetworkManager_Settings) LoadConnections(ctx context.Context, filenames []string) (status bool, failures []string, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings+".LoadConnections", 0, filenames).Store(&status, &failures)
 	return
 }
 
 // ReloadConnections calls org.freedesktop.NetworkManager.Settings.ReloadConnections method.
-func (o *Org_Freedesktop_NetworkManager_Settings) ReloadConnections(ctx context.Context) (status bool, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings+".ReloadConnections", 0).Store(&status)
+func (o *NetworkManager_Settings) ReloadConnections(ctx context.Context) (status bool, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings+".ReloadConnections", 0).Store(&status)
 	return
 }
 
 // SaveHostname calls org.freedesktop.NetworkManager.Settings.SaveHostname method.
-func (o *Org_Freedesktop_NetworkManager_Settings) SaveHostname(ctx context.Context, hostname string) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_Settings+".SaveHostname", 0, hostname).Store()
+func (o *NetworkManager_Settings) SaveHostname(ctx context.Context, hostname string) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_Settings+".SaveHostname", 0, hostname).Store()
 	return
 }
 
 // GetConnections gets org.freedesktop.NetworkManager.Settings.Connections property.
-func (o *Org_Freedesktop_NetworkManager_Settings) GetConnections(ctx context.Context) (connections []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Settings, "Connections").Store(&connections)
+func (o *NetworkManager_Settings) GetConnections(ctx context.Context) (connections []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Settings, "Connections").Store(&connections)
 	return
 }
 
 // GetHostname gets org.freedesktop.NetworkManager.Settings.Hostname property.
-func (o *Org_Freedesktop_NetworkManager_Settings) GetHostname(ctx context.Context) (hostname string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Settings, "Hostname").Store(&hostname)
+func (o *NetworkManager_Settings) GetHostname(ctx context.Context) (hostname string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Settings, "Hostname").Store(&hostname)
 	return
 }
 
 // GetCanModify gets org.freedesktop.NetworkManager.Settings.CanModify property.
-func (o *Org_Freedesktop_NetworkManager_Settings) GetCanModify(ctx context.Context) (canModify bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_Settings, "CanModify").Store(&canModify)
+func (o *NetworkManager_Settings) GetCanModify(ctx context.Context) (canModify bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_Settings, "CanModify").Store(&canModify)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Settings.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignal struct {
+// NetworkManager_Settings_PropertiesChangedSignal represents org.freedesktop.NetworkManager.Settings.PropertiesChanged signal.
+type NetworkManager_Settings_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignalBody
+	Body   *NetworkManager_Settings_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_Settings_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Settings
+func (s *NetworkManager_Settings_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_Settings
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_Settings_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Settings_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_Settings_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Settings_PropertiesChangedSignalBody struct {
+// NetworkManager_Settings_PropertiesChangedSignalBody is body container.
+type NetworkManager_Settings_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_Settings_NewConnectionSignal represents org.freedesktop.NetworkManager.Settings.NewConnection signal.
-type Org_Freedesktop_NetworkManager_Settings_NewConnectionSignal struct {
+// NetworkManager_Settings_NewConnectionSignal represents org.freedesktop.NetworkManager.Settings.NewConnection signal.
+type NetworkManager_Settings_NewConnectionSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Settings_NewConnectionSignalBody
+	Body   *NetworkManager_Settings_NewConnectionSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Settings_NewConnectionSignal) Name() string {
+func (s *NetworkManager_Settings_NewConnectionSignal) Name() string {
 	return "NewConnection"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Settings_NewConnectionSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Settings
+func (s *NetworkManager_Settings_NewConnectionSignal) Interface() string {
+	return InterfaceNetworkManager_Settings
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Settings_NewConnectionSignal) Sender() string {
+func (s *NetworkManager_Settings_NewConnectionSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_NewConnectionSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Settings_NewConnectionSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_NewConnectionSignal) values() []interface{} {
+func (s *NetworkManager_Settings_NewConnectionSignal) values() []interface{} {
 	return []interface{}{s.Body.Connection}
 }
 
-// Org_Freedesktop_NetworkManager_Settings_NewConnectionSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Settings_NewConnectionSignalBody struct {
+// NetworkManager_Settings_NewConnectionSignalBody is body container.
+type NetworkManager_Settings_NewConnectionSignalBody struct {
 	Connection dbus.ObjectPath
 }
 
-// Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignal represents org.freedesktop.NetworkManager.Settings.ConnectionRemoved signal.
-type Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignal struct {
+// NetworkManager_Settings_ConnectionRemovedSignal represents org.freedesktop.NetworkManager.Settings.ConnectionRemoved signal.
+type NetworkManager_Settings_ConnectionRemovedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignalBody
+	Body   *NetworkManager_Settings_ConnectionRemovedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignal) Name() string {
+func (s *NetworkManager_Settings_ConnectionRemovedSignal) Name() string {
 	return "ConnectionRemoved"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_Settings
+func (s *NetworkManager_Settings_ConnectionRemovedSignal) Interface() string {
+	return InterfaceNetworkManager_Settings
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignal) Sender() string {
+func (s *NetworkManager_Settings_ConnectionRemovedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_Settings_ConnectionRemovedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignal) values() []interface{} {
+func (s *NetworkManager_Settings_ConnectionRemovedSignal) values() []interface{} {
 	return []interface{}{s.Body.Connection}
 }
 
-// Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_Settings_ConnectionRemovedSignalBody struct {
+// NetworkManager_Settings_ConnectionRemovedSignalBody is body container.
+type NetworkManager_Settings_ConnectionRemovedSignalBody struct {
 	Connection dbus.ObjectPath
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Connectioner is org.freedesktop.NetworkManager.VPN.Connection interface.
-type Org_Freedesktop_NetworkManager_VPN_Connectioner interface {
+// NewNetworkManager_VPN_Connection creates and allocates org.freedesktop.NetworkManager.VPN.Connection.
+func NewNetworkManager_VPN_Connection(object dbus.BusObject) *NetworkManager_VPN_Connection {
+	return &NetworkManager_VPN_Connection{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_VPN_Connection exports the given object that implements org.freedesktop.NetworkManager.VPN.Connection on the bus.
-func ExportOrg_Freedesktop_NetworkManager_VPN_Connection(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_VPN_Connectioner) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_VPN_Connection unexports org.freedesktop.NetworkManager.VPN.Connection interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_VPN_Connection(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_VPN_Connection can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_VPN_Connection struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Connection) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection
-}
-
-// NewOrg_Freedesktop_NetworkManager_VPN_Connection creates and allocates org.freedesktop.NetworkManager.VPN.Connection.
-func NewOrg_Freedesktop_NetworkManager_VPN_Connection(object dbus.BusObject) *Org_Freedesktop_NetworkManager_VPN_Connection {
-	return &Org_Freedesktop_NetworkManager_VPN_Connection{object}
-}
-
-// Org_Freedesktop_NetworkManager_VPN_Connection implements org.freedesktop.NetworkManager.VPN.Connection D-Bus interface.
+// NetworkManager_VPN_Connection implements org.freedesktop.NetworkManager.VPN.Connection D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = VpnConnection
-type Org_Freedesktop_NetworkManager_VPN_Connection struct {
+type NetworkManager_VPN_Connection struct {
 	object dbus.BusObject
 }
 
 // GetVpnState gets org.freedesktop.NetworkManager.VPN.Connection.VpnState property.
-func (o *Org_Freedesktop_NetworkManager_VPN_Connection) GetVpnState(ctx context.Context) (vpnState uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection, "VpnState").Store(&vpnState)
+func (o *NetworkManager_VPN_Connection) GetVpnState(ctx context.Context) (vpnState uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_VPN_Connection, "VpnState").Store(&vpnState)
 	return
 }
 
 // GetBanner gets org.freedesktop.NetworkManager.VPN.Connection.Banner property.
-func (o *Org_Freedesktop_NetworkManager_VPN_Connection) GetBanner(ctx context.Context) (banner string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection, "Banner").Store(&banner)
+func (o *NetworkManager_VPN_Connection) GetBanner(ctx context.Context) (banner string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_VPN_Connection, "Banner").Store(&banner)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignal represents org.freedesktop.NetworkManager.VPN.Connection.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignal struct {
+// NetworkManager_VPN_Connection_PropertiesChangedSignal represents org.freedesktop.NetworkManager.VPN.Connection.PropertiesChanged signal.
+type NetworkManager_VPN_Connection_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignalBody
+	Body   *NetworkManager_VPN_Connection_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_VPN_Connection_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection
+func (s *NetworkManager_VPN_Connection_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_VPN_Connection
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_VPN_Connection_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_VPN_Connection_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_VPN_Connection_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_VPN_Connection_PropertiesChangedSignalBody struct {
+// NetworkManager_VPN_Connection_PropertiesChangedSignalBody is body container.
+type NetworkManager_VPN_Connection_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignal represents org.freedesktop.NetworkManager.VPN.Connection.VpnStateChanged signal.
-type Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignal struct {
+// NetworkManager_VPN_Connection_VpnStateChangedSignal represents org.freedesktop.NetworkManager.VPN.Connection.VpnStateChanged signal.
+type NetworkManager_VPN_Connection_VpnStateChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignalBody
+	Body   *NetworkManager_VPN_Connection_VpnStateChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignal) Name() string {
+func (s *NetworkManager_VPN_Connection_VpnStateChangedSignal) Name() string {
 	return "VpnStateChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Connection
+func (s *NetworkManager_VPN_Connection_VpnStateChangedSignal) Interface() string {
+	return InterfaceNetworkManager_VPN_Connection
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignal) Sender() string {
+func (s *NetworkManager_VPN_Connection_VpnStateChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_VPN_Connection_VpnStateChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignal) values() []interface{} {
+func (s *NetworkManager_VPN_Connection_VpnStateChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.State, s.Body.Reason}
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_VPN_Connection_VpnStateChangedSignalBody struct {
+// NetworkManager_VPN_Connection_VpnStateChangedSignalBody is body container.
+type NetworkManager_VPN_Connection_VpnStateChangedSignalBody struct {
 	State  uint32
 	Reason uint32
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Pluginer is org.freedesktop.NetworkManager.VPN.Plugin interface.
-type Org_Freedesktop_NetworkManager_VPN_Pluginer interface {
-	// Connect is org.freedesktop.NetworkManager.VPN.Plugin.Connect method.
-	Connect(connection map[string]map[string]dbus.Variant) (err *dbus.Error)
-	// ConnectInteractive is org.freedesktop.NetworkManager.VPN.Plugin.ConnectInteractive method.
-	ConnectInteractive(connection map[string]map[string]dbus.Variant, details map[string]dbus.Variant) (err *dbus.Error)
-	// NeedSecrets is org.freedesktop.NetworkManager.VPN.Plugin.NeedSecrets method.
-	NeedSecrets(settings map[string]map[string]dbus.Variant) (settingName string, err *dbus.Error)
-	// Disconnect is org.freedesktop.NetworkManager.VPN.Plugin.Disconnect method.
-	Disconnect() (err *dbus.Error)
-	// SetConfig is org.freedesktop.NetworkManager.VPN.Plugin.SetConfig method.
-	SetConfig(config map[string]dbus.Variant) (err *dbus.Error)
-	// SetIp4Config is org.freedesktop.NetworkManager.VPN.Plugin.SetIp4Config method.
-	SetIp4Config(config map[string]dbus.Variant) (err *dbus.Error)
-	// SetIp6Config is org.freedesktop.NetworkManager.VPN.Plugin.SetIp6Config method.
-	SetIp6Config(config map[string]dbus.Variant) (err *dbus.Error)
-	// SetFailure is org.freedesktop.NetworkManager.VPN.Plugin.SetFailure method.
-	SetFailure(reason string) (err *dbus.Error)
-	// NewSecrets is org.freedesktop.NetworkManager.VPN.Plugin.NewSecrets method.
-	NewSecrets(connection map[string]map[string]dbus.Variant) (err *dbus.Error)
+// NewNetworkManager_VPN_Plugin creates and allocates org.freedesktop.NetworkManager.VPN.Plugin.
+func NewNetworkManager_VPN_Plugin(object dbus.BusObject) *NetworkManager_VPN_Plugin {
+	return &NetworkManager_VPN_Plugin{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_VPN_Plugin exports the given object that implements org.freedesktop.NetworkManager.VPN.Plugin on the bus.
-func ExportOrg_Freedesktop_NetworkManager_VPN_Plugin(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_VPN_Pluginer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"Connect":            v.Connect,
-		"ConnectInteractive": v.ConnectInteractive,
-		"NeedSecrets":        v.NeedSecrets,
-		"Disconnect":         v.Disconnect,
-		"SetConfig":          v.SetConfig,
-		"SetIp4Config":       v.SetIp4Config,
-		"SetIp6Config":       v.SetIp6Config,
-		"SetFailure":         v.SetFailure,
-		"NewSecrets":         v.NewSecrets,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_VPN_Plugin unexports org.freedesktop.NetworkManager.VPN.Plugin interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_VPN_Plugin(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) Connect(connection map[string]map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) ConnectInteractive(connection map[string]map[string]dbus.Variant, details map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) NeedSecrets(settings map[string]map[string]dbus.Variant) (settingName string, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) Disconnect() (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) SetConfig(config map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) SetIp4Config(config map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) SetIp6Config(config map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) SetFailure(reason string) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_VPN_Plugin) NewSecrets(connection map[string]map[string]dbus.Variant) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager_VPN_Plugin creates and allocates org.freedesktop.NetworkManager.VPN.Plugin.
-func NewOrg_Freedesktop_NetworkManager_VPN_Plugin(object dbus.BusObject) *Org_Freedesktop_NetworkManager_VPN_Plugin {
-	return &Org_Freedesktop_NetworkManager_VPN_Plugin{object}
-}
-
-// Org_Freedesktop_NetworkManager_VPN_Plugin implements org.freedesktop.NetworkManager.VPN.Plugin D-Bus interface.
+// NetworkManager_VPN_Plugin implements org.freedesktop.NetworkManager.VPN.Plugin D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = VpnPlugin
-type Org_Freedesktop_NetworkManager_VPN_Plugin struct {
+type NetworkManager_VPN_Plugin struct {
 	object dbus.BusObject
 }
 
@@ -5750,8 +4435,8 @@ type Org_Freedesktop_NetworkManager_VPN_Plugin struct {
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_vpn_plugin_connect
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) Connect(ctx context.Context, connection map[string]map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin+".Connect", 0, connection).Store()
+func (o *NetworkManager_VPN_Plugin) Connect(ctx context.Context, connection map[string]map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_VPN_Plugin+".Connect", 0, connection).Store()
 	return
 }
 
@@ -5759,8 +4444,8 @@ func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) Connect(ctx context.Context,
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_vpn_plugin_connect_interactive
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) ConnectInteractive(ctx context.Context, connection map[string]map[string]dbus.Variant, details map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin+".ConnectInteractive", 0, connection, details).Store()
+func (o *NetworkManager_VPN_Plugin) ConnectInteractive(ctx context.Context, connection map[string]map[string]dbus.Variant, details map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_VPN_Plugin+".ConnectInteractive", 0, connection, details).Store()
 	return
 }
 
@@ -5768,8 +4453,8 @@ func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) ConnectInteractive(ctx conte
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_vpn_plugin_need_secrets
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) NeedSecrets(ctx context.Context, settings map[string]map[string]dbus.Variant) (settingName string, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin+".NeedSecrets", 0, settings).Store(&settingName)
+func (o *NetworkManager_VPN_Plugin) NeedSecrets(ctx context.Context, settings map[string]map[string]dbus.Variant) (settingName string, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_VPN_Plugin+".NeedSecrets", 0, settings).Store(&settingName)
 	return
 }
 
@@ -5777,8 +4462,8 @@ func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) NeedSecrets(ctx context.Cont
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_vpn_plugin_disconnect
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) Disconnect(ctx context.Context) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin+".Disconnect", 0).Store()
+func (o *NetworkManager_VPN_Plugin) Disconnect(ctx context.Context) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_VPN_Plugin+".Disconnect", 0).Store()
 	return
 }
 
@@ -5786,8 +4471,8 @@ func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) Disconnect(ctx context.Conte
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_vpn_plugin_set_config
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) SetConfig(ctx context.Context, config map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin+".SetConfig", 0, config).Store()
+func (o *NetworkManager_VPN_Plugin) SetConfig(ctx context.Context, config map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_VPN_Plugin+".SetConfig", 0, config).Store()
 	return
 }
 
@@ -5795,8 +4480,8 @@ func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) SetConfig(ctx context.Contex
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_vpn_plugin_set_ip4_config
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) SetIp4Config(ctx context.Context, config map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin+".SetIp4Config", 0, config).Store()
+func (o *NetworkManager_VPN_Plugin) SetIp4Config(ctx context.Context, config map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_VPN_Plugin+".SetIp4Config", 0, config).Store()
 	return
 }
 
@@ -5804,8 +4489,8 @@ func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) SetIp4Config(ctx context.Con
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_vpn_plugin_set_ip6_config
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) SetIp6Config(ctx context.Context, config map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin+".SetIp6Config", 0, config).Store()
+func (o *NetworkManager_VPN_Plugin) SetIp6Config(ctx context.Context, config map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_VPN_Plugin+".SetIp6Config", 0, config).Store()
 	return
 }
 
@@ -5813,8 +4498,8 @@ func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) SetIp6Config(ctx context.Con
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_vpn_plugin_set_failure
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) SetFailure(ctx context.Context, reason string) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin+".SetFailure", 0, reason).Store()
+func (o *NetworkManager_VPN_Plugin) SetFailure(ctx context.Context, reason string) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_VPN_Plugin+".SetFailure", 0, reason).Store()
 	return
 }
 
@@ -5822,637 +4507,421 @@ func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) SetFailure(ctx context.Conte
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_vpn_plugin_new_secrets
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) NewSecrets(ctx context.Context, connection map[string]map[string]dbus.Variant) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin+".NewSecrets", 0, connection).Store()
+func (o *NetworkManager_VPN_Plugin) NewSecrets(ctx context.Context, connection map[string]map[string]dbus.Variant) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager_VPN_Plugin+".NewSecrets", 0, connection).Store()
 	return
 }
 
 // GetState gets org.freedesktop.NetworkManager.VPN.Plugin.State property.
-func (o *Org_Freedesktop_NetworkManager_VPN_Plugin) GetState(ctx context.Context) (state uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin, "State").Store(&state)
+func (o *NetworkManager_VPN_Plugin) GetState(ctx context.Context) (state uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_VPN_Plugin, "State").Store(&state)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignal represents org.freedesktop.NetworkManager.VPN.Plugin.StateChanged signal.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignal struct {
+// NetworkManager_VPN_Plugin_StateChangedSignal represents org.freedesktop.NetworkManager.VPN.Plugin.StateChanged signal.
+type NetworkManager_VPN_Plugin_StateChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignalBody
+	Body   *NetworkManager_VPN_Plugin_StateChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignal) Name() string {
+func (s *NetworkManager_VPN_Plugin_StateChangedSignal) Name() string {
 	return "StateChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin
+func (s *NetworkManager_VPN_Plugin_StateChangedSignal) Interface() string {
+	return InterfaceNetworkManager_VPN_Plugin
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignal) Sender() string {
+func (s *NetworkManager_VPN_Plugin_StateChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_VPN_Plugin_StateChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignal) values() []interface{} {
+func (s *NetworkManager_VPN_Plugin_StateChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.State}
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_StateChangedSignalBody struct {
+// NetworkManager_VPN_Plugin_StateChangedSignalBody is body container.
+type NetworkManager_VPN_Plugin_StateChangedSignalBody struct {
 	State uint32
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignal represents org.freedesktop.NetworkManager.VPN.Plugin.SecretsRequired signal.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignal struct {
+// NetworkManager_VPN_Plugin_SecretsRequiredSignal represents org.freedesktop.NetworkManager.VPN.Plugin.SecretsRequired signal.
+type NetworkManager_VPN_Plugin_SecretsRequiredSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignalBody
+	Body   *NetworkManager_VPN_Plugin_SecretsRequiredSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignal) Name() string {
+func (s *NetworkManager_VPN_Plugin_SecretsRequiredSignal) Name() string {
 	return "SecretsRequired"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin
+func (s *NetworkManager_VPN_Plugin_SecretsRequiredSignal) Interface() string {
+	return InterfaceNetworkManager_VPN_Plugin
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignal) Sender() string {
+func (s *NetworkManager_VPN_Plugin_SecretsRequiredSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_VPN_Plugin_SecretsRequiredSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignal) values() []interface{} {
+func (s *NetworkManager_VPN_Plugin_SecretsRequiredSignal) values() []interface{} {
 	return []interface{}{s.Body.Message, s.Body.Secrets}
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignalBody is body container.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_SecretsRequiredSignalBody struct {
+// NetworkManager_VPN_Plugin_SecretsRequiredSignalBody is body container.
+type NetworkManager_VPN_Plugin_SecretsRequiredSignalBody struct {
 	Message string
 	Secrets []string
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignal represents org.freedesktop.NetworkManager.VPN.Plugin.Config signal.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignal struct {
+// NetworkManager_VPN_Plugin_ConfigSignal represents org.freedesktop.NetworkManager.VPN.Plugin.Config signal.
+type NetworkManager_VPN_Plugin_ConfigSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignalBody
+	Body   *NetworkManager_VPN_Plugin_ConfigSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignal) Name() string {
+func (s *NetworkManager_VPN_Plugin_ConfigSignal) Name() string {
 	return "Config"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin
+func (s *NetworkManager_VPN_Plugin_ConfigSignal) Interface() string {
+	return InterfaceNetworkManager_VPN_Plugin
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignal) Sender() string {
+func (s *NetworkManager_VPN_Plugin_ConfigSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_VPN_Plugin_ConfigSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignal) values() []interface{} {
+func (s *NetworkManager_VPN_Plugin_ConfigSignal) values() []interface{} {
 	return []interface{}{s.Body.Config}
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignalBody is body container.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_ConfigSignalBody struct {
+// NetworkManager_VPN_Plugin_ConfigSignalBody is body container.
+type NetworkManager_VPN_Plugin_ConfigSignalBody struct {
 	Config map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignal represents org.freedesktop.NetworkManager.VPN.Plugin.Ip4Config signal.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignal struct {
+// NetworkManager_VPN_Plugin_Ip4ConfigSignal represents org.freedesktop.NetworkManager.VPN.Plugin.Ip4Config signal.
+type NetworkManager_VPN_Plugin_Ip4ConfigSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignalBody
+	Body   *NetworkManager_VPN_Plugin_Ip4ConfigSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignal) Name() string {
+func (s *NetworkManager_VPN_Plugin_Ip4ConfigSignal) Name() string {
 	return "Ip4Config"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin
+func (s *NetworkManager_VPN_Plugin_Ip4ConfigSignal) Interface() string {
+	return InterfaceNetworkManager_VPN_Plugin
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignal) Sender() string {
+func (s *NetworkManager_VPN_Plugin_Ip4ConfigSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_VPN_Plugin_Ip4ConfigSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignal) values() []interface{} {
+func (s *NetworkManager_VPN_Plugin_Ip4ConfigSignal) values() []interface{} {
 	return []interface{}{s.Body.Ip4config}
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignalBody is body container.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_Ip4ConfigSignalBody struct {
+// NetworkManager_VPN_Plugin_Ip4ConfigSignalBody is body container.
+type NetworkManager_VPN_Plugin_Ip4ConfigSignalBody struct {
 	Ip4config map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignal represents org.freedesktop.NetworkManager.VPN.Plugin.Ip6Config signal.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignal struct {
+// NetworkManager_VPN_Plugin_Ip6ConfigSignal represents org.freedesktop.NetworkManager.VPN.Plugin.Ip6Config signal.
+type NetworkManager_VPN_Plugin_Ip6ConfigSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignalBody
+	Body   *NetworkManager_VPN_Plugin_Ip6ConfigSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignal) Name() string {
+func (s *NetworkManager_VPN_Plugin_Ip6ConfigSignal) Name() string {
 	return "Ip6Config"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin
+func (s *NetworkManager_VPN_Plugin_Ip6ConfigSignal) Interface() string {
+	return InterfaceNetworkManager_VPN_Plugin
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignal) Sender() string {
+func (s *NetworkManager_VPN_Plugin_Ip6ConfigSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_VPN_Plugin_Ip6ConfigSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignal) values() []interface{} {
+func (s *NetworkManager_VPN_Plugin_Ip6ConfigSignal) values() []interface{} {
 	return []interface{}{s.Body.Ip6config}
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignalBody is body container.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_Ip6ConfigSignalBody struct {
+// NetworkManager_VPN_Plugin_Ip6ConfigSignalBody is body container.
+type NetworkManager_VPN_Plugin_Ip6ConfigSignalBody struct {
 	Ip6config map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignal represents org.freedesktop.NetworkManager.VPN.Plugin.LoginBanner signal.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignal struct {
+// NetworkManager_VPN_Plugin_LoginBannerSignal represents org.freedesktop.NetworkManager.VPN.Plugin.LoginBanner signal.
+type NetworkManager_VPN_Plugin_LoginBannerSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignalBody
+	Body   *NetworkManager_VPN_Plugin_LoginBannerSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignal) Name() string {
+func (s *NetworkManager_VPN_Plugin_LoginBannerSignal) Name() string {
 	return "LoginBanner"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin
+func (s *NetworkManager_VPN_Plugin_LoginBannerSignal) Interface() string {
+	return InterfaceNetworkManager_VPN_Plugin
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignal) Sender() string {
+func (s *NetworkManager_VPN_Plugin_LoginBannerSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_VPN_Plugin_LoginBannerSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignal) values() []interface{} {
+func (s *NetworkManager_VPN_Plugin_LoginBannerSignal) values() []interface{} {
 	return []interface{}{s.Body.Banner}
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignalBody is body container.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_LoginBannerSignalBody struct {
+// NetworkManager_VPN_Plugin_LoginBannerSignalBody is body container.
+type NetworkManager_VPN_Plugin_LoginBannerSignalBody struct {
 	Banner string
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignal represents org.freedesktop.NetworkManager.VPN.Plugin.Failure signal.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignal struct {
+// NetworkManager_VPN_Plugin_FailureSignal represents org.freedesktop.NetworkManager.VPN.Plugin.Failure signal.
+type NetworkManager_VPN_Plugin_FailureSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignalBody
+	Body   *NetworkManager_VPN_Plugin_FailureSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignal) Name() string {
+func (s *NetworkManager_VPN_Plugin_FailureSignal) Name() string {
 	return "Failure"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_VPN_Plugin
+func (s *NetworkManager_VPN_Plugin_FailureSignal) Interface() string {
+	return InterfaceNetworkManager_VPN_Plugin
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignal) Sender() string {
+func (s *NetworkManager_VPN_Plugin_FailureSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_VPN_Plugin_FailureSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignal) values() []interface{} {
+func (s *NetworkManager_VPN_Plugin_FailureSignal) values() []interface{} {
 	return []interface{}{s.Body.Reason}
 }
 
-// Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignalBody is body container.
-type Org_Freedesktop_NetworkManager_VPN_Plugin_FailureSignalBody struct {
+// NetworkManager_VPN_Plugin_FailureSignalBody is body container.
+type NetworkManager_VPN_Plugin_FailureSignalBody struct {
 	Reason uint32
 }
 
-// Org_Freedesktop_NetworkManager_WifiP2PPeerer is org.freedesktop.NetworkManager.WifiP2PPeer interface.
-type Org_Freedesktop_NetworkManager_WifiP2PPeerer interface {
+// NewNetworkManager_WifiP2PPeer creates and allocates org.freedesktop.NetworkManager.WifiP2PPeer.
+func NewNetworkManager_WifiP2PPeer(object dbus.BusObject) *NetworkManager_WifiP2PPeer {
+	return &NetworkManager_WifiP2PPeer{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_WifiP2PPeer exports the given object that implements org.freedesktop.NetworkManager.WifiP2PPeer on the bus.
-func ExportOrg_Freedesktop_NetworkManager_WifiP2PPeer(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_WifiP2PPeerer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_WifiP2PPeer unexports org.freedesktop.NetworkManager.WifiP2PPeer interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_WifiP2PPeer(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_WifiP2PPeer can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_WifiP2PPeer struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_WifiP2PPeer) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer
-}
-
-// NewOrg_Freedesktop_NetworkManager_WifiP2PPeer creates and allocates org.freedesktop.NetworkManager.WifiP2PPeer.
-func NewOrg_Freedesktop_NetworkManager_WifiP2PPeer(object dbus.BusObject) *Org_Freedesktop_NetworkManager_WifiP2PPeer {
-	return &Org_Freedesktop_NetworkManager_WifiP2PPeer{object}
-}
-
-// Org_Freedesktop_NetworkManager_WifiP2PPeer implements org.freedesktop.NetworkManager.WifiP2PPeer D-Bus interface.
+// NetworkManager_WifiP2PPeer implements org.freedesktop.NetworkManager.WifiP2PPeer D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = Wifi_P2P_Peer
-type Org_Freedesktop_NetworkManager_WifiP2PPeer struct {
+type NetworkManager_WifiP2PPeer struct {
 	object dbus.BusObject
 }
 
 // GetName gets org.freedesktop.NetworkManager.WifiP2PPeer.Name property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetName(ctx context.Context) (name string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "Name").Store(&name)
+func (o *NetworkManager_WifiP2PPeer) GetName(ctx context.Context) (name string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "Name").Store(&name)
 	return
 }
 
 // GetFlags gets org.freedesktop.NetworkManager.WifiP2PPeer.Flags property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetFlags(ctx context.Context) (flags uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "Flags").Store(&flags)
+func (o *NetworkManager_WifiP2PPeer) GetFlags(ctx context.Context) (flags uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "Flags").Store(&flags)
 	return
 }
 
 // GetManufacturer gets org.freedesktop.NetworkManager.WifiP2PPeer.Manufacturer property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetManufacturer(ctx context.Context) (manufacturer string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "Manufacturer").Store(&manufacturer)
+func (o *NetworkManager_WifiP2PPeer) GetManufacturer(ctx context.Context) (manufacturer string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "Manufacturer").Store(&manufacturer)
 	return
 }
 
 // GetModel gets org.freedesktop.NetworkManager.WifiP2PPeer.Model property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetModel(ctx context.Context) (model string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "Model").Store(&model)
+func (o *NetworkManager_WifiP2PPeer) GetModel(ctx context.Context) (model string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "Model").Store(&model)
 	return
 }
 
 // GetModelNumber gets org.freedesktop.NetworkManager.WifiP2PPeer.ModelNumber property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetModelNumber(ctx context.Context) (modelNumber string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "ModelNumber").Store(&modelNumber)
+func (o *NetworkManager_WifiP2PPeer) GetModelNumber(ctx context.Context) (modelNumber string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "ModelNumber").Store(&modelNumber)
 	return
 }
 
 // GetSerial gets org.freedesktop.NetworkManager.WifiP2PPeer.Serial property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetSerial(ctx context.Context) (serial string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "Serial").Store(&serial)
+func (o *NetworkManager_WifiP2PPeer) GetSerial(ctx context.Context) (serial string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "Serial").Store(&serial)
 	return
 }
 
 // GetWfdIEs gets org.freedesktop.NetworkManager.WifiP2PPeer.WfdIEs property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetWfdIEs(ctx context.Context) (wfdIEs []byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "WfdIEs").Store(&wfdIEs)
+func (o *NetworkManager_WifiP2PPeer) GetWfdIEs(ctx context.Context) (wfdIEs []byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "WfdIEs").Store(&wfdIEs)
 	return
 }
 
 // GetHwAddress gets org.freedesktop.NetworkManager.WifiP2PPeer.HwAddress property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "HwAddress").Store(&hwAddress)
+func (o *NetworkManager_WifiP2PPeer) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "HwAddress").Store(&hwAddress)
 	return
 }
 
 // GetStrength gets org.freedesktop.NetworkManager.WifiP2PPeer.Strength property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetStrength(ctx context.Context) (strength byte, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "Strength").Store(&strength)
+func (o *NetworkManager_WifiP2PPeer) GetStrength(ctx context.Context) (strength byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "Strength").Store(&strength)
 	return
 }
 
 // GetLastSeen gets org.freedesktop.NetworkManager.WifiP2PPeer.LastSeen property.
-func (o *Org_Freedesktop_NetworkManager_WifiP2PPeer) GetLastSeen(ctx context.Context) (lastSeen int32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WifiP2PPeer, "LastSeen").Store(&lastSeen)
+func (o *NetworkManager_WifiP2PPeer) GetLastSeen(ctx context.Context) (lastSeen int32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WifiP2PPeer, "LastSeen").Store(&lastSeen)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_WiMax_Nsper is org.freedesktop.NetworkManager.WiMax.Nsp interface.
-type Org_Freedesktop_NetworkManager_WiMax_Nsper interface {
+// NewNetworkManager_WiMax_Nsp creates and allocates org.freedesktop.NetworkManager.WiMax.Nsp.
+func NewNetworkManager_WiMax_Nsp(object dbus.BusObject) *NetworkManager_WiMax_Nsp {
+	return &NetworkManager_WiMax_Nsp{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager_WiMax_Nsp exports the given object that implements org.freedesktop.NetworkManager.WiMax.Nsp on the bus.
-func ExportOrg_Freedesktop_NetworkManager_WiMax_Nsp(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManager_WiMax_Nsper) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{}, path, InterfaceOrg_Freedesktop_NetworkManager_WiMax_Nsp)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager_WiMax_Nsp unexports org.freedesktop.NetworkManager.WiMax.Nsp interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager_WiMax_Nsp(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager_WiMax_Nsp)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager_WiMax_Nsp can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager_WiMax_Nsp struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager_WiMax_Nsp) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_WiMax_Nsp
-}
-
-// NewOrg_Freedesktop_NetworkManager_WiMax_Nsp creates and allocates org.freedesktop.NetworkManager.WiMax.Nsp.
-func NewOrg_Freedesktop_NetworkManager_WiMax_Nsp(object dbus.BusObject) *Org_Freedesktop_NetworkManager_WiMax_Nsp {
-	return &Org_Freedesktop_NetworkManager_WiMax_Nsp{object}
-}
-
-// Org_Freedesktop_NetworkManager_WiMax_Nsp implements org.freedesktop.NetworkManager.WiMax.Nsp D-Bus interface.
-type Org_Freedesktop_NetworkManager_WiMax_Nsp struct {
+// NetworkManager_WiMax_Nsp implements org.freedesktop.NetworkManager.WiMax.Nsp D-Bus interface.
+type NetworkManager_WiMax_Nsp struct {
 	object dbus.BusObject
 }
 
 // GetName gets org.freedesktop.NetworkManager.WiMax.Nsp.Name property.
-func (o *Org_Freedesktop_NetworkManager_WiMax_Nsp) GetName(ctx context.Context) (name string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WiMax_Nsp, "Name").Store(&name)
+func (o *NetworkManager_WiMax_Nsp) GetName(ctx context.Context) (name string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WiMax_Nsp, "Name").Store(&name)
 	return
 }
 
 // GetSignalQuality gets org.freedesktop.NetworkManager.WiMax.Nsp.SignalQuality property.
-func (o *Org_Freedesktop_NetworkManager_WiMax_Nsp) GetSignalQuality(ctx context.Context) (signalQuality uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WiMax_Nsp, "SignalQuality").Store(&signalQuality)
+func (o *NetworkManager_WiMax_Nsp) GetSignalQuality(ctx context.Context) (signalQuality uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WiMax_Nsp, "SignalQuality").Store(&signalQuality)
 	return
 }
 
 // GetNetworkType gets org.freedesktop.NetworkManager.WiMax.Nsp.NetworkType property.
-func (o *Org_Freedesktop_NetworkManager_WiMax_Nsp) GetNetworkType(ctx context.Context) (networkType uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager_WiMax_Nsp, "NetworkType").Store(&networkType)
+func (o *NetworkManager_WiMax_Nsp) GetNetworkType(ctx context.Context) (networkType uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_WiMax_Nsp, "NetworkType").Store(&networkType)
 	return
 }
 
-// Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignal represents org.freedesktop.NetworkManager.WiMax.Nsp.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignal struct {
+// NetworkManager_WiMax_Nsp_PropertiesChangedSignal represents org.freedesktop.NetworkManager.WiMax.Nsp.PropertiesChanged signal.
+type NetworkManager_WiMax_Nsp_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignalBody
+	Body   *NetworkManager_WiMax_Nsp_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_WiMax_Nsp_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager_WiMax_Nsp
+func (s *NetworkManager_WiMax_Nsp_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_WiMax_Nsp
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_WiMax_Nsp_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_WiMax_Nsp_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_WiMax_Nsp_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_WiMax_Nsp_PropertiesChangedSignalBody struct {
+// NetworkManager_WiMax_Nsp_PropertiesChangedSignalBody is body container.
+type NetworkManager_WiMax_Nsp_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManagerer is org.freedesktop.NetworkManager interface.
-type Org_Freedesktop_NetworkManagerer interface {
-	// Reload is org.freedesktop.NetworkManager.Reload method.
-	Reload(flags uint32) (err *dbus.Error)
-	// GetDevices is org.freedesktop.NetworkManager.GetDevices method.
-	GetDevices() (devices []dbus.ObjectPath, err *dbus.Error)
-	// GetAllDevices is org.freedesktop.NetworkManager.GetAllDevices method.
-	GetAllDevices() (devices []dbus.ObjectPath, err *dbus.Error)
-	// GetDeviceByIpIface is org.freedesktop.NetworkManager.GetDeviceByIpIface method.
-	GetDeviceByIpIface(iface string) (device dbus.ObjectPath, err *dbus.Error)
-	// ActivateConnection is org.freedesktop.NetworkManager.ActivateConnection method.
-	ActivateConnection(connection dbus.ObjectPath, device dbus.ObjectPath, specificObject dbus.ObjectPath) (activeConnection dbus.ObjectPath, err *dbus.Error)
-	// AddAndActivateConnection is org.freedesktop.NetworkManager.AddAndActivateConnection method.
-	AddAndActivateConnection(connection map[string]map[string]dbus.Variant, device dbus.ObjectPath, specificObject dbus.ObjectPath) (path dbus.ObjectPath, activeConnection dbus.ObjectPath, err *dbus.Error)
-	// AddAndActivateConnection2 is org.freedesktop.NetworkManager.AddAndActivateConnection2 method.
-	AddAndActivateConnection2(connection map[string]map[string]dbus.Variant, device dbus.ObjectPath, specificObject dbus.ObjectPath, options map[string]dbus.Variant) (path dbus.ObjectPath, activeConnection dbus.ObjectPath, result map[string]dbus.Variant, err *dbus.Error)
-	// DeactivateConnection is org.freedesktop.NetworkManager.DeactivateConnection method.
-	DeactivateConnection(activeConnection dbus.ObjectPath) (err *dbus.Error)
-	// Sleep is org.freedesktop.NetworkManager.Sleep method.
-	Sleep(sleep bool) (err *dbus.Error)
-	// Enable is org.freedesktop.NetworkManager.Enable method.
-	Enable(enable bool) (err *dbus.Error)
-	// GetPermissions is org.freedesktop.NetworkManager.GetPermissions method.
-	GetPermissions() (permissions map[string]string, err *dbus.Error)
-	// SetLogging is org.freedesktop.NetworkManager.SetLogging method.
-	SetLogging(level string, domains string) (err *dbus.Error)
-	// GetLogging is org.freedesktop.NetworkManager.GetLogging method.
-	GetLogging() (level string, domains string, err *dbus.Error)
-	// CheckConnectivity is org.freedesktop.NetworkManager.CheckConnectivity method.
-	CheckConnectivity() (connectivity uint32, err *dbus.Error)
-	// State is org.freedesktop.NetworkManager.state method.
-	State() (state uint32, err *dbus.Error)
-	// CheckpointCreate is org.freedesktop.NetworkManager.CheckpointCreate method.
-	CheckpointCreate(devices []dbus.ObjectPath, rollbackTimeout uint32, flags uint32) (checkpoint dbus.ObjectPath, err *dbus.Error)
-	// CheckpointDestroy is org.freedesktop.NetworkManager.CheckpointDestroy method.
-	CheckpointDestroy(checkpoint dbus.ObjectPath) (err *dbus.Error)
-	// CheckpointRollback is org.freedesktop.NetworkManager.CheckpointRollback method.
-	CheckpointRollback(checkpoint dbus.ObjectPath) (result map[string]uint32, err *dbus.Error)
-	// CheckpointAdjustRollbackTimeout is org.freedesktop.NetworkManager.CheckpointAdjustRollbackTimeout method.
-	CheckpointAdjustRollbackTimeout(checkpoint dbus.ObjectPath, addTimeout uint32) (err *dbus.Error)
+// NewNetworkManager creates and allocates org.freedesktop.NetworkManager.
+func NewNetworkManager(object dbus.BusObject) *NetworkManager {
+	return &NetworkManager{object}
 }
 
-// ExportOrg_Freedesktop_NetworkManager exports the given object that implements org.freedesktop.NetworkManager on the bus.
-func ExportOrg_Freedesktop_NetworkManager(conn *dbus.Conn, path dbus.ObjectPath, v Org_Freedesktop_NetworkManagerer) error {
-	return conn.ExportSubtreeMethodTable(map[string]interface{}{
-		"Reload":                          v.Reload,
-		"GetDevices":                      v.GetDevices,
-		"GetAllDevices":                   v.GetAllDevices,
-		"GetDeviceByIpIface":              v.GetDeviceByIpIface,
-		"ActivateConnection":              v.ActivateConnection,
-		"AddAndActivateConnection":        v.AddAndActivateConnection,
-		"AddAndActivateConnection2":       v.AddAndActivateConnection2,
-		"DeactivateConnection":            v.DeactivateConnection,
-		"Sleep":                           v.Sleep,
-		"Enable":                          v.Enable,
-		"GetPermissions":                  v.GetPermissions,
-		"SetLogging":                      v.SetLogging,
-		"GetLogging":                      v.GetLogging,
-		"CheckConnectivity":               v.CheckConnectivity,
-		"state":                           v.State,
-		"CheckpointCreate":                v.CheckpointCreate,
-		"CheckpointDestroy":               v.CheckpointDestroy,
-		"CheckpointRollback":              v.CheckpointRollback,
-		"CheckpointAdjustRollbackTimeout": v.CheckpointAdjustRollbackTimeout,
-	}, path, InterfaceOrg_Freedesktop_NetworkManager)
-}
-
-// UnexportOrg_Freedesktop_NetworkManager unexports org.freedesktop.NetworkManager interface on the named path.
-func UnexportOrg_Freedesktop_NetworkManager(conn *dbus.Conn, path dbus.ObjectPath) error {
-	return conn.Export(nil, path, InterfaceOrg_Freedesktop_NetworkManager)
-}
-
-// UnimplementedOrg_Freedesktop_NetworkManager can be embedded to have forward compatible server implementations.
-type UnimplementedOrg_Freedesktop_NetworkManager struct{}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) iface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) Reload(flags uint32) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) GetDevices() (devices []dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) GetAllDevices() (devices []dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) GetDeviceByIpIface(iface string) (device dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) ActivateConnection(connection dbus.ObjectPath, device dbus.ObjectPath, specificObject dbus.ObjectPath) (activeConnection dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) AddAndActivateConnection(connection map[string]map[string]dbus.Variant, device dbus.ObjectPath, specificObject dbus.ObjectPath) (path dbus.ObjectPath, activeConnection dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) AddAndActivateConnection2(connection map[string]map[string]dbus.Variant, device dbus.ObjectPath, specificObject dbus.ObjectPath, options map[string]dbus.Variant) (path dbus.ObjectPath, activeConnection dbus.ObjectPath, result map[string]dbus.Variant, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) DeactivateConnection(activeConnection dbus.ObjectPath) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) Sleep(sleep bool) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) Enable(enable bool) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) GetPermissions() (permissions map[string]string, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) SetLogging(level string, domains string) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) GetLogging() (level string, domains string, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) CheckConnectivity() (connectivity uint32, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) State() (state uint32, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) CheckpointCreate(devices []dbus.ObjectPath, rollbackTimeout uint32, flags uint32) (checkpoint dbus.ObjectPath, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) CheckpointDestroy(checkpoint dbus.ObjectPath) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) CheckpointRollback(checkpoint dbus.ObjectPath) (result map[string]uint32, err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-func (*UnimplementedOrg_Freedesktop_NetworkManager) CheckpointAdjustRollbackTimeout(checkpoint dbus.ObjectPath, addTimeout uint32) (err *dbus.Error) {
-	err = &dbus.ErrMsgUnknownMethod
-	return
-}
-
-// NewOrg_Freedesktop_NetworkManager creates and allocates org.freedesktop.NetworkManager.
-func NewOrg_Freedesktop_NetworkManager(object dbus.BusObject) *Org_Freedesktop_NetworkManager {
-	return &Org_Freedesktop_NetworkManager{object}
-}
-
-// Org_Freedesktop_NetworkManager implements org.freedesktop.NetworkManager D-Bus interface.
+// NetworkManager implements org.freedesktop.NetworkManager D-Bus interface.
 //
 // Annotations:
 //   @org.gtk.GDBus.C.Name = Manager
-type Org_Freedesktop_NetworkManager struct {
+type NetworkManager struct {
 	object dbus.BusObject
 }
 
 // Reload calls org.freedesktop.NetworkManager.Reload method.
-func (o *Org_Freedesktop_NetworkManager) Reload(ctx context.Context, flags uint32) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".Reload", 0, flags).Store()
+func (o *NetworkManager) Reload(ctx context.Context, flags uint32) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".Reload", 0, flags).Store()
 	return
 }
 
 // GetDevices calls org.freedesktop.NetworkManager.GetDevices method.
-func (o *Org_Freedesktop_NetworkManager) GetDevices(ctx context.Context) (devices []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".GetDevices", 0).Store(&devices)
+func (o *NetworkManager) GetDevices(ctx context.Context) (devices []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".GetDevices", 0).Store(&devices)
 	return
 }
 
@@ -6460,434 +4929,434 @@ func (o *Org_Freedesktop_NetworkManager) GetDevices(ctx context.Context) (device
 //
 // Annotations:
 //   @org.freedesktop.DBus.GLib.CSymbol = impl_manager_get_all_devices
-func (o *Org_Freedesktop_NetworkManager) GetAllDevices(ctx context.Context) (devices []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".GetAllDevices", 0).Store(&devices)
+func (o *NetworkManager) GetAllDevices(ctx context.Context) (devices []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".GetAllDevices", 0).Store(&devices)
 	return
 }
 
 // GetDeviceByIpIface calls org.freedesktop.NetworkManager.GetDeviceByIpIface method.
-func (o *Org_Freedesktop_NetworkManager) GetDeviceByIpIface(ctx context.Context, iface string) (device dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".GetDeviceByIpIface", 0, iface).Store(&device)
+func (o *NetworkManager) GetDeviceByIpIface(ctx context.Context, iface string) (device dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".GetDeviceByIpIface", 0, iface).Store(&device)
 	return
 }
 
 // ActivateConnection calls org.freedesktop.NetworkManager.ActivateConnection method.
-func (o *Org_Freedesktop_NetworkManager) ActivateConnection(ctx context.Context, connection dbus.ObjectPath, device dbus.ObjectPath, specificObject dbus.ObjectPath) (activeConnection dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".ActivateConnection", 0, connection, device, specificObject).Store(&activeConnection)
+func (o *NetworkManager) ActivateConnection(ctx context.Context, connection dbus.ObjectPath, device dbus.ObjectPath, specificObject dbus.ObjectPath) (activeConnection dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".ActivateConnection", 0, connection, device, specificObject).Store(&activeConnection)
 	return
 }
 
 // AddAndActivateConnection calls org.freedesktop.NetworkManager.AddAndActivateConnection method.
-func (o *Org_Freedesktop_NetworkManager) AddAndActivateConnection(ctx context.Context, connection map[string]map[string]dbus.Variant, device dbus.ObjectPath, specificObject dbus.ObjectPath) (path dbus.ObjectPath, activeConnection dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".AddAndActivateConnection", 0, connection, device, specificObject).Store(&path, &activeConnection)
+func (o *NetworkManager) AddAndActivateConnection(ctx context.Context, connection map[string]map[string]dbus.Variant, device dbus.ObjectPath, specificObject dbus.ObjectPath) (path dbus.ObjectPath, activeConnection dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".AddAndActivateConnection", 0, connection, device, specificObject).Store(&path, &activeConnection)
 	return
 }
 
 // AddAndActivateConnection2 calls org.freedesktop.NetworkManager.AddAndActivateConnection2 method.
-func (o *Org_Freedesktop_NetworkManager) AddAndActivateConnection2(ctx context.Context, connection map[string]map[string]dbus.Variant, device dbus.ObjectPath, specificObject dbus.ObjectPath, options map[string]dbus.Variant) (path dbus.ObjectPath, activeConnection dbus.ObjectPath, result map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".AddAndActivateConnection2", 0, connection, device, specificObject, options).Store(&path, &activeConnection, &result)
+func (o *NetworkManager) AddAndActivateConnection2(ctx context.Context, connection map[string]map[string]dbus.Variant, device dbus.ObjectPath, specificObject dbus.ObjectPath, options map[string]dbus.Variant) (path dbus.ObjectPath, activeConnection dbus.ObjectPath, result map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".AddAndActivateConnection2", 0, connection, device, specificObject, options).Store(&path, &activeConnection, &result)
 	return
 }
 
 // DeactivateConnection calls org.freedesktop.NetworkManager.DeactivateConnection method.
-func (o *Org_Freedesktop_NetworkManager) DeactivateConnection(ctx context.Context, activeConnection dbus.ObjectPath) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".DeactivateConnection", 0, activeConnection).Store()
+func (o *NetworkManager) DeactivateConnection(ctx context.Context, activeConnection dbus.ObjectPath) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".DeactivateConnection", 0, activeConnection).Store()
 	return
 }
 
 // Sleep calls org.freedesktop.NetworkManager.Sleep method.
-func (o *Org_Freedesktop_NetworkManager) Sleep(ctx context.Context, sleep bool) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".Sleep", 0, sleep).Store()
+func (o *NetworkManager) Sleep(ctx context.Context, sleep bool) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".Sleep", 0, sleep).Store()
 	return
 }
 
 // Enable calls org.freedesktop.NetworkManager.Enable method.
-func (o *Org_Freedesktop_NetworkManager) Enable(ctx context.Context, enable bool) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".Enable", 0, enable).Store()
+func (o *NetworkManager) Enable(ctx context.Context, enable bool) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".Enable", 0, enable).Store()
 	return
 }
 
 // GetPermissions calls org.freedesktop.NetworkManager.GetPermissions method.
-func (o *Org_Freedesktop_NetworkManager) GetPermissions(ctx context.Context) (permissions map[string]string, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".GetPermissions", 0).Store(&permissions)
+func (o *NetworkManager) GetPermissions(ctx context.Context) (permissions map[string]string, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".GetPermissions", 0).Store(&permissions)
 	return
 }
 
 // SetLogging calls org.freedesktop.NetworkManager.SetLogging method.
-func (o *Org_Freedesktop_NetworkManager) SetLogging(ctx context.Context, level string, domains string) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".SetLogging", 0, level, domains).Store()
+func (o *NetworkManager) SetLogging(ctx context.Context, level string, domains string) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".SetLogging", 0, level, domains).Store()
 	return
 }
 
 // GetLogging calls org.freedesktop.NetworkManager.GetLogging method.
-func (o *Org_Freedesktop_NetworkManager) GetLogging(ctx context.Context) (level string, domains string, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".GetLogging", 0).Store(&level, &domains)
+func (o *NetworkManager) GetLogging(ctx context.Context) (level string, domains string, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".GetLogging", 0).Store(&level, &domains)
 	return
 }
 
 // CheckConnectivity calls org.freedesktop.NetworkManager.CheckConnectivity method.
-func (o *Org_Freedesktop_NetworkManager) CheckConnectivity(ctx context.Context) (connectivity uint32, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".CheckConnectivity", 0).Store(&connectivity)
+func (o *NetworkManager) CheckConnectivity(ctx context.Context) (connectivity uint32, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".CheckConnectivity", 0).Store(&connectivity)
 	return
 }
 
 // State calls org.freedesktop.NetworkManager.state method.
-func (o *Org_Freedesktop_NetworkManager) State(ctx context.Context) (state uint32, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".state", 0).Store(&state)
+func (o *NetworkManager) State(ctx context.Context) (state uint32, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".state", 0).Store(&state)
 	return
 }
 
 // CheckpointCreate calls org.freedesktop.NetworkManager.CheckpointCreate method.
-func (o *Org_Freedesktop_NetworkManager) CheckpointCreate(ctx context.Context, devices []dbus.ObjectPath, rollbackTimeout uint32, flags uint32) (checkpoint dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".CheckpointCreate", 0, devices, rollbackTimeout, flags).Store(&checkpoint)
+func (o *NetworkManager) CheckpointCreate(ctx context.Context, devices []dbus.ObjectPath, rollbackTimeout uint32, flags uint32) (checkpoint dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".CheckpointCreate", 0, devices, rollbackTimeout, flags).Store(&checkpoint)
 	return
 }
 
 // CheckpointDestroy calls org.freedesktop.NetworkManager.CheckpointDestroy method.
-func (o *Org_Freedesktop_NetworkManager) CheckpointDestroy(ctx context.Context, checkpoint dbus.ObjectPath) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".CheckpointDestroy", 0, checkpoint).Store()
+func (o *NetworkManager) CheckpointDestroy(ctx context.Context, checkpoint dbus.ObjectPath) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".CheckpointDestroy", 0, checkpoint).Store()
 	return
 }
 
 // CheckpointRollback calls org.freedesktop.NetworkManager.CheckpointRollback method.
-func (o *Org_Freedesktop_NetworkManager) CheckpointRollback(ctx context.Context, checkpoint dbus.ObjectPath) (result map[string]uint32, err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".CheckpointRollback", 0, checkpoint).Store(&result)
+func (o *NetworkManager) CheckpointRollback(ctx context.Context, checkpoint dbus.ObjectPath) (result map[string]uint32, err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".CheckpointRollback", 0, checkpoint).Store(&result)
 	return
 }
 
 // CheckpointAdjustRollbackTimeout calls org.freedesktop.NetworkManager.CheckpointAdjustRollbackTimeout method.
-func (o *Org_Freedesktop_NetworkManager) CheckpointAdjustRollbackTimeout(ctx context.Context, checkpoint dbus.ObjectPath, addTimeout uint32) (err error) {
-	err = o.object.CallWithContext(ctx, InterfaceOrg_Freedesktop_NetworkManager+".CheckpointAdjustRollbackTimeout", 0, checkpoint, addTimeout).Store()
+func (o *NetworkManager) CheckpointAdjustRollbackTimeout(ctx context.Context, checkpoint dbus.ObjectPath, addTimeout uint32) (err error) {
+	err = o.object.CallWithContext(ctx, InterfaceNetworkManager+".CheckpointAdjustRollbackTimeout", 0, checkpoint, addTimeout).Store()
 	return
 }
 
 // GetCheckpoints gets org.freedesktop.NetworkManager.Checkpoints property.
-func (o *Org_Freedesktop_NetworkManager) GetCheckpoints(ctx context.Context) (checkpoints []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "Checkpoints").Store(&checkpoints)
+func (o *NetworkManager) GetCheckpoints(ctx context.Context) (checkpoints []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "Checkpoints").Store(&checkpoints)
 	return
 }
 
 // GetNetworkingEnabled gets org.freedesktop.NetworkManager.NetworkingEnabled property.
-func (o *Org_Freedesktop_NetworkManager) GetNetworkingEnabled(ctx context.Context) (networkingEnabled bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "NetworkingEnabled").Store(&networkingEnabled)
+func (o *NetworkManager) GetNetworkingEnabled(ctx context.Context) (networkingEnabled bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "NetworkingEnabled").Store(&networkingEnabled)
 	return
 }
 
 // GetWirelessEnabled gets org.freedesktop.NetworkManager.WirelessEnabled property.
-func (o *Org_Freedesktop_NetworkManager) GetWirelessEnabled(ctx context.Context) (wirelessEnabled bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "WirelessEnabled").Store(&wirelessEnabled)
+func (o *NetworkManager) GetWirelessEnabled(ctx context.Context) (wirelessEnabled bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "WirelessEnabled").Store(&wirelessEnabled)
 	return
 }
 
 // SetWirelessEnabled sets org.freedesktop.NetworkManager.WirelessEnabled property.
-func (o *Org_Freedesktop_NetworkManager) SetWirelessEnabled(ctx context.Context, wirelessEnabled bool) error {
-	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceOrg_Freedesktop_NetworkManager, "WirelessEnabled", dbus.MakeVariant(wirelessEnabled)).Store()
+func (o *NetworkManager) SetWirelessEnabled(ctx context.Context, wirelessEnabled bool) error {
+	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceNetworkManager, "WirelessEnabled", dbus.MakeVariant(wirelessEnabled)).Store()
 }
 
 // GetWirelessHardwareEnabled gets org.freedesktop.NetworkManager.WirelessHardwareEnabled property.
-func (o *Org_Freedesktop_NetworkManager) GetWirelessHardwareEnabled(ctx context.Context) (wirelessHardwareEnabled bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "WirelessHardwareEnabled").Store(&wirelessHardwareEnabled)
+func (o *NetworkManager) GetWirelessHardwareEnabled(ctx context.Context) (wirelessHardwareEnabled bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "WirelessHardwareEnabled").Store(&wirelessHardwareEnabled)
 	return
 }
 
 // GetWwanEnabled gets org.freedesktop.NetworkManager.WwanEnabled property.
-func (o *Org_Freedesktop_NetworkManager) GetWwanEnabled(ctx context.Context) (wwanEnabled bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "WwanEnabled").Store(&wwanEnabled)
+func (o *NetworkManager) GetWwanEnabled(ctx context.Context) (wwanEnabled bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "WwanEnabled").Store(&wwanEnabled)
 	return
 }
 
 // SetWwanEnabled sets org.freedesktop.NetworkManager.WwanEnabled property.
-func (o *Org_Freedesktop_NetworkManager) SetWwanEnabled(ctx context.Context, wwanEnabled bool) error {
-	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceOrg_Freedesktop_NetworkManager, "WwanEnabled", dbus.MakeVariant(wwanEnabled)).Store()
+func (o *NetworkManager) SetWwanEnabled(ctx context.Context, wwanEnabled bool) error {
+	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceNetworkManager, "WwanEnabled", dbus.MakeVariant(wwanEnabled)).Store()
 }
 
 // GetWwanHardwareEnabled gets org.freedesktop.NetworkManager.WwanHardwareEnabled property.
-func (o *Org_Freedesktop_NetworkManager) GetWwanHardwareEnabled(ctx context.Context) (wwanHardwareEnabled bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "WwanHardwareEnabled").Store(&wwanHardwareEnabled)
+func (o *NetworkManager) GetWwanHardwareEnabled(ctx context.Context) (wwanHardwareEnabled bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "WwanHardwareEnabled").Store(&wwanHardwareEnabled)
 	return
 }
 
 // GetWimaxEnabled gets org.freedesktop.NetworkManager.WimaxEnabled property.
-func (o *Org_Freedesktop_NetworkManager) GetWimaxEnabled(ctx context.Context) (wimaxEnabled bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "WimaxEnabled").Store(&wimaxEnabled)
+func (o *NetworkManager) GetWimaxEnabled(ctx context.Context) (wimaxEnabled bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "WimaxEnabled").Store(&wimaxEnabled)
 	return
 }
 
 // SetWimaxEnabled sets org.freedesktop.NetworkManager.WimaxEnabled property.
-func (o *Org_Freedesktop_NetworkManager) SetWimaxEnabled(ctx context.Context, wimaxEnabled bool) error {
-	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceOrg_Freedesktop_NetworkManager, "WimaxEnabled", dbus.MakeVariant(wimaxEnabled)).Store()
+func (o *NetworkManager) SetWimaxEnabled(ctx context.Context, wimaxEnabled bool) error {
+	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceNetworkManager, "WimaxEnabled", dbus.MakeVariant(wimaxEnabled)).Store()
 }
 
 // GetWimaxHardwareEnabled gets org.freedesktop.NetworkManager.WimaxHardwareEnabled property.
-func (o *Org_Freedesktop_NetworkManager) GetWimaxHardwareEnabled(ctx context.Context) (wimaxHardwareEnabled bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "WimaxHardwareEnabled").Store(&wimaxHardwareEnabled)
+func (o *NetworkManager) GetWimaxHardwareEnabled(ctx context.Context) (wimaxHardwareEnabled bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "WimaxHardwareEnabled").Store(&wimaxHardwareEnabled)
 	return
 }
 
 // GetActiveConnections gets org.freedesktop.NetworkManager.ActiveConnections property.
-func (o *Org_Freedesktop_NetworkManager) GetActiveConnections(ctx context.Context) (activeConnections []dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "ActiveConnections").Store(&activeConnections)
+func (o *NetworkManager) GetActiveConnections(ctx context.Context) (activeConnections []dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "ActiveConnections").Store(&activeConnections)
 	return
 }
 
 // GetPrimaryConnection gets org.freedesktop.NetworkManager.PrimaryConnection property.
-func (o *Org_Freedesktop_NetworkManager) GetPrimaryConnection(ctx context.Context) (primaryConnection dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "PrimaryConnection").Store(&primaryConnection)
+func (o *NetworkManager) GetPrimaryConnection(ctx context.Context) (primaryConnection dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "PrimaryConnection").Store(&primaryConnection)
 	return
 }
 
 // GetPrimaryConnectionType gets org.freedesktop.NetworkManager.PrimaryConnectionType property.
-func (o *Org_Freedesktop_NetworkManager) GetPrimaryConnectionType(ctx context.Context) (primaryConnectionType string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "PrimaryConnectionType").Store(&primaryConnectionType)
+func (o *NetworkManager) GetPrimaryConnectionType(ctx context.Context) (primaryConnectionType string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "PrimaryConnectionType").Store(&primaryConnectionType)
 	return
 }
 
 // GetMetered gets org.freedesktop.NetworkManager.Metered property.
-func (o *Org_Freedesktop_NetworkManager) GetMetered(ctx context.Context) (metered uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "Metered").Store(&metered)
+func (o *NetworkManager) GetMetered(ctx context.Context) (metered uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "Metered").Store(&metered)
 	return
 }
 
 // GetActivatingConnection gets org.freedesktop.NetworkManager.ActivatingConnection property.
-func (o *Org_Freedesktop_NetworkManager) GetActivatingConnection(ctx context.Context) (activatingConnection dbus.ObjectPath, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "ActivatingConnection").Store(&activatingConnection)
+func (o *NetworkManager) GetActivatingConnection(ctx context.Context) (activatingConnection dbus.ObjectPath, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "ActivatingConnection").Store(&activatingConnection)
 	return
 }
 
 // GetStartup gets org.freedesktop.NetworkManager.Startup property.
-func (o *Org_Freedesktop_NetworkManager) GetStartup(ctx context.Context) (startup bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "Startup").Store(&startup)
+func (o *NetworkManager) GetStartup(ctx context.Context) (startup bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "Startup").Store(&startup)
 	return
 }
 
 // GetVersion gets org.freedesktop.NetworkManager.Version property.
-func (o *Org_Freedesktop_NetworkManager) GetVersion(ctx context.Context) (version string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "Version").Store(&version)
+func (o *NetworkManager) GetVersion(ctx context.Context) (version string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "Version").Store(&version)
 	return
 }
 
 // GetCapabilities gets org.freedesktop.NetworkManager.Capabilities property.
-func (o *Org_Freedesktop_NetworkManager) GetCapabilities(ctx context.Context) (capabilities []uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "Capabilities").Store(&capabilities)
+func (o *NetworkManager) GetCapabilities(ctx context.Context) (capabilities []uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "Capabilities").Store(&capabilities)
 	return
 }
 
 // GetState gets org.freedesktop.NetworkManager.State property.
-func (o *Org_Freedesktop_NetworkManager) GetState(ctx context.Context) (state uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "State").Store(&state)
+func (o *NetworkManager) GetState(ctx context.Context) (state uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "State").Store(&state)
 	return
 }
 
 // GetConnectivity gets org.freedesktop.NetworkManager.Connectivity property.
-func (o *Org_Freedesktop_NetworkManager) GetConnectivity(ctx context.Context) (connectivity uint32, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "Connectivity").Store(&connectivity)
+func (o *NetworkManager) GetConnectivity(ctx context.Context) (connectivity uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "Connectivity").Store(&connectivity)
 	return
 }
 
 // GetConnectivityCheckAvailable gets org.freedesktop.NetworkManager.ConnectivityCheckAvailable property.
-func (o *Org_Freedesktop_NetworkManager) GetConnectivityCheckAvailable(ctx context.Context) (connectivityCheckAvailable bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "ConnectivityCheckAvailable").Store(&connectivityCheckAvailable)
+func (o *NetworkManager) GetConnectivityCheckAvailable(ctx context.Context) (connectivityCheckAvailable bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "ConnectivityCheckAvailable").Store(&connectivityCheckAvailable)
 	return
 }
 
 // GetConnectivityCheckEnabled gets org.freedesktop.NetworkManager.ConnectivityCheckEnabled property.
-func (o *Org_Freedesktop_NetworkManager) GetConnectivityCheckEnabled(ctx context.Context) (connectivityCheckEnabled bool, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "ConnectivityCheckEnabled").Store(&connectivityCheckEnabled)
+func (o *NetworkManager) GetConnectivityCheckEnabled(ctx context.Context) (connectivityCheckEnabled bool, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "ConnectivityCheckEnabled").Store(&connectivityCheckEnabled)
 	return
 }
 
 // SetConnectivityCheckEnabled sets org.freedesktop.NetworkManager.ConnectivityCheckEnabled property.
-func (o *Org_Freedesktop_NetworkManager) SetConnectivityCheckEnabled(ctx context.Context, connectivityCheckEnabled bool) error {
-	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceOrg_Freedesktop_NetworkManager, "ConnectivityCheckEnabled", dbus.MakeVariant(connectivityCheckEnabled)).Store()
+func (o *NetworkManager) SetConnectivityCheckEnabled(ctx context.Context, connectivityCheckEnabled bool) error {
+	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceNetworkManager, "ConnectivityCheckEnabled", dbus.MakeVariant(connectivityCheckEnabled)).Store()
 }
 
 // GetConnectivityCheckUri gets org.freedesktop.NetworkManager.ConnectivityCheckUri property.
-func (o *Org_Freedesktop_NetworkManager) GetConnectivityCheckUri(ctx context.Context) (connectivityCheckUri string, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "ConnectivityCheckUri").Store(&connectivityCheckUri)
+func (o *NetworkManager) GetConnectivityCheckUri(ctx context.Context) (connectivityCheckUri string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "ConnectivityCheckUri").Store(&connectivityCheckUri)
 	return
 }
 
 // GetGlobalDnsConfiguration gets org.freedesktop.NetworkManager.GlobalDnsConfiguration property.
-func (o *Org_Freedesktop_NetworkManager) GetGlobalDnsConfiguration(ctx context.Context) (globalDnsConfiguration map[string]dbus.Variant, err error) {
-	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceOrg_Freedesktop_NetworkManager, "GlobalDnsConfiguration").Store(&globalDnsConfiguration)
+func (o *NetworkManager) GetGlobalDnsConfiguration(ctx context.Context) (globalDnsConfiguration map[string]dbus.Variant, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager, "GlobalDnsConfiguration").Store(&globalDnsConfiguration)
 	return
 }
 
 // SetGlobalDnsConfiguration sets org.freedesktop.NetworkManager.GlobalDnsConfiguration property.
-func (o *Org_Freedesktop_NetworkManager) SetGlobalDnsConfiguration(ctx context.Context, globalDnsConfiguration map[string]dbus.Variant) error {
-	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceOrg_Freedesktop_NetworkManager, "GlobalDnsConfiguration", dbus.MakeVariant(globalDnsConfiguration)).Store()
+func (o *NetworkManager) SetGlobalDnsConfiguration(ctx context.Context, globalDnsConfiguration map[string]dbus.Variant) error {
+	return o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Set", 0, InterfaceNetworkManager, "GlobalDnsConfiguration", dbus.MakeVariant(globalDnsConfiguration)).Store()
 }
 
-// Org_Freedesktop_NetworkManager_CheckPermissionsSignal represents org.freedesktop.NetworkManager.CheckPermissions signal.
-type Org_Freedesktop_NetworkManager_CheckPermissionsSignal struct {
+// NetworkManager_CheckPermissionsSignal represents org.freedesktop.NetworkManager.CheckPermissions signal.
+type NetworkManager_CheckPermissionsSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_CheckPermissionsSignalBody
+	Body   *NetworkManager_CheckPermissionsSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_CheckPermissionsSignal) Name() string {
+func (s *NetworkManager_CheckPermissionsSignal) Name() string {
 	return "CheckPermissions"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_CheckPermissionsSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager
+func (s *NetworkManager_CheckPermissionsSignal) Interface() string {
+	return InterfaceNetworkManager
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_CheckPermissionsSignal) Sender() string {
+func (s *NetworkManager_CheckPermissionsSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_CheckPermissionsSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_CheckPermissionsSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_CheckPermissionsSignal) values() []interface{} {
+func (s *NetworkManager_CheckPermissionsSignal) values() []interface{} {
 	return []interface{}{}
 }
 
-// Org_Freedesktop_NetworkManager_CheckPermissionsSignalBody is body container.
-type Org_Freedesktop_NetworkManager_CheckPermissionsSignalBody struct {
+// NetworkManager_CheckPermissionsSignalBody is body container.
+type NetworkManager_CheckPermissionsSignalBody struct {
 }
 
-// Org_Freedesktop_NetworkManager_StateChangedSignal represents org.freedesktop.NetworkManager.StateChanged signal.
-type Org_Freedesktop_NetworkManager_StateChangedSignal struct {
+// NetworkManager_StateChangedSignal represents org.freedesktop.NetworkManager.StateChanged signal.
+type NetworkManager_StateChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_StateChangedSignalBody
+	Body   *NetworkManager_StateChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_StateChangedSignal) Name() string {
+func (s *NetworkManager_StateChangedSignal) Name() string {
 	return "StateChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_StateChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager
+func (s *NetworkManager_StateChangedSignal) Interface() string {
+	return InterfaceNetworkManager
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_StateChangedSignal) Sender() string {
+func (s *NetworkManager_StateChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_StateChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_StateChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_StateChangedSignal) values() []interface{} {
+func (s *NetworkManager_StateChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.State}
 }
 
-// Org_Freedesktop_NetworkManager_StateChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_StateChangedSignalBody struct {
+// NetworkManager_StateChangedSignalBody is body container.
+type NetworkManager_StateChangedSignalBody struct {
 	State uint32
 }
 
-// Org_Freedesktop_NetworkManager_PropertiesChangedSignal represents org.freedesktop.NetworkManager.PropertiesChanged signal.
-type Org_Freedesktop_NetworkManager_PropertiesChangedSignal struct {
+// NetworkManager_PropertiesChangedSignal represents org.freedesktop.NetworkManager.PropertiesChanged signal.
+type NetworkManager_PropertiesChangedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_PropertiesChangedSignalBody
+	Body   *NetworkManager_PropertiesChangedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_PropertiesChangedSignal) Name() string {
+func (s *NetworkManager_PropertiesChangedSignal) Name() string {
 	return "PropertiesChanged"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_PropertiesChangedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager
+func (s *NetworkManager_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_PropertiesChangedSignal) Sender() string {
+func (s *NetworkManager_PropertiesChangedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_PropertiesChangedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_PropertiesChangedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_PropertiesChangedSignal) values() []interface{} {
+func (s *NetworkManager_PropertiesChangedSignal) values() []interface{} {
 	return []interface{}{s.Body.Properties}
 }
 
-// Org_Freedesktop_NetworkManager_PropertiesChangedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_PropertiesChangedSignalBody struct {
+// NetworkManager_PropertiesChangedSignalBody is body container.
+type NetworkManager_PropertiesChangedSignalBody struct {
 	Properties map[string]dbus.Variant
 }
 
-// Org_Freedesktop_NetworkManager_DeviceAddedSignal represents org.freedesktop.NetworkManager.DeviceAdded signal.
-type Org_Freedesktop_NetworkManager_DeviceAddedSignal struct {
+// NetworkManager_DeviceAddedSignal represents org.freedesktop.NetworkManager.DeviceAdded signal.
+type NetworkManager_DeviceAddedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_DeviceAddedSignalBody
+	Body   *NetworkManager_DeviceAddedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_DeviceAddedSignal) Name() string {
+func (s *NetworkManager_DeviceAddedSignal) Name() string {
 	return "DeviceAdded"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_DeviceAddedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager
+func (s *NetworkManager_DeviceAddedSignal) Interface() string {
+	return InterfaceNetworkManager
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_DeviceAddedSignal) Sender() string {
+func (s *NetworkManager_DeviceAddedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_DeviceAddedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_DeviceAddedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_DeviceAddedSignal) values() []interface{} {
+func (s *NetworkManager_DeviceAddedSignal) values() []interface{} {
 	return []interface{}{s.Body.DevicePath}
 }
 
-// Org_Freedesktop_NetworkManager_DeviceAddedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_DeviceAddedSignalBody struct {
+// NetworkManager_DeviceAddedSignalBody is body container.
+type NetworkManager_DeviceAddedSignalBody struct {
 	DevicePath dbus.ObjectPath
 }
 
-// Org_Freedesktop_NetworkManager_DeviceRemovedSignal represents org.freedesktop.NetworkManager.DeviceRemoved signal.
-type Org_Freedesktop_NetworkManager_DeviceRemovedSignal struct {
+// NetworkManager_DeviceRemovedSignal represents org.freedesktop.NetworkManager.DeviceRemoved signal.
+type NetworkManager_DeviceRemovedSignal struct {
 	sender string
 	Path   dbus.ObjectPath
-	Body   *Org_Freedesktop_NetworkManager_DeviceRemovedSignalBody
+	Body   *NetworkManager_DeviceRemovedSignalBody
 }
 
 // Name returns the signal's name.
-func (s *Org_Freedesktop_NetworkManager_DeviceRemovedSignal) Name() string {
+func (s *NetworkManager_DeviceRemovedSignal) Name() string {
 	return "DeviceRemoved"
 }
 
 // Interface returns the signal's interface.
-func (s *Org_Freedesktop_NetworkManager_DeviceRemovedSignal) Interface() string {
-	return InterfaceOrg_Freedesktop_NetworkManager
+func (s *NetworkManager_DeviceRemovedSignal) Interface() string {
+	return InterfaceNetworkManager
 }
 
 // Sender returns the signal's sender unique name.
-func (s *Org_Freedesktop_NetworkManager_DeviceRemovedSignal) Sender() string {
+func (s *NetworkManager_DeviceRemovedSignal) Sender() string {
 	return s.sender
 }
 
-func (s *Org_Freedesktop_NetworkManager_DeviceRemovedSignal) path() dbus.ObjectPath {
+func (s *NetworkManager_DeviceRemovedSignal) path() dbus.ObjectPath {
 	return s.Path
 }
 
-func (s *Org_Freedesktop_NetworkManager_DeviceRemovedSignal) values() []interface{} {
+func (s *NetworkManager_DeviceRemovedSignal) values() []interface{} {
 	return []interface{}{s.Body.DevicePath}
 }
 
-// Org_Freedesktop_NetworkManager_DeviceRemovedSignalBody is body container.
-type Org_Freedesktop_NetworkManager_DeviceRemovedSignalBody struct {
+// NetworkManager_DeviceRemovedSignalBody is body container.
+type NetworkManager_DeviceRemovedSignalBody struct {
 	DevicePath dbus.ObjectPath
 }
