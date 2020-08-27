@@ -1,4 +1,4 @@
-module github.com/muka/network-manager
+module github.com/muka/network_manager
 
 go 1.14
 
