@@ -22,13 +22,28 @@ func main() {
 
 	nm := network_manager.NewNetworkManager(conn.Object(nmNs, dbus.ObjectPath("/org/freedesktop/NetworkManager")))
 
+	enabled, err := nm.GetWirelessEnabled(context.Background())
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	if !enabled {
+		log.Println("Enabling WIFI")
+		err := nm.SetWirelessEnabled(context.Background(), true)
+		if err != nil {
+			log.Fatal(err)
+		}
+	} else {
+		log.Println("WIFI is enabled")
+	}
+
 	// listActiveConnections(nm, conn)
 	devices, err := listWifiDevices(nm, conn)
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	for _, device := range devices {
+	for devicePath, device := range devices {
 
 		connectivity, err := device.GetIp4Connectivity(context.Background())
 		if err != nil {
@@ -61,14 +76,53 @@ func main() {
 
 			log.Printf("WIFI %s %s\n", iface, label)
 		}
+
+		wireless := network_manager.NewNetworkManager_Device_Wireless(conn.Object(nmNs, devicePath))
+
+		// err = wireless.RequestScan(context.Background(), map[string]dbus.Variant{})
+		// if err != nil {
+		// 	log.Fatalln(err)
+		// }
+
+		accessPoints, err := wireless.GetAccessPoints(context.Background())
+		if err != nil {
+			log.Fatalln(err)
+		}
+
+		for _, accessPointPath := range accessPoints {
+
+			accessPoint := network_manager.NewNetworkManager_AccessPoint(conn.Object(nmNs, accessPointPath))
+
+			ssid, err := accessPoint.GetSsid(context.Background())
+			if err != nil {
+				log.Printf("Error: %s", err)
+				continue
+			}
+
+			strength, err := accessPoint.GetStrength(context.Background())
+			if err != nil {
+				log.Printf("Error: %s", err)
+				continue
+			}
+
+			maxBitrate, err := accessPoint.GetMaxBitrate(context.Background())
+			if err != nil {
+				log.Printf("Error: %s", err)
+				continue
+			}
+
+			log.Printf("%s strength=%d maxBitrate=%d", ssid, strength, maxBitrate)
+
+		}
+
 	}
 
 	os.Exit(0)
 }
 
-func listWifiDevices(nm *network_manager.NetworkManager, conn *dbus.Conn) ([]*network_manager.NetworkManager_Device, error) {
+func listWifiDevices(nm *network_manager.NetworkManager, conn *dbus.Conn) (map[dbus.ObjectPath]*network_manager.NetworkManager_Device, error) {
 
-	wifi := []*network_manager.NetworkManager_Device{}
+	wifi := map[dbus.ObjectPath]*network_manager.NetworkManager_Device{}
 
 	devices, err := nm.GetAllDevices(context.Background())
 	if err != nil {
@@ -85,7 +139,7 @@ func listWifiDevices(nm *network_manager.NetworkManager, conn *dbus.Conn) ([]*ne
 		}
 
 		if network_manager.NM_DEVICE_TYPE_WIFI == deviceType {
-			wifi = append(wifi, device)
+			wifi[devicePath] = device
 		}
 	}
 

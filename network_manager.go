@@ -25,6 +25,18 @@ var ErrUnknownSignal = errors.New("unknown signal")
 // into one with typed structured body or returns ErrUnknownSignal error.
 func LookupSignal(signal *dbus.Signal) (Signal, error) {
 	switch signal.Name {
+	case InterfaceNetworkManager_AccessPoint + "." + "PropertiesChanged":
+		v0, ok := signal.Body[0].(map[string]dbus.Variant)
+		if !ok {
+			return nil, fmt.Errorf("prop .Properties is %T, not map[string]dbus.Variant", signal.Body[0])
+		}
+		return &NetworkManager_AccessPoint_PropertiesChangedSignal{
+			sender: signal.Sender,
+			Path:   signal.Path,
+			Body: &NetworkManager_AccessPoint_PropertiesChangedSignalBody{
+				Properties: v0,
+			},
+		}, nil
 	case InterfaceNetworkManager_Checkpoint + "." + "PropertiesChanged":
 		v0, ok := signal.Body[0].(map[string]dbus.Variant)
 		if !ok {
@@ -776,6 +788,7 @@ func RemoveMatchSignal(conn *dbus.Conn, s Signal, opts ...dbus.MatchOption) erro
 
 // Interface name constants.
 const (
+	InterfaceNetworkManager_AccessPoint         = "org.freedesktop.NetworkManager.AccessPoint"
 	InterfaceNetworkManager_AgentManager        = "org.freedesktop.NetworkManager.AgentManager"
 	InterfaceNetworkManager_Checkpoint          = "org.freedesktop.NetworkManager.Checkpoint"
 	InterfaceNetworkManager_Connection_Active   = "org.freedesktop.NetworkManager.Connection.Active"
@@ -824,6 +837,114 @@ const (
 	InterfaceNetworkManager_WiMax_Nsp           = "org.freedesktop.NetworkManager.WiMax.Nsp"
 	InterfaceNetworkManager                     = "org.freedesktop.NetworkManager"
 )
+
+// NewNetworkManager_AccessPoint creates and allocates org.freedesktop.NetworkManager.AccessPoint.
+func NewNetworkManager_AccessPoint(object dbus.BusObject) *NetworkManager_AccessPoint {
+	return &NetworkManager_AccessPoint{object}
+}
+
+// NetworkManager_AccessPoint implements org.freedesktop.NetworkManager.AccessPoint D-Bus interface.
+type NetworkManager_AccessPoint struct {
+	object dbus.BusObject
+}
+
+// GetFlags gets org.freedesktop.NetworkManager.AccessPoint.Flags property.
+func (o *NetworkManager_AccessPoint) GetFlags(ctx context.Context) (flags uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "Flags").Store(&flags)
+	return
+}
+
+// GetWpaFlags gets org.freedesktop.NetworkManager.AccessPoint.WpaFlags property.
+func (o *NetworkManager_AccessPoint) GetWpaFlags(ctx context.Context) (wpaFlags uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "WpaFlags").Store(&wpaFlags)
+	return
+}
+
+// GetRsnFlags gets org.freedesktop.NetworkManager.AccessPoint.RsnFlags property.
+func (o *NetworkManager_AccessPoint) GetRsnFlags(ctx context.Context) (rsnFlags uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "RsnFlags").Store(&rsnFlags)
+	return
+}
+
+// GetSsid gets org.freedesktop.NetworkManager.AccessPoint.Ssid property.
+//
+// Annotations:
+//   @org.gtk.GDBus.C.ForceGVariant = 1
+func (o *NetworkManager_AccessPoint) GetSsid(ctx context.Context) (ssid []byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "Ssid").Store(&ssid)
+	return
+}
+
+// GetFrequency gets org.freedesktop.NetworkManager.AccessPoint.Frequency property.
+func (o *NetworkManager_AccessPoint) GetFrequency(ctx context.Context) (frequency uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "Frequency").Store(&frequency)
+	return
+}
+
+// GetHwAddress gets org.freedesktop.NetworkManager.AccessPoint.HwAddress property.
+func (o *NetworkManager_AccessPoint) GetHwAddress(ctx context.Context) (hwAddress string, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "HwAddress").Store(&hwAddress)
+	return
+}
+
+// GetMode gets org.freedesktop.NetworkManager.AccessPoint.Mode property.
+func (o *NetworkManager_AccessPoint) GetMode(ctx context.Context) (mode uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "Mode").Store(&mode)
+	return
+}
+
+// GetMaxBitrate gets org.freedesktop.NetworkManager.AccessPoint.MaxBitrate property.
+func (o *NetworkManager_AccessPoint) GetMaxBitrate(ctx context.Context) (maxBitrate uint32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "MaxBitrate").Store(&maxBitrate)
+	return
+}
+
+// GetStrength gets org.freedesktop.NetworkManager.AccessPoint.Strength property.
+func (o *NetworkManager_AccessPoint) GetStrength(ctx context.Context) (strength byte, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "Strength").Store(&strength)
+	return
+}
+
+// GetLastSeen gets org.freedesktop.NetworkManager.AccessPoint.LastSeen property.
+func (o *NetworkManager_AccessPoint) GetLastSeen(ctx context.Context) (lastSeen int32, err error) {
+	err = o.object.CallWithContext(ctx, "org.freedesktop.DBus.Properties.Get", 0, InterfaceNetworkManager_AccessPoint, "LastSeen").Store(&lastSeen)
+	return
+}
+
+// NetworkManager_AccessPoint_PropertiesChangedSignal represents org.freedesktop.NetworkManager.AccessPoint.PropertiesChanged signal.
+type NetworkManager_AccessPoint_PropertiesChangedSignal struct {
+	sender string
+	Path   dbus.ObjectPath
+	Body   *NetworkManager_AccessPoint_PropertiesChangedSignalBody
+}
+
+// Name returns the signal's name.
+func (s *NetworkManager_AccessPoint_PropertiesChangedSignal) Name() string {
+	return "PropertiesChanged"
+}
+
+// Interface returns the signal's interface.
+func (s *NetworkManager_AccessPoint_PropertiesChangedSignal) Interface() string {
+	return InterfaceNetworkManager_AccessPoint
+}
+
+// Sender returns the signal's sender unique name.
+func (s *NetworkManager_AccessPoint_PropertiesChangedSignal) Sender() string {
+	return s.sender
+}
+
+func (s *NetworkManager_AccessPoint_PropertiesChangedSignal) path() dbus.ObjectPath {
+	return s.Path
+}
+
+func (s *NetworkManager_AccessPoint_PropertiesChangedSignal) values() []interface{} {
+	return []interface{}{s.Body.Properties}
+}
+
+// NetworkManager_AccessPoint_PropertiesChangedSignalBody is body container.
+type NetworkManager_AccessPoint_PropertiesChangedSignalBody struct {
+	Properties map[string]dbus.Variant
+}
 
 // NewNetworkManager_AgentManager creates and allocates org.freedesktop.NetworkManager.AgentManager.
 func NewNetworkManager_AgentManager(object dbus.BusObject) *NetworkManager_AgentManager {
